@@ -103,14 +103,20 @@
       	document.getElementById("editTanggal").innerHTML = formattedDate(selectedDate);
         document.getElementById("viewTanggal").defaultValue = selectedDate;
 	  })
-	  
-	  $('.row-select').each(function(){
-		  ListData = [[${ListHariKerjaModel}]];
-		  if(ListData[i].merahBukan == "Ya"){
-			  $("tr").css({"background-color":"red"});
-		  }
-	  })
   }) 
+</script>
+
+<script th:inline="javascript">
+   $(document).ready(function(){
+	   var ListData = [[${ListHariKerjaModel}]];
+	   var j = 0;
+	   var els = document.getElementById("dataTables-profile").getElementsByTagName("tr");
+	   for(var i=0;i<ListData.length;i++){
+		   if(ListData[i].merahBukan=="Ya"){
+			   els[i+1].style.background = "red";
+		   }
+	   }
+   })
 </script>
 
 <script>

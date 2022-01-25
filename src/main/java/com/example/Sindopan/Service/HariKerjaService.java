@@ -32,8 +32,12 @@ public class HariKerjaService {
 	}
 	
 	public Time getTime(String time) throws ParseException {
-		System.out.println("Jam Masuk "+time);
-		return Time.valueOf(time+":00");
+		if(time.equals("")) {
+			return null;
+		}
+		else {
+			return Time.valueOf(time+":00");
+		}
 	}
 
 }
