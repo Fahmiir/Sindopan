@@ -119,7 +119,21 @@
    })
 </script>
 
-<script>
+<script type ="text/javascript">
+
+    $(document).ready(function(){
+    
+	   for(var i=0;i<document.getElementsByClassName("durasi").length;i++){
+ 		   document.getElementsByClassName("durasi")[i].innerHTML = "Durasi Kerja";   
+ 	   }
+   })
+   
+   
+   function getDuration() {
+    	
+    }
+    
+   
    function formattedDate(date){
 	   var onlyDate = date.substr(0,10);
 	   var splitDate = onlyDate.split("-");
@@ -234,7 +248,7 @@
                                                 <td class="tanggal"><center><a th:text="${#dates.format(hariKerjaModel.tanggal,'dd-MM-yyyy')}"></a></center></td>
                                                 <td class="jamMasuk"><center><a th:text="${#dates.format(hariKerjaModel.jamMasuk,'HH:mm')}"></a></center></td>
                                                 <td class="jamPulang"><center><a th:text="${#dates.format(hariKerjaModel.jamKeluar,'HH:mm')}"></a></center></td>
-                                                <td class="durasiKerja"><center>Durasi Kerja</center></td>
+                                                <td class="durasiKerja"><center><a class="durasi"></a></center></td>
                                                 <td class="keterangan"><center><a th:text="${hariKerjaModel.keterangan}"></a></center></td>
                                                 <td class="action"><center><button class="editButton" data-toggle="modal" data-target="#myModalEdit">Edit</button><button>Delete</button></center></td>
                                             </tr>
