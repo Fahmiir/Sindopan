@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+    .vertical-align-center {
+    /* To center vertically */
+    
+    vertical-align: middle;
+    }
+    .modal-content2 {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    }
+    
+                .modal {
+            text-align: center;
+            padding: 0!important;
+            }
+
+            .modal:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -4px;
+            }
+
+            .modal-dialog {
+            display: inline-block;
+            text-align: left;
+            vertical-align: middle;
+            }
+            
+             article, aside, figure, footer, header, hgroup, 
+            menu, nav, section { display: block; }
+    </style>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Sistem Informasi Terpadu PAN</title>
+    
+    <!-- Bootstrap Core CSS -->
+        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- MetisMenu CSS -->
+        <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+        <!-- DataTables CSS -->
+        <link href="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+        <!-- DataTables Responsive CSS -->
+        <link href="bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        
+        <!-- Datepicker for date -->
+        <link rel="stylesheet" href="css/jquery-ui.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery -->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/jquery/dist/jquery-image-blob.min.js"></script>
+        
+        <!-- Datepicker for Date -->
+        <script src="js/jquery-ui.js"></script>
+        
+        <!-- Bootstrap Core JavaScript -->
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+        <!-- DataTables JavaScript -->
+        <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+        <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+        
+        <!-- Custom Theme JavaScript -->
+        <script src="dist/js/sb-admin-2.js"></script>
+ 
+    
+<script th:inline="javascript">
+  $(document).ready(function(){
+	  var i;
+	  var ListData;
+	  $(".editButton").click(function(){
+		i = $(this).closest("tr").index()-1;
+      	ListData = [[${ListHariKerjaModel}]];
+      	var selectedId = ListData[i].idHari;
+      	var selectedDate = ListData[i].tanggal;
+      	document.getElementById("editId").defaultValue = selectedId;
+      	document.getElementById("editTanggal").innerHTML = formattedDate(selectedDate);
+        document.getElementById("viewTanggal").defaultValue = selectedDate;
+	  })
+	  
+	  $('.row-select').each(function(){
+		  ListData = [[${ListHariKerjaModel}]];
+		  if(ListData[i].merahBukan == "Ya"){
+			  $("tr").css({"background-color":"red"});
+		  }
+	  })
+  }) 
+</script>
+
+<script>
+   function formattedDate(date){
+	   var onlyDate = date.substr(0,10);
+	   var splitDate = onlyDate.split("-");
+	   return splitDate[2]+"-"+splitDate[1]+"-"+splitDate[0];
+   }
+   
+   $(document).ready(function(){
+	   $("#chkmerah").change(function(){
+		   if(this.checked){
+			   $("#kolomket").show();
+			   $("#kolomJamKerja").hide();
+		   }
+		   else {
+			   $("#kolomket").hide();
+			   $("#kolomJamKerja").show();			   
+		   }
+	   });
+   })
+</script>
+
+</head>
+<body>
+    <div id="divAlert"></div>
+    <div id="wrapper">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Master Hari Kerja</h1>
+                </div>
+            </div>                        
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">                                
+                        <li><a href="#master" data-toggle="tab">Master Hari Kerja</a></li>
+                    </ul>
+                    
+                    <!-- Tab panes -->
+                    <div class="tab-content">                                
+                        <!-- ================================================================================ Tab Master Hari Kerja ================================================================================ -->
+                        <div class="tab-pane fade in active" id="master" style="width:100%;">
+                            <br>
+                            <div class="well well-lg">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-sm">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Bulan</td>
+                                                        <td>
+                                                            <select id="bulansrc" name="bulansrc" class="form-control form-control-sm">
+                                                                <option value="Januari">Januari</option>
+                                                                <option value="Februari">Februari</option>
+                                                            </select>
+                                                        </td>
+                                                         <td>Tahun</td>
+                                                         <td>
+                                                             <select id="tahunsrc" name="tahunsrc" class="form-control form-control-sm">
+                                                                <option value="">tahun</option>
+                                                             </select>
+                                                        </td>
+                                                     </tr>
+                                                 </tbody>
+                                            </table>                                                    
+                                        </div>                                                                                      
+                                        <div class="form-group">
+                                              <div class="col-lg-12">
+                                                  <div class="table-responsive">
+                                                      <table class="table">
+                                                         <tbody>
+                                                              <tr>  
+                                                                  <td align = "left">
+                                                                       <button id="btnSearch" type="button" class="btn btn-info" onclick="functSearchHari();"><i class="fa fa-search fa-fw"></i>Search</button>
+                                                                       <button id="btnNew" type="button" class="btn btn-success" data-toggle="modal" onclick="functClearHariKerja();" ><i class="fa fa-file-o fa-fw"></i> Hari Kerja Baru</button>
+                                                                  </td>
+                                                              </tr>    
+                                                         </tbody>  
+                                                      </table>
+                                                  </div>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>                                            
+                                <hr/>
+                                
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-2">
+                                        <!-- <img id="loadingimg" style="display: none;position: fixed;margin: 0 0 0 75px;" src="../img/loading.gif" width="40px"></img> -->
+                                        <small id="loadingimgtab1" style="display: none;position: absolute;margin: 0 0 0 75px;">Please wait ...</small>
+                                       
+                                    </div>
+                                    <div class="col-lg-5"></div>
+                                   
+                                </div>
+                                
+                                
+                                
+                                <div id="divTableHari" class="dataTable_wrapper">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-profile" data-sort="false" data-page-length="-1" style="font-size: 13px;">
+                                        <thead>                                                
+                                            <tr>                                                   
+                                                <th><center>Tanggal</center></th>
+                                                <th><center>Jam Masuk</center></th>
+                                                <th><center>Jam Pulang</center></th>
+                                                <th><center>Durasi Kerja</center></th>
+                                                <th><center>Keterangan</center></th>
+                                                <th><center>Action</center></th>
+                                            </tr>
+                                            <tr th:each="hariKerjaModel:${ListHariKerjaModel}" class="row-select">
+                                                <td class="tanggal"><center><a th:text="${#dates.format(hariKerjaModel.tanggal,'dd-MM-yyyy')}"></a></center></td>
+                                                <td class="jamMasuk"><center><a th:text="${#dates.format(hariKerjaModel.jamMasuk,'HH:mm')}"></a></center></td>
+                                                <td class="jamPulang"><center><a th:text="${#dates.format(hariKerjaModel.jamKeluar,'HH:mm')}"></a></center></td>
+                                                <td class="durasiKerja"><center>Durasi Kerja</center></td>
+                                                <td class="keterangan"><center><a th:text="${hariKerjaModel.keterangan}"></a></center></td>
+                                                <td class="action"><center><button class="editButton" data-toggle="modal" data-target="#myModalEdit">Edit</button><button>Delete</button></center></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tblDataHari"></tbody>
+                                      </table>
+                                    <input type="hidden" name="hdnJmlRow" id="hdnJmlRow"/>
+                                </div>
+                                
+                                
+                                
+                            </div>
+                        </div>
+                        
+                       
+                         
+                        <!-- Modal Hari Kerja Edit -->
+                        <div class="modal fade" id="myModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                               <div class="modal-content">
+                                  <form th:action="editHari">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="functClearHariKerja();">&times;</button>
+                                         <input type="hidden" id="hdnOperation" name="hdnOperation"/>
+                                        <h4 class="modal-title" id="titleEdit">Edit Hari Kerja</h4>
+                                    </div>
+                                    <div class="modal-body">                                            
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="panel panel-default">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr style="display:none">
+                                                                    <td>
+                                                                        id
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" id="editId" name="editId">    
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        Hari
+                                                                    </td>
+                                                                    <td>
+                                                                        <label id="editTanggal" name="editTanggal" class="form-control">
+                                                                    </td>
+                                                                    <td style="display:none">
+                                                                        <input type="text" id="viewTanggal" name="viewTanggal" class="form-control">                                                                    
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                    Merah ?
+                                                                    </td>
+                                                                     <td>
+                                                                         <input type="checkbox" id="chkmerah" name="chkmerah" value="Ya">
+                                                                         <input name="kolomket" id="kolomket" style="display: none;text-transform:uppercase" class="form-control" placeholder="Keterangan Tanggal Merah">
+                                                                    </td> 
+                                                                </tr>
+                                                                <tr id="kolomJamKerja">
+                                                                    <td>
+                                                                    Jam Kerja
+                                                                    </td>
+                                                                     <td>
+                                                                     <input type="time" id="jamMasuk" name="jamMasuk">&nbsp;-&nbsp;<input type="time" id="jamPulang" name="jamPulang">
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>                                                                
+                                                        </table> 
+                                                    </div>
+                                                </div>
+                                            </div>                                                
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" id="tombolclose" name="tombolclose"><i class="fa fa-times fa-fw"></i> Close</button>
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-fw"></i>Save changes</button>
+                                    </div>
+                                  </form>
+                               </div>
+                            </div>
+                        </div>
+                        <!-- End Modal Customer Add/Edit -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    
+    
+     <style>
+        .high {
+            color: palevioletred;
+        }
+
+        .low {
+            color: skyblue;
+        }
+    </style>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="jquery-ui-1.10.0.custom.css" rel="stylesheet" type="text/css" media = "all"/>
+    <link rel='stylesheet' type='text/css' href='cssdata/fullcalendar.css' />
+     <!-- jQuery -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="dist/js/jquery-ui.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+    <!--Full Calendar-->
+    <link href="dist/css/fullcalendar.css" rel="stylesheet">
+    <script type="text/javascript" src="dist/js/moment.min.js"></script>
+    <script type="text/javascript" src="dist/js/fullcalendar.js"></script>
+     <!-- Datepicker for Date -->
+    <script src="js/jquery-ui.js"></script>
+    
+    
+    <link href="dist/css/fullcalendar.css" rel="stylesheet">
+    
+    <script src="http://fullcalendar.io/js/fullcalendar-3.9.0/fullcalendar.min.js"></script>
+    <link rel="stylesheet" href="http://fullcalendar.io/js/fullcalendar-3.9.0/fullcalendar.min.css" />
+   
+    <script src="dist/js/moment.min.js"></script>
+    <script src="dist/js/fullcalendar.min.js"></script>
+    <!--<script src="dist/js/fullcalendar.js"></script>-->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    
+    <!-- DataTables JavaScript -->
+    <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    
+    <!-- Custom Theme JavaScript -->
+    <script src="dist/js/sb-admin-2.js"></script>
+    
+    <style>
+       body {
+        padding-top: 20px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+       }
+	   #calendar {
+		max-width: 600px;
+	   }
+	   .col-centered{
+		float: none;
+		margin: auto;
+	   }
+    </style>
+    
+
+</head>
+<body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+             header: {
+                 left: 'month,basicWeek,agendaDay',
+                 center: 'title',
+                 right: 'prev next'
+          },
+         defaultDate: $('#calendar').fullCalendar('today'),
+         themes : true,
+         editable: true,
+         eventLimit: true, // allow "more" link when too many events
+         events : "",
+         eventData: [
+         {
+          title: ''
+         }
+         ],
+         eventRender: function eventRender( event, element, view ) {   
+               element.find('.fc-title').append(" -"+event.description); 
+               return ['', event.title].indexOf($('#vessel').val()) >= 0;
+         },
+
+         eventClick:  function(event, jsEvent, view) {
+              $('#modalTitle').html(event.title);
+              $('#modalBody').html(event.title);
+              $('#Port').html(event.description);
+              $('#startTime').html(moment(event.start).format('MMM Do h:mm A'));
+              $('#endTime').html(moment(event.end).format('MMM Do h:mm A'));
+              $('#eventUrl').attr('href',event.url);
+              $('#fullCalModal').modal();
+              }
+        });
+        $('#vessel').on('change',function(){
+        $('#calendar').fullCalendar('rerenderEvents');
+        });
+
+
+
+$('#prev').on('click', function() {
+$('#calendar').fullCalendar('prev'); // call method
+var dprev = new Date($("#calendar").fullCalendar('getDate'));
+var mprev = dprev.getMonth() + 1;
+document.getElementById("getBulan").value = mprev;
+});
+
+$('#next').on('click', function() {
+$('#calendar').fullCalendar('next'); // call method
+var dnext = new Date($("#calendar").fullCalendar('getDate'));
+var mnext = dnext.getMonth() + 1;
+document.getElementById("getBulan").value = mnext;
+});    
+});
+
+</script>
+
+             <div class="col-lg-12 text-center"> 
+                 <input type="hidden" id="getBulan" name="getBulan">
+                 
+                 
+                 <table class="col-centered">
+<!--                     <tr>
+                         <td align="right">
+                          <button type="button" class="btn btn-primary" id='prev'>prev</button>
+                           <button type="button" class="btn btn-primary" id='next'>next</button>
+                           </td>
+                         </tr>-->
+                     <tr>
+                        <td align = "left">
+                              <div id="calendar"></div>
+                              </td>
+                             
+<!--                              <td align = "right">
+                                   <div id="tgl"></div>
+                <h3>Estimate Vessel Schedule</h3>
+      
+               
+                         </td>-->
+                     </tr>
+                     </table>      
+    </div>
+</body>
+</html>
