@@ -27,6 +27,10 @@ public class HariKerjaService {
 		return hr.findAll();
 	}
 	
+	public void saveDate(HariKerjaModel hm) {
+		hr.save(hm);
+	}
+	
 	public void updateDate(HariKerjaModel hm) {
 		hr.save(hm);
 	}

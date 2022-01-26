@@ -168,6 +168,19 @@
 		   }
 	   });
    })
+   
+   $(document).ready(function(){
+	   $("#addchkmerah").change(function(){
+		   if(this.checked){
+			   $("#addkolomket").show();
+			   $("#kolomAddJamKerja").hide();
+		   }
+		   else {
+			   $("#addkolomket").hide();
+			   $("#kolomAddJamKerja").show();			   
+		   }		   
+	   });
+   })
 </script>
 
 </head>
@@ -223,8 +236,8 @@
                                                          <tbody>
                                                               <tr>  
                                                                   <td align = "left">
-                                                                       <button id="btnSearch" type="button" class="btn btn-info" onclick="functSearchHari();"><i class="fa fa-search fa-fw"></i>Search</button>
-                                                                       <button id="btnNew" type="button" class="btn btn-success" data-toggle="modal"><i class="fa fa-file-o fa-fw"></i> Hari Kerja Baru</button>
+                                                                       <button id="btnSearch" type="button" class="btn btn-info"><i class="fa fa-search fa-fw"></i>Search</button>
+                                                                       <button id="btnNew" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><i class="fa fa-file-o fa-fw"></i>Hari Kerja Baru</button>
                                                                   </td>
                                                               </tr>    
                                                          </tbody>  
@@ -276,7 +289,62 @@
                             </div>
                         </div>
                         
-                       
+                       <!-- Modal Hari Kerja Add -->
+                       <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                               <div class="modal-content">
+                                  <form th:action="addHari">
+                                    <div class="modal-header">
+                                          <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">&times;</button>
+                                          <h4 class="modal-title" id="titleEdit">Tambah Hari Kerja</h4>                              
+                                    </div>
+                                    <div class="modal-body">
+                                          <div class="row">
+                                               <div class="col-lg-12">
+                                                   <div class="panel panel-default">
+                                                        <div class="table-responsive">
+                                                             <table class="table">
+                                                                  <tbody>
+                                                                       <tr>
+                                                                          <td>
+                                                                              Hari Kerja
+                                                                          </td>
+                                                                          <td>
+                                                                              <input type="date" id="addharikerja" name="addharikerja" class="form-control">
+                                                                          </td>
+                                                                       </tr>
+                                                                       <tr>
+                                                                           <td>
+                                                                              Merah ?
+                                                                           </td>
+                                                                           <td>
+                                                                             <input type="checkbox" id="addchkmerah" name="addchkmerah" value="Ya">
+                                                                             <input name="addkolomket" id="addkolomket" style="display: none;text-transform:uppercase" class="form-control" placeholder="Keterangan Tanggal Merah">
+                                                                           </td>
+                                                                       </tr>
+                                                                       <tr id="kolomAddJamKerja">
+                                                                           <td>
+                                                                              Jam Kerja
+                                                                           </td>
+                                                                           <td>
+                                                                              <input type="time" id="addjammasuk" name="addjammasuk">&nbsp;-&nbsp;<input type="time" id="addjampulang" name="addjampulang">
+                                                                           </td>                                                                           
+                                                                       </tr>
+                                                                  </tbody>
+                                                             </table>
+                                                        </div>
+                                                   </div>
+                                               </div>
+                                          </div>
+                                    </div>
+                                    <div  class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" id="tombolclose" name="tombolclose"><i class="fa fa-times fa-fw"></i> Close</button>
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Save changes</button>
+                                    </div>
+                                  </form>
+                               </div>
+                            </div>
+                       </div>
                          
                         <!-- Modal Hari Kerja Edit -->
                         <div class="modal fade" id="myModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -284,9 +352,8 @@
                                <div class="modal-content">
                                   <form th:action="editHari">
                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="functClearHariKerja();">&times;</button>
-                                         <input type="hidden" id="hdnOperation" name="hdnOperation"/>
-                                        <h4 class="modal-title" id="titleEdit">Edit Hari Kerja</h4>
+                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                         <h4 class="modal-title" id="titleEdit">Edit Hari Kerja</h4>
                                     </div>
                                     <div class="modal-body">                                            
                                         <div class="row">
