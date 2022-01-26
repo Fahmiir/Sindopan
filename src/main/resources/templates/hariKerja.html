@@ -109,7 +109,6 @@
 <script th:inline="javascript">
    $(document).ready(function(){
 	   var ListData = [[${ListHariKerjaModel}]];
-	   var j = 0;
 	   var els = document.getElementById("dataTables-profile").getElementsByTagName("tr");
 	   for(var i=0;i<ListData.length;i++){
 		   if(ListData[i].merahBukan=="Ya"){
@@ -119,26 +118,43 @@
    })
 </script>
 
-<script type ="text/javascript">
-
-    $(document).ready(function(){
-    
+<script th:inline="javascript">
+   $(document).ready(function(){
+	   var ListData = [[${ListHariKerjaModel}]];
 	   for(var i=0;i<document.getElementsByClassName("durasi").length;i++){
- 		   document.getElementsByClassName("durasi")[i].innerHTML = "Durasi Kerja";   
+ 		   document.getElementsByClassName("durasi")[i].innerHTML = getDuration(ListData[i].jamMasuk,ListData[i].jamKeluar);   
  	   }
+	   
+	   function getDuration(s,e){
+	     if(s && e) {
+		    var start = s.split(":");
+		    var end = e.split(":");
+		    var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+		    var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+		    var diff = endDate.getTime() - startDate.getTime();
+		    var hours = Math.floor(diff / 1000 / 60 / 60);
+		    diff -= hours * 1000 * 60 * 60;
+		    var minutes = Math.floor(diff / 1000 / 60);
+		    return (hours < 9 ? "0" : "") + hours + " Jam ";
+	   //	return (hours < 9 ? "0" : "") + hours + ":" + (minutes < 9 ? "0" : "") + minutes;
+	   }
+		    else {
+		    return null;	
+		    }
+		    	
+	   }	    
    })
-   
-   
-   function getDuration() {
-    	
-    }
-    
+</script>
+
+<script type ="text/javascript">
    
    function formattedDate(date){
 	   var onlyDate = date.substr(0,10);
 	   var splitDate = onlyDate.split("-");
 	   return splitDate[2]+"-"+splitDate[1]+"-"+splitDate[0];
    }
+    
+ 
    
    $(document).ready(function(){
 	   $("#chkmerah").change(function(){
@@ -208,7 +224,7 @@
                                                               <tr>  
                                                                   <td align = "left">
                                                                        <button id="btnSearch" type="button" class="btn btn-info" onclick="functSearchHari();"><i class="fa fa-search fa-fw"></i>Search</button>
-                                                                       <button id="btnNew" type="button" class="btn btn-success" data-toggle="modal" onclick="functClearHariKerja();" ><i class="fa fa-file-o fa-fw"></i> Hari Kerja Baru</button>
+                                                                       <button id="btnNew" type="button" class="btn btn-success" data-toggle="modal"><i class="fa fa-file-o fa-fw"></i> Hari Kerja Baru</button>
                                                                   </td>
                                                               </tr>    
                                                          </tbody>  
@@ -257,9 +273,6 @@
                                       </table>
                                     <input type="hidden" name="hdnJmlRow" id="hdnJmlRow"/>
                                 </div>
-                                
-                                
-                                
                             </div>
                         </div>
                         
