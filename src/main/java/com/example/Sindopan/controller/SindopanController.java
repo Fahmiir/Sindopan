@@ -42,9 +42,11 @@ public class SindopanController {
 	}
 	
 	@RequestMapping(value="/hariKerja")
-	public String menuHariKerja(Model model) {
+	public String menuHariKerja(Model model,HttpServletRequest request) {
 		List<HariKerjaModel> hk = new ArrayList<>();
-		hk = hs.readHariKerja();
+		String month = request.getParameter("bulansrc");
+		hk = hs.readHariKerja(month);
+//		hk = hs.readHariKerja();
 		model.addAttribute("ListHariKerjaModel", hk);
 		return "hariKerja";
 	}

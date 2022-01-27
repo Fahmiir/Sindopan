@@ -23,7 +23,16 @@ public class HariKerjaService {
 	@Autowired
 	HariKerjaRepository hr;
 	
-	public List<HariKerjaModel> readHariKerja() {
+	
+	public List<HariKerjaModel> readHariKerja(String month) { 
+		  if(month==null) {
+			  month="01";
+		  }
+		  return hr.searchByMonthOrderByDate(month); 
+	}
+	 
+	
+	public List<HariKerjaModel> readHariKerja(){
 		return hr.findAll();
 	}
 	

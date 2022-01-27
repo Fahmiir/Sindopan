@@ -181,6 +181,12 @@
 		   }		   
 	   });
    })
+   
+   $(document).ready(function(){
+	   $("#bulansrc").change(function(){
+		   alert("tes");
+	   })
+   })
 </script>
 
 </head>
@@ -215,8 +221,8 @@
                                                         <td>Bulan</td>
                                                         <td>
                                                             <select id="bulansrc" name="bulansrc" class="form-control form-control-sm">
-                                                                <option value="Januari">Januari</option>
-                                                                <option value="Februari">Februari</option>
+                                                                <option value="01">Januari</option>
+                                                                <option value="02">Februari</option>
                                                             </select>
                                                         </td>
                                                          <td>Tahun</td>
@@ -377,8 +383,8 @@
                                                                     <td>
                                                                         <label id="editTanggal" name="editTanggal" class="form-control">
                                                                     </td>
-                                                                    <td style="display:none">
-                                                                        <input type="text" id="viewTanggal" name="viewTanggal" class="form-control">                                                                    
+                                                                    <td>
+                                                                        <input type="text" id="viewTanggal" name="viewTanggal" class="form-control" style="display:none">                                                                    
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
