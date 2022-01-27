@@ -56,5 +56,7 @@ public class HariKerjaController {
 		hs.updateDate(hm);
 		return "redirect:/hariKerja";
 	}
+	
+	
 
 }

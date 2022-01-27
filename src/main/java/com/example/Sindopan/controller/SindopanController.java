@@ -48,6 +48,7 @@ public class SindopanController {
 		hk = hs.readHariKerja(month);
 //		hk = hs.readHariKerja();
 		model.addAttribute("ListHariKerjaModel", hk);
+		model.addAttribute("valueSelected",month);
 		return "hariKerja";
 	}
 	

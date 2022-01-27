@@ -184,9 +184,15 @@
    
    $(document).ready(function(){
 	   $("#bulansrc").change(function(){
-		   alert("tes");
+		   $('#selectMonth').submit();		   
 	   })
    })
+   
+   $(window).on("load",function(){
+	   var selectedMonth = $('#valueSelected').val();
+	   $('select option[value='+selectedMonth+']').attr("selected",true);
+   });
+   
 </script>
 
 </head>
@@ -220,10 +226,12 @@
                                                     <tr>
                                                         <td>Bulan</td>
                                                         <td>
-                                                            <select id="bulansrc" name="bulansrc" class="form-control form-control-sm">
-                                                                <option value="01">Januari</option>
-                                                                <option value="02">Februari</option>
-                                                            </select>
+                                                             <form th:action="@{/hariKerja}" id="selectMonth" name="selectMonth" method="get">
+                                                                <select id="bulansrc" name="bulansrc" class="form-control form-control-sm">
+                                                                      <option value="01">Januari</option>
+                                                                      <option value="02">Februari</option>
+                                                                </select>
+                                                             </form>   
                                                         </td>
                                                          <td>Tahun</td>
                                                          <td>
@@ -285,7 +293,7 @@
                                                 <td class="jamPulang"><center><a th:text="${#dates.format(hariKerjaModel.jamKeluar,'HH:mm')}"></a></center></td>
                                                 <td class="durasiKerja"><center><a class="durasi"></a></center></td>
                                                 <td class="keterangan"><center><a th:text="${hariKerjaModel.keterangan}"></a></center></td>
-                                                <td class="action"><center><button class="editButton" data-toggle="modal" data-target="#myModalEdit">Edit</button><button>Delete</button></center></td>
+                                                <td class="action"><center><button class="editButton" data-toggle="modal" data-target="#myModalEdit">Edit</button><button class="deleteButton">Delete</button></center></td>
                                             </tr>
                                         </thead>
                                         <tbody id="tblDataHari"></tbody>
@@ -425,7 +433,7 @@
             </div>
         </div>
     </div>
-        
+    <input type="text" id="valueSelected" th:value="${valueSelected}" style="display:none">    
     
     
      <style>
