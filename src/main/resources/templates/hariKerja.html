@@ -101,11 +101,23 @@
       	var selectedDate = ListData[i].tanggal;
       	var jamMasuk = ListData[i].jamMasuk;
       	var jamKeluar = ListData[i].jamKeluar;
+      	var merahBukan = ListData[i].merahBukan;
+      	var keterangan = ListData[i].keterangan;
       	document.getElementById("editId").defaultValue = selectedId;
       	document.getElementById("editTanggal").innerHTML = formattedDate(selectedDate);
         document.getElementById("viewTanggal").defaultValue = selectedDate;
         document.getElementById("jamMasuk").defaultValue = jamMasuk;
         document.getElementById("jamPulang").defaultValue = jamKeluar;
+        if(merahBukan == "Ya"){
+        	document.getElementById("chkmerah").checked=true;
+        	document.getElementById("kolomket").style.display="block";
+        	document.getElementById("kolomket").defaultValue=keterangan;
+        }
+        else if(merahBukan ==null){
+        	document.getElementById("chkmerah").checked=false;
+        	document.getElementById("kolomket").style.display="none";        	
+        }
+        
 	  })
   }) 
 </script>
