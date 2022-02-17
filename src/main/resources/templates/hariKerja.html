@@ -99,9 +99,13 @@
       	ListData = [[${ListHariKerjaModel}]];
       	var selectedId = ListData[i].idHari;
       	var selectedDate = ListData[i].tanggal;
+      	var jamMasuk = ListData[i].jamMasuk;
+      	var jamKeluar = ListData[i].jamKeluar;
       	document.getElementById("editId").defaultValue = selectedId;
       	document.getElementById("editTanggal").innerHTML = formattedDate(selectedDate);
         document.getElementById("viewTanggal").defaultValue = selectedDate;
+        document.getElementById("jamMasuk").defaultValue = jamMasuk;
+        document.getElementById("jamPulang").defaultValue = jamKeluar;
 	  })
   }) 
 </script>
@@ -190,7 +194,7 @@
    
    $(window).on("load",function(){
 	   var selectedMonth = $('#valueSelected').val();
-	   $('select option[value='+selectedMonth+']').attr("selected",true);
+	   $("select option[value='"+selectedMonth+"']").attr("selected",true);
    });
    
 </script>
