@@ -36,8 +36,11 @@
                         </table>                        
                     </div>
                     <div class="panel-body">
-                        <form  name="frmLogin" method="post" action="prosesLogin" >
+                        <form  name="frmLogin" method="post" th:action="@{prosesLogin}" >
                             <fieldset>
+                                <div class="alert alert-danger" id="validationLogin">
+                                     <p>username or password is invalid</p>
+                                </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Username" name="usr"  autofocus>
                                 </div>
@@ -96,5 +99,11 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
+    <script>
+         if(window.location.href=="http://localhost:8080/Sindopan/" || window.location.href=="http://localhost:8080/Sindopan/logout")
+         {
+        		  $("#validationLogin").css("display", "none");
+         } 
+    </script>
 </body>
 </html>

@@ -5,9 +5,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,6 +21,7 @@ import com.example.Sindopan.model.AgamaModel;
 import com.example.Sindopan.model.HariKerjaModel;
 import com.example.Sindopan.model.JenisKelaminModel;
 import com.example.Sindopan.model.KaryawanModel;
+import com.example.Sindopan.model.SindopanModel;
 
 @Controller
 public class SindopanController {
@@ -53,7 +57,7 @@ public class SindopanController {
 	}
 	
 	@RequestMapping(value="/prosesLogin")
-	public String menuLogin(HttpServletRequest request) {
+	public String menuLogin(HttpServletRequest request, Model model) {
 		String userName = request.getParameter("usr");
 		String password = request.getParameter("psw");
 		return ss.read(userName, password) ;
