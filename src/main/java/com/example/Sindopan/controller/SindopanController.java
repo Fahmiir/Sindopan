@@ -56,6 +56,11 @@ public class SindopanController {
 		return "hariKerja";
 	}
 	
+	@RequestMapping(value="/kehadiran")
+	public String menuKehadiran(Model model) {
+		return "kehadiran";
+	}
+	
 	@RequestMapping(value="/prosesLogin")
 	public String menuLogin(HttpServletRequest request, Model model) {
 		String userName = request.getParameter("usr");

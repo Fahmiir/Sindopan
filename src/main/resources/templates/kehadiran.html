@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+     <div id="divAlert"></div>
+    <div id="wrapper">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Kehadiran</h1>
+                </div>
+            </div>                        
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">                                
+                        <li class="<% out.print(Integer.parseInt(strActiveTab) == 1 || Integer.parseInt(strActiveTab) == 0 ? "active" : ""); %>"><a href="#master" data-toggle="tab">Master Kehadiran</a></li>
+                       
+                    </ul>
+                    
+                    <!-- Tab panes -->
+                    <div class="tab-content">                                
+                        <!-- ================================================================================ Tab Master Hari Kerja ================================================================================ -->
+                        <div class="tab-pane fade in active" id="master" style="width:100%;">
+                            <br>
+                            <div class="well well-lg">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-sm">
+                                                <tbody>
+                                                   
+                                                    <tr>
+                                                       
+                                                        <td>Bulan</td>
+                                                        <td>
+                                                            <select id="bulansrc" name="bulansrc" class="form-control form-control-sm" onchange="functIsiHari(this.value)">
+                                                                <option value=""></option>
+                                                                   
+                                                                  
+                                                            </select>
+                                                        </td>
+                                                         <td>Tahun</td>
+                                                         <td><select id="tahunsrc" name="tahunsrc" class="form-control form-control-sm">
+                                                                <option value="">tahun</option>
+                                                               
+                                                            </select>
+                                                        </td>
+                                                        
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tanggal</td>
+                                                        <td>
+                                                            <select id="tglsrc" name="tglsrc" class="form-control form-control-sm">
+                                                                <option value=""></option>
+                                                                   
+                                                                  
+                                                            </select>
+                                                        </td>
+                                                        </tr>
+                                                                                                    
+                                                                                                       
+                                                </tbody>
+                                            </table>                                                    
+                                        </div>                                                                                      
+                                        <div class="form-group">
+                                         
+                                       <div class="col-lg-12">
+                                        <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                            <tr>  
+                                            <td align = "left">
+                                            <button id="btnSearch" type="button" class="btn btn-info" onclick="functSearchHari();"><i class="fa fa-search fa-fw"></i>Search</button>
+                                            <button id="btnNew" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalEdit" onclick="functClearHariKerja();" ><i class="fa fa-file-o fa-fw"></i> Hari Kerja Baru</button>
+                                            <button id="btnBulkUpdate" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalEditBulk" ><i class="fa fa-file-o fa-fw"></i> Set Bulk Tanggal Merah</button>
+                                             <button id="btnBulkUpdateJam" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalEditBulkJam" ><i class="fa fa-file-o fa-fw"></i> Set Bulk Jam Kerja</button>
+                                            </td>
+                                          </tr>
+    
+                                            
+                                          
+                                            </tbody>  
+                                        </table>
+                                        </div>
+                                        </div>
+                                                                                
+                                        </div>
+                                    </div>
+                                </div>                                            
+                                <hr/>
+                                
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-2">
+                                        <!-- <img id="loadingimg" style="display: none;position: fixed;margin: 0 0 0 75px;" src="../img/loading.gif" width="40px"></img> -->
+                                        <small id="loadingimgtab1" style="display: none;position: absolute;margin: 0 0 0 75px;">Please wait ...</small>
+                                       
+                                    </div>
+                                    <div class="col-lg-5"></div>
+                                   
+                                </div>
+                                
+                                
+                                
+                                <div id="divTableHari" class="dataTable_wrapper" style="display: none">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-profile" data-sort="false" data-page-length="-1" style="font-size: 13px;">
+                                        <thead>                                                
+                                            <tr>
+                                                <th><center>Nama Karyawan</center></th>
+                                                
+                                                <th><center>Merah ?</center></th> 
+                                                <th style="display: none;"><center>Merah Val</center></th> 
+                                                <th><center>Tanggal</center></th>
+                                                <th><center>Setting Jam Kerja</center></th>
+                                                <th><center>Check In</center></th>
+                                                <th><center>Check Out</center></th>
+                                                <th><center>Durasi Kerja</center></th>
+                                                <th><center>Keterangan</center></th>
+                                                <th><center>Action</center></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tblDataHari"></tbody>
+                                        
+                                        
+                                    </table>
+                                    <input type="hidden" name="hdnJmlRow" id="hdnJmlRow"/>
+                                </div>
+                                
+                                
+                                
+                            </div>
+                        </div>
+                        
+                       
+                         
+                        <!-- Modal hari kerja Add/Edit -->
+                        <div class="modal fade" id="myModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="functClearHariKerja();">&times;</button>
+                                         <input type="hidden" id="hdnOperation" name="hdnOperation"/>
+                                        <h4 class="modal-title" id="titleAdd" style="display: block">Input Hari Kerja Baru</h4>
+                                        <h4 class="modal-title" id="titleEdit" style="display: none">Edit Hari Kerja</h4>
+                                        <h4 class="modal-title" id="titleHapus" style="display: none">Hapus Hari Kerja</h4>
+                                    </div>
+
+                                    <div class="modal-body">                                            
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="panel panel-default">
+                                                <input type="hidden" id="hdnIdHari" name="hdnIdHari"/>
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        Hari Kerja
+                                                                    </td>
+                                                                   
+                                                                    <td>
+                                                                        <input type="date" id="harikerja" name="harikerja" class="form-control">
+                                                                    </td>
+                                                                    
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                <td>
+                                                                    Merah ?
+                                                                    </td>
+                                                                     <td>
+                                                                         <input type="checkbox" id="chkmerah" name="chkmerah" onclick="functDisjam()">
+                                                                         <input name="kolomket" id="kolomket" style="display: none;text-transform:uppercase" class="form-control" placeholder="Keterangan Tanggal Merah">
+                                                                    </td> 
+                                                                </tr>
+                                                                
+                                                              
+                                                                
+                                                                <tr>
+                                                                <td>
+                                                                    Jam Kerja
+                                                                    </td>
+                                                                     <td>
+                                                                     <input type="time" id="jammasuk" name="jammasuk">&nbsp;-&nbsp;<input type="time" id="jampulang" name="jampulang">
+                                                                    </td>
+                                                                    
+                                                                </tr>
+                                                                
+                                                            </tbody>                                                                
+                                                        </table> 
+                                                    </div>
+                                                </div>
+                                                
+                                                                       
+                                            </div>                                                
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" id="tombolclose" name="tombolclose" onclick="functClearHariKerja();"><i class="fa fa-times fa-fw"></i> Close</button>
+                                        <button id="savebutton" type="button" class="btn btn-primary" onclick="simpanHariKerja();"><i class="fa fa-save fa-fw"></i> Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Modal hari kerja Add/Edit -->
+                        
+                        
+                        <!-- Modal hari kerja bulk -->
+                        <div class="modal fade" id="myModalEditBulk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="functClearHariKerjaB();">&times;</button>
+                                         <input type="hidden" id="hdnOperationB" name="hdnOperationB"/>
+                                        <h4 class="modal-title" id="titleAddB" style="display: block">Bulk Update Tanggal Merah</h4>
+                                        
+                                    </div>
+
+                                    <div class="modal-body">                                            
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="panel panel-default">
+                                                <input type="hidden" id="hdnIdHariB" name="hdnIdHariB"/>
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                
+                                                                <tr>
+                                                                    <td>Tahun berjalan</td>
+                                                                    <td>
+                                                                        <select id="tahunberjalan" name="tahunberjalan" class="form-control">
+                                                                          <option value=""></option>
+                                                                          </select>
+                                                                        </td>
+                                                                    </tr>
+                                                                
+                                                                <tr>
+                                                                    
+                                                                    <tr>
+                                                                    <td>Bulan berjalan</td>
+                                                                    <td>
+                                                                        <select id="bulanberjalan" name="bulanberjalan" class="form-control" onchange="functGetTanggal(this.value)">
+                                                                          <option value=""></option>
+                                                                          </select>
+                                                                        </td>
+                                                                    </tr>
+                                                                
+                                                                <tr>
+                                                                    
+                                                                    <td>
+                                                                        Hari Kerja
+                                                                    </td>
+                                                                   
+                                                                    <td>
+                                                                      <select id="hari1" name="hari1">
+                                                                          <option value=""></option>
+                                                                          </select>
+                                                                        &nbsp;-&nbsp;
+                                                                       <select id="hari2" name="hari2">
+                                                                          <option value=""></option>
+                                                                          </select>   
+                                                                    </td>
+                                                                    
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                <td>
+                                                                    Merah ?
+                                                                    </td>
+                                                                     <td>
+                                                                         <input type="checkbox" id="chkmerahB" name="chkmerahB" onclick="functDisjamB()" checked disabled>
+                                                                         <input name="kolomketB" id="kolomketB" style="display: block;text-transform:uppercase;" class="form-control" placeholder="Keterangan Tanggal Merah">
+                                                                    </td> 
+                                                                </tr>
+                                                                
+                                                              
+                                                                
+<!--                                                                <tr>
+                                                                <td>
+                                                                    Jam Kerja
+                                                                    </td>
+                                                                     <td>
+                                                                     <input type="time" id="jammasukB" name="jammasukB">&nbsp;-&nbsp;<input type="time" id="jampulangB" name="jampulangB">
+                                                                    </td>
+                                                                    
+                                                                </tr>-->
+                                                                
+                                                            </tbody>                                                                
+                                                        </table> 
+                                                    </div>
+                                                </div>
+                                                
+                                                                       
+                                            </div>                                                
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" id="tombolcloseB" name="tombolcloseB" onclick="functClearHariKerjaB();"><i class="fa fa-times fa-fw"></i> Close</button>
+                                        <button type="button" class="btn btn-primary" onclick="functBulkUpdate();"><i class="fa fa-save fa-fw"></i> Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Modal hari kerja Add/Edit -->
+
+                         <!-- Modal jam kerja bulk -->
+                        <div class="modal fade" id="myModalEditBulkJam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="functClearHariKerjaJ();">&times;</button>
+                                         <input type="hidden" id="hdnOperationJ" name="hdnOperationJ"/>
+                                        <h4 class="modal-title" id="titleAddJ" style="display: block">Bulk Update Jam Kerja</h4>
+                                        
+                                    </div>
+
+                                    <div class="modal-body">                                            
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="panel panel-default">
+                                                <input type="hidden" id="hdnIdHariJ" name="hdnIdHariJ"/>
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                
+                                                                <tr>
+                                                                    <td>Tahun berjalan</td>
+                                                                    <td>
+                                                                        <select id="tahunberjalanJ" name="tahunberjalanJ" class="form-control">
+                                                                          <option value=""></option>
+                                                                          </select>
+                                                                        </td>
+                                                                    </tr>
+                                                                
+                                                                <tr>
+                                                                    
+                                                                    <tr>
+                                                                    <td>Bulan berjalan</td>
+                                                                    <td>
+                                                                        <select id="bulanberjalanJ" name="bulanberjalanJ" class="form-control" onchange="functGetTanggalJ(this.value)">
+                                                                          <option value=""></option>
+                                                                          </select>
+                                                                        </td>
+                                                                    </tr>
+                                                                
+                                                                <tr>
+                                                                    
+                                                                    <td>
+                                                                        Hari Kerja
+                                                                    </td>
+                                                                   
+                                                                    <td>
+                                                                      <select id="hari1J" name="hari1J">
+                                                                          <option value=""></option>
+                                                                          </select>
+                                                                        &nbsp;-&nbsp;
+                                                                       <select id="hari2J" name="hari2J">
+                                                                          <option value=""></option>
+                                                                          </select>   
+                                                                    </td>
+                                                                    
+                                                                </tr>
+                                                                
+<!--                                                                <tr>
+                                                                <td>
+                                                                    Merah ?
+                                                                    </td>
+                                                                     <td>
+                                                                         <input type="checkbox" id="chkmerahB" name="chkmerahB" onclick="functDisjamB()" checked disabled>
+                                                                         <input name="kolomketB" id="kolomketB" style="display: block;text-transform:uppercase;" class="form-control" placeholder="Keterangan Tanggal Merah">
+                                                                    </td> 
+                                                                </tr>-->
+                                                                
+                                                              
+                                                                
+                                                                <tr>
+                                                                <td>
+                                                                    Jam Kerja
+                                                                    </td>
+                                                                     <td>
+                                                                     <input type="time" id="jammasukJ" name="jammasukJ">&nbsp;-&nbsp;<input type="time"  id="jampulangJ" name="jampulangJ">
+                                                                    </td>
+                                                                    
+                                                                </tr>
+                                                                
+                                                            </tbody>                                                                
+                                                        </table> 
+                                                    </div>
+                                                </div>
+                                                
+                                                                       
+                                            </div>                                                
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" id="tombolcloseB" name="tombolcloseB" onclick="functClearHariKerjaJ();"><i class="fa fa-times fa-fw"></i> Close</button>
+                                        <button type="button" class="btn btn-primary" onclick="functBulkUpdateJam();"><i class="fa fa-save fa-fw"></i> Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Modal jam kerja Add/Edit -->
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    
+    
+     <style>
+        .high {
+            color: palevioletred;
+        }
+
+        .low {
+            color: skyblue;
+        }
+    </style>
+    
+    <script>
+         
+        </script>
+
+</body>
+</html>
