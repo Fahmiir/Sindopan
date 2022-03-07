@@ -360,6 +360,11 @@
                                                                               <input type="time" id="addjammasuk" name="addjammasuk">&nbsp;-&nbsp;<input type="time" id="addjampulang" name="addjampulang">
                                                                            </td>                                                                           
                                                                        </tr>
+                                                                       <tr>
+                                                                           <td>
+                                                                              <input type="text" id="addBulan" name="addBulan" th:value="${valueSelected}">
+                                                                           </td>
+                                                                       </tr>
                                                                   </tbody>
                                                              </table>
                                                         </div>
@@ -449,7 +454,7 @@
             </div>
         </div>
     </div>
-    <input type="text" id="valueSelected" th:value="${valueSelected}" style="display:none">    
+    <input type="text" id="valueSelected" name="valueSelected" th:value="${valueSelected}">    
     
     
      <style>

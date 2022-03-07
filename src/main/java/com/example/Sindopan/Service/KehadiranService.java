@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import javax.transaction.Transactional;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.Row;
@@ -29,27 +32,30 @@ import org.springframework.util.StringUtils;
 @Service
 @Transactional
 public class KehadiranService {
-	
+
 	@Value("${app.upload.dir:${user.home}}")
-    public String uploadDir;
-	
+	public String uploadDir;
+
 	@Autowired
 	KehadiranRepository kr;
-	
+
 	Workbook workbook;
-	
+
 	public void uploadFile(MultipartFile file) {
-        try {
-            Path copyLocation = Paths
-                .get(uploadDir + File.separator + StringUtils.cleanPath(file.getOriginalFilename()));
-            Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Could not store file " + file.getOriginalFilename()
-                + ". Please try again!");
-        }
-        List<String> list = new ArrayList<String>();
-        System.out.println("Upload Dir "+uploadDir.concat("\\").concat(file.getOriginalFilename()));
+		try {
+			Path copyLocation = Paths
+					.get(uploadDir + File.separator + StringUtils.cleanPath(file.getOriginalFilename()));
+			Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Could not store file " + file.getOriginalFilename() + ". Please try again!");
+		}
+		List<String> list = new ArrayList<String>();
+
+		// Create a DataFormatter to format and get each cell's value as String
+		DataFormatter dataFormatter = new DataFormatter();
+
+		System.out.println("Upload Dir " + uploadDir.concat("\\").concat(file.getOriginalFilename()));
 		// Create the Workbook
 		try {
 			workbook = WorkbookFactory.create(new File(uploadDir.concat("\\").concat(file.getOriginalFilename())));
@@ -58,16 +64,30 @@ public class KehadiranService {
 			System.out.println("Workbook tidak berhasil");
 			e.printStackTrace();
 		}
-		
+
 		// Getting the Sheet at index zero
 		Sheet sheet = workbook.getSheetAt(0);
-		
+		System.out.println("Sheet " + sheet);
 		// Getting number of columns in the Sheet
 		int noOfColumns = sheet.getRow(0).getLastCellNum();
-		
-		System.out.println("-------Sheet has '"+noOfColumns+"' columns------");
-        
-        
+
+		System.out.println("-------Sheet has '" + noOfColumns + "' columns------");
+
+
 	}
 
+}
+
+class Kehadiran {
+	String namaKaryawan;
+	Date tanggal;
+	Time jamMasuk;
+	Time jamKeluar;
+	
+	Kehadiran(String namaKaryawan, Date tanggal,Time jamMasuk, Time jamKeluar){
+		this.namaKaryawan=namaKaryawan;
+		this.tanggal=tanggal;
+		this.jamMasuk=jamMasuk;
+		this.jamKeluar=jamKeluar;
+	}
 }

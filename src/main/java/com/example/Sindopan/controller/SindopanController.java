@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,11 +46,11 @@ public class SindopanController {
 	}
 	
 	@RequestMapping(value="/hariKerja")
-	public String menuHariKerja(Model model,HttpServletRequest request) {
+	public String menuHariKerja(Model model,HttpServletRequest request, HttpSession session) {
 		List<HariKerjaModel> hk = new ArrayList<>();
 		String month = request.getParameter("bulansrc");
-		hk = hs.readHariKerja(month);
-//		hk = hs.readHariKerja();
+		String month2 = (String) session.getAttribute("month2");
+		hk = hs.readHariKerja(month,month2);
 		model.addAttribute("ListHariKerjaModel", hk);
 		model.addAttribute("valueSelected",month);
 		return "hariKerja";

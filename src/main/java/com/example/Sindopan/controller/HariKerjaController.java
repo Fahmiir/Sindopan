@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,12 +23,13 @@ public class HariKerjaController {
 	HariKerjaService hs;
 	
 	@RequestMapping(value="/addHari")
-	public String menuAddHari(HttpServletRequest request,@RequestParam(value="addchkmerah",required = false)String status) throws ParseException {
+	public String menuAddHari(HttpServletRequest request,@RequestParam(value="addchkmerah",required = false)String status, HttpSession session) throws ParseException {
 		Date hariKerja = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("addharikerja"));
 		java.sql.Date workDay = new java.sql.Date(hariKerja.getTime());
 		String keterangan = request.getParameter("addkolomket");
 		Time jamMasuk = hs.getTime(request.getParameter("addjammasuk"));
 		Time jamKeluar = hs.getTime(request.getParameter("addjampulang"));
+		String month = request.getParameter("addBulan");
 		HariKerjaModel hm = new HariKerjaModel();
 		hm.setKeterangan(keterangan);
 		hm.setTanggal(workDay);
@@ -35,6 +37,7 @@ public class HariKerjaController {
 		hm.setJamMasuk(jamMasuk);
 		hm.setJamKeluar(jamKeluar);
 		hs.saveDate(hm);
+		session.setAttribute("month2", month);
 		return "redirect:/hariKerja";
 	}
 	

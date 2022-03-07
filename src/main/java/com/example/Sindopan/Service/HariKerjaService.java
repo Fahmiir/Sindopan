@@ -24,11 +24,15 @@ public class HariKerjaService {
 	HariKerjaRepository hr;
 	
 	
-	public List<HariKerjaModel> readHariKerja(String month) { 
-		  if(month==null) {
-			  month="01";
+	public List<HariKerjaModel> readHariKerja(String month, String month2) {
+		String x ="";
+		  if(month==null && month2==null) {
+			  x="01";
 		  }
-		  return hr.searchByMonthOrderByDate(month); 
+		  else if (month2!=null) {
+			  x=month2;
+		  }
+		  return hr.searchByMonthOrderByDate(x); 
 	}
 	 
 	
