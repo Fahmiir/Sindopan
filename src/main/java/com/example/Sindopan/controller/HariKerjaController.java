@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,7 +24,7 @@ public class HariKerjaController {
 	HariKerjaService hs;
 	
 	@RequestMapping(value="/addHari")
-	public String menuAddHari(HttpServletRequest request,@RequestParam(value="addchkmerah",required = false)String status, HttpSession session) throws ParseException {
+	public String menuAddHari(HttpServletRequest request,@RequestParam(value="addchkmerah",required = false)String status, Model model) throws ParseException {
 		Date hariKerja = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("addharikerja"));
 		java.sql.Date workDay = new java.sql.Date(hariKerja.getTime());
 		String keterangan = request.getParameter("addkolomket");
@@ -37,7 +38,7 @@ public class HariKerjaController {
 		hm.setJamMasuk(jamMasuk);
 		hm.setJamKeluar(jamKeluar);
 		hs.saveDate(hm);
-		session.setAttribute("month2", month);
+		model.addAttribute("month2", month);
 		return "redirect:/hariKerja";
 	}
 	

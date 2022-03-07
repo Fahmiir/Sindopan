@@ -46,10 +46,10 @@ public class SindopanController {
 	}
 	
 	@RequestMapping(value="/hariKerja")
-	public String menuHariKerja(Model model,HttpServletRequest request, HttpSession session) {
+	public String menuHariKerja(Model model,HttpServletRequest request) {
 		List<HariKerjaModel> hk = new ArrayList<>();
 		String month = request.getParameter("bulansrc");
-		String month2 = (String) session.getAttribute("month2");
+		String month2 = (String) model.getAttribute("month2");
 		hk = hs.readHariKerja(month,month2);
 		model.addAttribute("ListHariKerjaModel", hk);
 		model.addAttribute("valueSelected",month);

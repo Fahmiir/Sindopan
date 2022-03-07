@@ -32,6 +32,9 @@ public class HariKerjaService {
 		  else if (month2!=null) {
 			  x=month2;
 		  }
+		  else {
+			  x=month;
+		  }
 		  return hr.searchByMonthOrderByDate(x); 
 	}
 	 
