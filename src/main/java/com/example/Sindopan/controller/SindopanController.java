@@ -1,6 +1,7 @@
 package com.example.Sindopan.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import com.example.Sindopan.model.AgamaModel;
 import com.example.Sindopan.model.HariKerjaModel;
 import com.example.Sindopan.model.JenisKelaminModel;
 import com.example.Sindopan.model.KaryawanModel;
+import com.example.Sindopan.model.MonthModel;
 import com.example.Sindopan.model.SindopanModel;
 
 @Controller
@@ -46,11 +48,13 @@ public class SindopanController {
 	}
 	
 	@RequestMapping(value="/hariKerja")
-	public String menuHariKerja(Model model,HttpServletRequest request) {
+	public String menuHariKerja(Model model,HttpServletRequest request, HttpSession session,@RequestParam(value="hariKerja",required=false)String hariKerja) throws InterruptedException {
 		List<HariKerjaModel> hk = new ArrayList<>();
 		String month = request.getParameter("bulansrc");
-		String month2 = (String) model.getAttribute("month2");
-		hk = hs.readHariKerja(month,month2);
+		if(month==null && hariKerja==null) { 
+			month = (String) session.getAttribute("month");
+		}
+		hk = hs.readHariKerja(month);
 		model.addAttribute("ListHariKerjaModel", hk);
 		model.addAttribute("valueSelected",month);
 		return "hariKerja";

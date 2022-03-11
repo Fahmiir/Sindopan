@@ -17,20 +17,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.Sindopan.Service.HariKerjaService;
 import com.example.Sindopan.model.HariKerjaModel;
 
+
 @Controller
 public class HariKerjaController {
 	
 	@Autowired
 	HariKerjaService hs;
 	
+	private String month;
+	
 	@RequestMapping(value="/addHari")
-	public String menuAddHari(HttpServletRequest request,@RequestParam(value="addchkmerah",required = false)String status, Model model) throws ParseException {
+	public String menuAddHari(HttpServletRequest request,@RequestParam(value="addchkmerah",required = false)String status, Model model, HttpSession session) throws ParseException {
 		Date hariKerja = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("addharikerja"));
 		java.sql.Date workDay = new java.sql.Date(hariKerja.getTime());
 		String keterangan = request.getParameter("addkolomket");
 		Time jamMasuk = hs.getTime(request.getParameter("addjammasuk"));
 		Time jamKeluar = hs.getTime(request.getParameter("addjampulang"));
-		String month = request.getParameter("addBulan");
+		month = request.getParameter("addBulan");
 		HariKerjaModel hm = new HariKerjaModel();
 		hm.setKeterangan(keterangan);
 		hm.setTanggal(workDay);
@@ -38,8 +41,8 @@ public class HariKerjaController {
 		hm.setJamMasuk(jamMasuk);
 		hm.setJamKeluar(jamKeluar);
 		hs.saveDate(hm);
-		model.addAttribute("month2", month);
-		return "redirect:/hariKerja";
+		session.setAttribute("month", month);
+   		return "redirect:/hariKerja";
 	}
 	
 	@RequestMapping(value="/editHari")
@@ -60,6 +63,18 @@ public class HariKerjaController {
 		hs.updateDate(hm);
 		return "redirect:/hariKerja";
 	}
+	
+    public void setMonth(String month) {
+		System.out.println("set month "+month);
+		this.month = month;
+	}
+	
+	public String getMonth() {
+		System.out.println("get month 1 "+month);
+		return month;
+	}
+	
+
 	
 	
 

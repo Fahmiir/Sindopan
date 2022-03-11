@@ -209,6 +209,16 @@
 	   $("select option[value='"+selectedMonth+"']").attr("selected",true);
    });
    
+   $(document).ready(function(){
+	   $("#btnNew").click(function(){
+		   var selectedMonth = $("#valueSelected").val();
+		   $("#bulansrc").val(selectedMonth);
+		   var valueOption = $("#bulansrc").val();
+//		   alert(valueOption);
+	   })
+   })
+   
+   
 </script>
 
 </head>
@@ -246,6 +256,7 @@
                                                                 <select id="bulansrc" name="bulansrc" class="form-control form-control-sm">
                                                                       <option value="01">Januari</option>
                                                                       <option value="02">Februari</option>
+                                                                      <option value="03">Maret</option>
                                                                 </select>
                                                              </form>   
                                                         </td>
