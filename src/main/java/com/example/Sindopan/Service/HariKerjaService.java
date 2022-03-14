@@ -41,6 +41,14 @@ public class HariKerjaService {
 	}
 	
 	public void updateDate(HariKerjaModel hm) {
+		if(hm.getMerahBukan()!=null && hm.getKeterangan()!=null) {
+			hm.setJamMasuk(null);
+			hm.setJamKeluar(null);
+		}
+		else if (hm.getJamMasuk()!=null && hm.getJamKeluar()!=null) {
+			hm.setMerahBukan(null);
+			hm.setKeterangan(null);
+		}
 		hr.save(hm);
 	}
 	
@@ -49,7 +57,12 @@ public class HariKerjaService {
 			return null;
 		}
 		else {
-			return Time.valueOf(time+":00");
+			if(time.length()==8) {
+				return Time.valueOf(time);
+			}
+			else {
+				return Time.valueOf(time+":00");	
+			}
 		}
 	}
 

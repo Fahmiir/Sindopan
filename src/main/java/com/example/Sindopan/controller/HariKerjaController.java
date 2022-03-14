@@ -64,18 +64,4 @@ public class HariKerjaController {
 		return "redirect:/hariKerja";
 	}
 	
-    public void setMonth(String month) {
-		System.out.println("set month "+month);
-		this.month = month;
-	}
-	
-	public String getMonth() {
-		System.out.println("get month 1 "+month);
-		return month;
-	}
-	
-
-	
-	
-
 }
