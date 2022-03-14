@@ -39,7 +39,6 @@ public class HariKerjaController {
 		hm.setJamMasuk(jamMasuk);
 		hm.setJamKeluar(jamKeluar);
 		hs.saveDate(hm);
-//		session.setAttribute("month1", month);
    		return "redirect:/hariKerja?hariKerja="+month;
 	}
 	
@@ -60,7 +59,6 @@ public class HariKerjaController {
 		hm.setJamMasuk(jamMasuk);
 		hm.setJamKeluar(jamKeluar);
 		hs.updateDate(hm);
-//		session.setAttribute("month2", month);
 		return "redirect:/hariKerja?hariKerja="+month2;
 	}
 	

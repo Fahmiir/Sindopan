@@ -1,10 +1,7 @@
 package com.example.Sindopan.Service;
 
 import java.sql.Time;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -67,6 +64,13 @@ public class HariKerjaService {
 				return Time.valueOf(time+":00");	
 			}
 		}
+	}
+	
+	public String getMonth(String month,String hariKerja) {
+		  if(month==null && !hariKerja.equals("test")) {
+			  month=hariKerja;
+		  }
+		return month;
 	}
 
 }

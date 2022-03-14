@@ -1,7 +1,6 @@
 package com.example.Sindopan.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,8 +19,7 @@ import com.example.Sindopan.model.AgamaModel;
 import com.example.Sindopan.model.HariKerjaModel;
 import com.example.Sindopan.model.JenisKelaminModel;
 import com.example.Sindopan.model.KaryawanModel;
-import com.example.Sindopan.model.MonthModel;
-import com.example.Sindopan.model.SindopanModel;
+
 
 @Controller
 public class SindopanController {
@@ -53,7 +49,7 @@ public class SindopanController {
 		String month = request.getParameter("bulansrc");		 
 		hk = hs.readHariKerja(month,hariKerja);
 		model.addAttribute("ListHariKerjaModel", hk);
-		model.addAttribute("valueSelected",month);
+		model.addAttribute("valueSelected",hs.getMonth(month, hariKerja));
 		return "hariKerja";
 	}
 	
