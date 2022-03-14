@@ -214,7 +214,6 @@
 		   var selectedMonth = $("#valueSelected").val();
 		   $("#bulansrc").val(selectedMonth);
 		   var valueOption = $("#bulansrc").val();
-//		   alert(valueOption);
 	   })
    })
    
@@ -441,9 +440,14 @@
                                                                     Jam Kerja
                                                                     </td>
                                                                      <td>
-                                                                     <input type="time" id="jamMasuk" name="jamMasuk">&nbsp;-&nbsp;<input type="time" id="jamPulang" name="jamPulang">
+                                                                         <input type="time" id="jamMasuk" name="jamMasuk">&nbsp;-&nbsp;<input type="time" id="jamPulang" name="jamPulang">
                                                                     </td>
                                                                 </tr>
+                                                                <tr>
+                                                                     <td>
+                                                                          <input type="text" id="editBulan" name="editBulan" th:value="${valueSelected}">
+                                                                     </td>
+                                                                </tr>                                                                
                                                             </tbody>                                                                
                                                         </table> 
                                                     </div>

@@ -50,11 +50,8 @@ public class SindopanController {
 	@RequestMapping(value="/hariKerja")
 	public String menuHariKerja(Model model,HttpServletRequest request, HttpSession session,@RequestParam(value="hariKerja",required=false)String hariKerja) throws InterruptedException {
 		List<HariKerjaModel> hk = new ArrayList<>();
-		String month = request.getParameter("bulansrc");
-		if(month==null && hariKerja==null) { 
-			month = (String) session.getAttribute("month");
-		}
-		hk = hs.readHariKerja(month);
+		String month = request.getParameter("bulansrc");		 
+		hk = hs.readHariKerja(month,hariKerja);
 		model.addAttribute("ListHariKerjaModel", hk);
 		model.addAttribute("valueSelected",month);
 		return "hariKerja";
