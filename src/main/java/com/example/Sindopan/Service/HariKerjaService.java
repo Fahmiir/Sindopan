@@ -72,5 +72,9 @@ public class HariKerjaService {
 		  }
 		return month;
 	}
+	
+	public void deleteHariKerja(int id) {
+		hr.deleteById(id);
+	}
 
 }

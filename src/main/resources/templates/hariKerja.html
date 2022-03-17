@@ -104,7 +104,7 @@
       	var merahBukan = ListData[i].merahBukan;
       	var keterangan = ListData[i].keterangan;
       	document.getElementById("editId").defaultValue = selectedId;
-      	document.getElementById("editTanggal").innerHTML = formattedDate(selectedDate);
+      	document.getElementById("editTanggal").innerHTML = selectedDate;
         document.getElementById("viewTanggal").defaultValue = selectedDate;
         document.getElementById("jamMasuk").defaultValue = jamMasuk;
         document.getElementById("jamPulang").defaultValue = jamKeluar;
@@ -121,6 +121,35 @@
         
 	  })
   }) 
+</script>
+
+<script th:inline="javascript">
+$(document).ready(function(){
+	   var i;
+	   var listData;
+     $(".deleteButton").click(function(){
+     	listData = [[${ListHariKerjaModel}]];
+     	i = $(this).closest("tr").index()-1;
+     	var selectedId = listData[i].idHari;
+     	$.ajax({
+     		    url         : '/Sindopan/deleteHari',
+				type        : 'post',
+				data        : JSON.stringify(selectedId),
+				async       : false,
+		        dataType    : "text",
+		        contentType : "application/json",
+		        success     : function (result) {
+					             alert("sukses hapus data");
+				 	             $(document).ajaxStop(function(){
+	    				         window.location.reload();
+	    				     });  
+				}, 
+				 error      : function (XMLHttpRequest, textStatus, errorThrown) {
+	                             alert("tidak sukses hapus data");     
+	             }        		
+     	})
+     })	   
+})
 </script>
 
 <script th:inline="javascript">
@@ -217,7 +246,6 @@
 		   var valueOption = $("#bulansrc").val();
 	   })
    })
-   
    
 </script>
 
