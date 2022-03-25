@@ -1,6 +1,6 @@
 package com.example.Sindopan.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Time;
 
 import javax.persistence.Column;
@@ -76,6 +76,14 @@ public class KehadiranModel {
 
 	public void setCheckOut(Time checkOut) {
 		this.checkOut = checkOut;
+	}
+	
+	public String getDurasiKerja() {
+		return durasiKerja;
+	}
+
+	public void setDurasiKerja(String durasiKerja) {
+		this.durasiKerja = durasiKerja;
 	}
 
 	public String getKeterangan() {

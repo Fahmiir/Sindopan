@@ -8,6 +8,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +30,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.Sindopan.Repository.KehadiranRepository;
+import com.example.Sindopan.model.KehadiranModel;
 
 import org.springframework.util.StringUtils;
 
@@ -41,7 +46,7 @@ public class KehadiranService {
 
 	Workbook workbook;
 
-	public void uploadFile(MultipartFile file) {
+	public void uploadFile(MultipartFile file) throws ParseException {
 		try {
 			Path copyLocation = Paths
 					.get(uploadDir + File.separator + StringUtils.cleanPath(file.getOriginalFilename()));
@@ -72,19 +77,94 @@ public class KehadiranService {
 		int noOfColumns = sheet.getRow(0).getLastCellNum();
 
 		System.out.println("-------Sheet has '" + noOfColumns + "' columns------");
+		
+		// Using for-each loop to iterate over the rows and columns
+		for (Row row : sheet) {
+			for (Cell cell : row) {
+				String cellValue = dataFormatter.formatCellValue(cell);
+			//	System.out.println(cellValue);
+				list.add(cellValue);
+			}
+		}
+		
+		ArrayList<KehadiranModel> list2 = new ArrayList<KehadiranModel>();
+		
+	    int i = noOfColumns;
+		do {
+			KehadiranModel km = new KehadiranModel();
+			km.setNamaKaryawan(list.get(i));
+			km.setTanggal(new SimpleDateFormat("dd/MM/yyyy").parse(parseDate(list.get(i+1))));
+//			km.setCheckIn(Time.valueOf(list.get(i+2)+":00"));
+            km.setCheckOut(Time.valueOf(list.get(i+3)+":00"));
+            km.setDurasiKerja(list.get(i+4));
+            km.setKeterangan(list.get(i+5));
+            list2.add(km);
+            kr.save(km);
+			i=i+noOfColumns;
+		}
+		while (i<list.size());
+		
+		System.out.println("Panjang list "+list.size());
+		
+		
 
 
 	}
 
+	public String parseDate(String date) {
+		String[] splitDate = date.split(" ");
+		String month = null;
+		switch (splitDate[1]) {
+		    case "January" :
+		        month = "01";
+		        break;
+		    case "February" :
+		        month = "02";
+		        break;
+		    case "March" :
+		        month = "01";
+		        break;
+		    case "April" :
+		        month = "01";
+		        break;
+		    case "May" :
+		        month = "01";
+		        break;
+		    case "June" :
+		        month = "01";
+		        break;
+		    case "July" :
+		        month = "01";
+		        break;
+		    case "August" :
+		        month = "01";
+		        break;
+		    case "September" :
+		        month = "01";
+		        break;
+		    case "October" :
+		        month = "01";
+		        break;
+		    case "November" :
+		        month = "01";
+		        break;
+		    case "December" :
+		        month = "01";
+		        break;
+		}
+		return splitDate[0].concat("/").concat(month).concat("/").concat(splitDate[2]);
+	}
 }
+
+
 
 class Kehadiran {
 	String namaKaryawan;
-	Date tanggal;
-	Time jamMasuk;
-	Time jamKeluar;
+	String tanggal;
+	String jamMasuk;
+	String jamKeluar;
 	
-	Kehadiran(String namaKaryawan, Date tanggal,Time jamMasuk, Time jamKeluar){
+	Kehadiran(String namaKaryawan, String tanggal,String jamMasuk, String jamKeluar){
 		this.namaKaryawan=namaKaryawan;
 		this.tanggal=tanggal;
 		this.jamMasuk=jamMasuk;

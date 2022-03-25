@@ -1,5 +1,7 @@
 package com.example.Sindopan.controller;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +17,7 @@ public class KehadiranController {
 	KehadiranService ks;
 
 	@RequestMapping(value="/uploadFile")
-	public String menuUploadFile(@RequestParam("fileAbsensi") MultipartFile file) {
+	public String menuUploadFile(@RequestParam("fileAbsensi") MultipartFile file) throws ParseException {
 		ks.uploadFile(file);
 		return "redirect:/kehadiran";
 	}
