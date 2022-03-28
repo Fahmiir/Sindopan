@@ -80,7 +80,6 @@ public class KehadiranService {
 		for (Row row : sheet) {
 			for (Cell cell : row) {
 				String cellValue = dataFormatter.formatCellValue(cell);
-			//	System.out.println(cellValue);
 				list.add(cellValue);
 			}
 		}
@@ -94,9 +93,8 @@ public class KehadiranService {
 			Date d = new SimpleDateFormat("dd/MM/yyyy").parse(parseDate(list.get(i+1)));
 			java.sql.Date j = new java.sql.Date(d.getTime());
 			km.setTanggal(j);
-//			km.setTanggal(new java.sql.Date(new SimpleDateFormat("dd/MM/yyyy").parse(parseDate(list.get(i+1)))).getTime());
-//			km.setCheckIn(Time.valueOf(list.get(i+2)+":00"));
-            km.setCheckOut(Time.valueOf(list.get(i+3)+":00"));
+			km.setCheckIn(Time.valueOf(getTime(list.get(i+2))));
+            km.setCheckOut(Time.valueOf(getTime(list.get(i+3))));
             km.setDurasiKerja(list.get(i+4));
             km.setKeterangan(list.get(i+5));
             list2.add(km);
@@ -154,6 +152,20 @@ public class KehadiranService {
 		        break;
 		}
 		return splitDate[0].concat("/").concat(month).concat("/").concat(splitDate[2]);
+	}
+	
+	public String getTime(String time) {
+		String check;
+		if(time.length()==4) {
+			check="0"+time+":00";
+		}
+		else if(time.length()==5) {
+			check=time+":00";
+		}
+		else {
+			check=null;
+		}
+		return check;
 	}
 }
 
