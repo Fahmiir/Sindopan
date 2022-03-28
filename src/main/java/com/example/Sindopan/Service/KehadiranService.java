@@ -6,13 +6,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.Date;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -93,7 +91,10 @@ public class KehadiranService {
 		do {
 			KehadiranModel km = new KehadiranModel();
 			km.setNamaKaryawan(list.get(i));
-			km.setTanggal(new SimpleDateFormat("dd/MM/yyyy").parse(parseDate(list.get(i+1))));
+			Date d = new SimpleDateFormat("dd/MM/yyyy").parse(parseDate(list.get(i+1)));
+			java.sql.Date j = new java.sql.Date(d.getTime());
+			km.setTanggal(j);
+//			km.setTanggal(new java.sql.Date(new SimpleDateFormat("dd/MM/yyyy").parse(parseDate(list.get(i+1)))).getTime());
 //			km.setCheckIn(Time.valueOf(list.get(i+2)+":00"));
             km.setCheckOut(Time.valueOf(list.get(i+3)+":00"));
             km.setDurasiKerja(list.get(i+4));
@@ -122,34 +123,34 @@ public class KehadiranService {
 		        month = "02";
 		        break;
 		    case "March" :
-		        month = "01";
+		        month = "03";
 		        break;
 		    case "April" :
-		        month = "01";
+		        month = "04";
 		        break;
 		    case "May" :
-		        month = "01";
+		        month = "05";
 		        break;
 		    case "June" :
-		        month = "01";
+		        month = "06";
 		        break;
 		    case "July" :
-		        month = "01";
+		        month = "07";
 		        break;
 		    case "August" :
-		        month = "01";
+		        month = "08";
 		        break;
 		    case "September" :
-		        month = "01";
+		        month = "09";
 		        break;
 		    case "October" :
-		        month = "01";
+		        month = "10";
 		        break;
 		    case "November" :
-		        month = "01";
+		        month = "11";
 		        break;
 		    case "December" :
-		        month = "01";
+		        month = "12";
 		        break;
 		}
 		return splitDate[0].concat("/").concat(month).concat("/").concat(splitDate[2]);
