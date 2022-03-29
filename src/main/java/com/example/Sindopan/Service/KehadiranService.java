@@ -93,8 +93,8 @@ public class KehadiranService {
 			Date d = new SimpleDateFormat("dd/MM/yyyy").parse(parseDate(list.get(i+1)));
 			java.sql.Date j = new java.sql.Date(d.getTime());
 			km.setTanggal(j);
-			km.setCheckIn(Time.valueOf(getTime(list.get(i+2))));
-            km.setCheckOut(Time.valueOf(getTime(list.get(i+3))));
+			km.setCheckIn(getCheck(list.get(i+2)));
+            km.setCheckOut(getCheck(list.get(i+3)));
             km.setDurasiKerja(list.get(i+4));
             km.setKeterangan(list.get(i+5));
             list2.add(km);
@@ -155,17 +155,22 @@ public class KehadiranService {
 	}
 	
 	public String getTime(String time) {
-		String check;
+		String check = "";
 		if(time.length()==4) {
 			check="0"+time+":00";
 		}
 		else if(time.length()==5) {
 			check=time+":00";
 		}
-		else {
-			check=null;
-		}
 		return check;
+	}
+	
+	public Time getCheck(String check) {
+        Time t=null;
+		if(!check.equals("null")) {
+        	t = Time.valueOf(getTime(check));
+        }
+		return t;
 	}
 }
 
