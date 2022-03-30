@@ -214,20 +214,25 @@
                                         <thead>                                                
                                             <tr>
                                                 <th><center>Nama Karyawan</center></th>
-                                                
                                                 <th><center>Merah ?</center></th> 
                                                 <th><center>Tanggal</center></th>
                                                 <th><center>Check In</center></th>
                                                 <th><center>Check Out</center></th>
                                                 <th><center>Durasi Kerja</center></th>
                                                 <th><center>Keterangan</center></th>
-
+                                            </tr>
+                                            <tr th:each ="kehadiranModel:${ListKehadiranModel}" class="row-select">
+                                                 <td class="namaKehadiran"><center><a th:text="${kehadiranModel.namaKaryawan}"></a></center></td>
+                                                 <td class="merah"><center></center></td>
+                                                 <td class="tanggal"><center><a th:text="${kehadiranModel.tanggal}"></a></center></td>
+                                                 <td class="checkIn"><center><a th:text="${kehadiranModel.checkIn}"></a></center></td>
+                                                 <td class="checkOut"><center><a th:text="${kehadiranModel.checkOut}"></a></center></td>
+                                                 <td class="durasiKerja"><center><a th:text="${kehadiranModel.durasiKerja}"></a></center></td>
+                                                 <td class="keterangan"><center><a th:text="${kehadiranModel.keterangan}"></center></td>
                                             </tr>
                                         </thead>
                                         <tbody id="tblDataHari"></tbody>
-                                        
-                                        
-                                    </table>
+                                     </table>
                                     <input type="hidden" name="hdnJmlRow" id="hdnJmlRow"/>
                                 </div>
                                 

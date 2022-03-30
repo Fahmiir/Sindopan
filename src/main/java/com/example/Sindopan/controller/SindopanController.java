@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.Sindopan.Service.HariKerjaService;
 import com.example.Sindopan.Service.KaryawanService;
+import com.example.Sindopan.Service.KehadiranService;
 import com.example.Sindopan.Service.SindopanService;
 import com.example.Sindopan.model.AgamaModel;
 import com.example.Sindopan.model.HariKerjaModel;
 import com.example.Sindopan.model.JenisKelaminModel;
 import com.example.Sindopan.model.KaryawanModel;
+import com.example.Sindopan.model.KehadiranModel;
 
 
 @Controller
@@ -31,6 +33,9 @@ public class SindopanController {
 	
 	@Autowired
 	HariKerjaService hs;
+	
+	@Autowired
+	KehadiranService ks;
 
 	
 	@RequestMapping(value="/")
@@ -55,6 +60,9 @@ public class SindopanController {
 	
 	@RequestMapping(value="/kehadiran")
 	public String menuKehadiran(Model model) {
+		List<KehadiranModel> kk = new ArrayList<>();
+		kk = ks.readKehadiran();
+		model.addAttribute("ListKehadiranModel", kk);
 		return "kehadiran";
 	}
 	

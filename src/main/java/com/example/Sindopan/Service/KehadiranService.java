@@ -172,20 +172,9 @@ public class KehadiranService {
         }
 		return t;
 	}
-}
-
-
-
-class Kehadiran {
-	String namaKaryawan;
-	String tanggal;
-	String jamMasuk;
-	String jamKeluar;
 	
-	Kehadiran(String namaKaryawan, String tanggal,String jamMasuk, String jamKeluar){
-		this.namaKaryawan=namaKaryawan;
-		this.tanggal=tanggal;
-		this.jamMasuk=jamMasuk;
-		this.jamKeluar=jamKeluar;
+	public List<KehadiranModel> readKehadiran() {
+		return kr.findAll();
 	}
 }
+
