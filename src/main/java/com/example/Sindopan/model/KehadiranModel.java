@@ -31,12 +31,6 @@ public class KehadiranModel {
 	
 	@Column(name="checkOut")
 	private Time checkOut;
-	
-	@Column(name="durasiKerja")
-	private String durasiKerja;
-
-	@Column(name="keterangan")
-	private String keterangan;
 
 	public Integer getId() {
 		return id;
@@ -77,26 +71,5 @@ public class KehadiranModel {
 	public void setCheckOut(Time checkOut) {
 		this.checkOut = checkOut;
 	}
-	
-	public String getDurasiKerja() {
-		return durasiKerja;
-	}
-
-	public void setDurasiKerja(String durasiKerja) {
-		this.durasiKerja = durasiKerja;
-	}
-
-	public String getKeterangan() {
-		return keterangan;
-	}
-
-	public void setKeterangan(String keterangan) {
-		this.keterangan = keterangan;
-	}
-	
-	
-	
-	
-	
 
 }

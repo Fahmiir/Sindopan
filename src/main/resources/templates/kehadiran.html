@@ -214,7 +214,6 @@
                                         <thead>                                                
                                             <tr>
                                                 <th><center>Nama Karyawan</center></th>
-                                                <th><center>Merah ?</center></th> 
                                                 <th><center>Tanggal</center></th>
                                                 <th><center>Check In</center></th>
                                                 <th><center>Check Out</center></th>
@@ -223,12 +222,11 @@
                                             </tr>
                                             <tr th:each ="kehadiranModel:${ListKehadiranModel}" class="row-select">
                                                  <td class="namaKehadiran"><center><a th:text="${kehadiranModel.namaKaryawan}"></a></center></td>
-                                                 <td class="merah"><center></center></td>
                                                  <td class="tanggal"><center><a th:text="${kehadiranModel.tanggal}"></a></center></td>
                                                  <td class="checkIn"><center><a th:text="${kehadiranModel.checkIn}"></a></center></td>
                                                  <td class="checkOut"><center><a th:text="${kehadiranModel.checkOut}"></a></center></td>
-                                                 <td class="durasiKerja"><center><a th:text="${kehadiranModel.durasiKerja}"></a></center></td>
-                                                 <td class="keterangan"><center><a th:text="${kehadiranModel.keterangan}"></center></td>
+                                                 <td class="durasiKerja"><center><a class="durasi"></a></center></td>
+                                                 <td class="keterangan"><center></center></td>
                                             </tr>
                                         </thead>
                                         <tbody id="tblDataHari"></tbody>
@@ -529,11 +527,37 @@
         }
     </style>
 <script>
-$(document).ready(function(){
-	$("#btnNew").click(function(){
-		$("#fileAbsensi").click();
-	})
-})         
+     $(document).ready(function(){
+	     $("#btnNew").click(function(){
+		    $("#fileAbsensi").click();
+	     })
+     })         
+</script>
+
+<script th:inline="javascript">
+     $(document).ready(function(){
+    	 var listData = [[${ListKehadiranModel}]];
+  	     for(var i=0;i<document.getElementsByClassName("durasiKerja").length;i++){
+ 		   document.getElementsByClassName("durasiKerja")[i].innerHTML = getDuration(listData[i].checkIn,listData[i].checkOut);   
+ 	   }
+     })
+     
+     function getDuration(s,e){
+	     if(s && e) {
+			    var start = s.split(":");
+			    var end = e.split(":");
+			    var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+			    var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+			    var diff = endDate.getTime() - startDate.getTime();
+			    var hours = Math.floor(diff / 1000 / 60 / 60);
+			    diff -= hours * 1000 * 60 * 60;
+			    var minutes = Math.floor(diff / 1000 / 60);
+		      	return (hours <= 9 ? "" : "") + hours + " Jam " + (minutes < 9 ? "0" : "") + minutes + " Menit ";
+		   }
+			    else {
+			    return null;	
+			    }
+     }
 </script>
 
 </body>

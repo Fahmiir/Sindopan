@@ -95,8 +95,6 @@ public class KehadiranService {
 			km.setTanggal(j);
 			km.setCheckIn(getCheck(list.get(i+2)));
             km.setCheckOut(getCheck(list.get(i+3)));
-            km.setDurasiKerja(list.get(i+4));
-            km.setKeterangan(list.get(i+5));
             list2.add(km);
             kr.save(km);
 			i=i+noOfColumns;
