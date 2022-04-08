@@ -552,7 +552,7 @@
 			    var hours = Math.floor(diff / 1000 / 60 / 60);
 			    diff -= hours * 1000 * 60 * 60;
 			    var minutes = Math.floor(diff / 1000 / 60);
-		      	return (hours <= 9 ? "" : "") + hours + " Jam " + (minutes < 9 ? "0" : "") + minutes + " Menit ";
+		      	return (hours <= 9 ? "" : "") + hours + " Jam " + (minutes >= 1 ? minutes+" menit " : "");
 		   }
 			    else {
 			    return null;	

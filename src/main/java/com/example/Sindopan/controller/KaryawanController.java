@@ -45,6 +45,8 @@ public class KaryawanController {
 		String uploadDirectory = request.getServletContext().getRealPath(uploadFoto);
 		String filePath = Paths.get(uploadDirectory, Image.getOriginalFilename()).toString();
 		String jabatan = request.getParameter("txtJabatan");
+		String NIK = request.getParameter("txtNIK");
+		String NIP = request.getParameter("txtNIP");
 		KaryawanModel km = new KaryawanModel();
 		km.setNamaPegawai(namaPegawai);
 		km.setAlamat(alamat);
@@ -56,6 +58,8 @@ public class KaryawanController {
 		km.setType(Image.getContentType());
 		km.setImage(Image.getOriginalFilename());
 	    km.setJabatan(jabatan);
+	    km.setNIK(NIK);
+	    km.setNIP(NIP);
 		ks.create(km);
 		ks.createDirectory(uploadDirectory, filePath, Image);
 		return "redirect:/goToKaryawan";
@@ -68,11 +72,13 @@ public class KaryawanController {
         String alamat       = request.getParameter("editTxtAlamat");
         String agama        = request.getParameter("editCmbAgama");
         String tempatLahir  = request.getParameter("editTxtTempatLahir");
-        Date tanggalLahir = new SimpleDateFormat("yyyy/MM/dd").parse(request.getParameter("txtTanggalLahir"));
+        Date tanggalLahir = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("editTxtTanggalLahir"));
         String JenisKelamin = request.getParameter("editCmbJenisKelamin");
 		String uploadDirectory = request.getServletContext().getRealPath(uploadFoto);
 		String filePath = Paths.get(uploadDirectory, Image.getOriginalFilename()).toString();
 		String jabatan = request.getParameter("editTxtJabatan");
+		String nik = request.getParameter("editTxtNIK");
+		String nip = request.getParameter("editTxtNIP");
 		KaryawanModel km = new KaryawanModel();
 		km.setId(id);
 		km.setNamaPegawai(namaPegawai);
@@ -85,6 +91,8 @@ public class KaryawanController {
 		km.setType(Image.getContentType());
 		km.setImage(Image.getOriginalFilename());
 	    km.setJabatan(jabatan);
+	    km.setNIK(nik);
+	    km.setNIP(nip);
 		ks.create(km);
 		ks.createDirectory(uploadDirectory, filePath, Image);
 		return "redirect:/goToKaryawan";

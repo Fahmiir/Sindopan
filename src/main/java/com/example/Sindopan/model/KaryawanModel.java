@@ -47,6 +47,13 @@ public class KaryawanModel {
 	
 	@Column(name="jabatan")
 	private String jabatan;
+	
+	@Column(name="NIK")
+	private String NIK;
+	
+	@Column(name="NIP")
+	private String NIP;
+
 
 	public Integer getId() {
 		return id;
@@ -135,6 +142,27 @@ public class KaryawanModel {
 	public void setTanggalLahir(Date tanggalLahir) {
 		this.tanggalLahir = tanggalLahir;
 	}
+
+	public String getNIK() {
+		return NIK;
+	}
+
+	public void setNIK(String nIK) {
+		NIK = nIK;
+	}
+
+	public String getNIP() {
+		return NIP;
+	}
+
+	public void setNIP(String nIP) {
+		NIP = nIP;
+	}
+
+	
+	
+	
+	
 	
 	
 	

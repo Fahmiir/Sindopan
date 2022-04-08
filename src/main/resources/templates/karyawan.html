@@ -63,6 +63,8 @@
                    <td>Agama</td>
                    <td>Foto</td>
                    <td>Jabatan</td>
+                   <td>NIP</td>
+                   <td>NIK</td>
                    <td id="checkbox"><input type="checkbox" id="check"  onchange="checkAll(this)"></td>
              </tr>
              <tr th:each="karyawanModel:${ListKaryawanModel}" class="row-select">
@@ -74,6 +76,8 @@
                    <td class="agama"><a th:text="${karyawanModel.agama}"></a></td>
                    <td class="picByte"><img th:src="@{${'/image/display/'+karyawanModel.id}}"  class="card img-fluid" style="width:100px" alt=""/></td>
                    <td class="jabatan"><a th:text="${karyawanModel.jabatan}"></a></td>
+                   <td class="NIP"><a th:text="${karyawanModel.NIP}"></a></td>
+                   <td class="NIK"><a th:text="${karyawanModel.NIK}"></a></td>
                    <td><input type="checkbox" id="check"></td>
               </tr>
           </table>
@@ -115,6 +119,14 @@
                                                                  <input class="form-control" name="txtNamaPegawai" id="txtNamaPegawai"/>
                                                              </td>
                                                         </tr>
+                                                        <tr>
+                                                             <td>
+                                                                 NIK
+                                                             </td>
+                                                             <td>
+                                                                 <input class="form-control" name="txtNIK" id="txtNIK"/>
+                                                             </td>
+                                                        </tr>                                                        
                                                         <tr>
                                                               <td>
                                                                  Alamat
@@ -176,6 +188,14 @@
                                                                    <input class="form-control" name="txtJabatan" id="txtJabatan" style="width: 200px;text-transform:uppercase"/>
                                                                </td>                                                                                                                                        
                                                            </tr>
+                                                           <tr>
+                                                               <td>
+                                                                   NIP
+                                                               </td>                                                 
+                                                               <td>
+                                                                   <input class="form-control" name="txtNIP" id="txtNIP" style="width: 200px;text-transform:uppercase"/>
+                                                               </td>                                                                                                                                        
+                                                           </tr>                                                           
                                                         </tbody>                                                                
                                                 </table> 
                                            </div>
@@ -227,6 +247,14 @@
                                                                  <input class="form-control" name="editTxtNamaPegawai" id="editTxtNamaPegawai"/>
                                                              </td>
                                                         </tr>
+                                                        <tr>
+                                                             <td>
+                                                                 NIK
+                                                             </td>
+                                                             <td>
+                                                                 <input class="form-control" name="editTxtNIK" id="editTxtNIK"/>
+                                                             </td>
+                                                        </tr>                                                        
                                                         <tr>
                                                               <td>
                                                                  Alamat
@@ -288,6 +316,14 @@
                                                                    <input class="form-control" name="editTxtJabatan" id="editTxtJabatan" style="width: 200px;text-transform:uppercase"/>
                                                                </td>                                                                                                                                        
                                                            </tr>
+                                                           <tr>
+                                                               <td>
+                                                                   NIP
+                                                               </td>                                                 
+                                                               <td>
+                                                                   <input class="form-control" name="editTxtNIP" id="editTxtNIP" style="width: 200px;text-transform:uppercase"/>
+                                                               </td>                                                                                                                                        
+                                                           </tr>                                                           
                                                         </tbody>                                                                
                                                   </table>
                                                </div>
@@ -331,7 +367,15 @@
                                                              <td>
                                                                  <label name="labelTxtNamaPegawai" id="labelTxtNamaPegawai"></label>
                                                              </td>
-                                                        </tr>    
+                                                        </tr>
+                                                        <tr>
+                                                             <td>
+                                                                 NIK
+                                                             </td>
+                                                             <td>
+                                                                 <label name="labelTxtNIK" id="labelTxtNIK"></label>
+                                                             </td>
+                                                        </tr>                                                            
                                                         <tr>
                                                               <td>
                                                                  Alamat
@@ -387,7 +431,15 @@
                                                               <td>
                                                                  <label name="labelJabatan" id="labelJabatan"/>
                                                               </td>
-                                                        </tr>                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+                                                        </tr>
+                                                        <tr>
+                                                             <td>
+                                                                 NIP
+                                                             </td>
+                                                             <td>
+                                                                 <label name="labelTxtNIP" id="labelTxtNIP"></label>
+                                                             </td>
+                                                        </tr>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                                                    </tbody>
                                              </table>                                   
                                    </div>                               
@@ -449,6 +501,8 @@
     			var selectedJabatan        = ListData[i].jabatan;
     			var selectedAgama          = ListData[i].agama;
     			var selectedJenisKelamin   = ListData[i].jenisKelamin;
+    			var selectedNIP            = ListData[i].nip;
+    			var selectedNIK            = ListData[i].nik;
     			var mySelectedAgama        = document.getElementById("editCmbAgama");
     			var mySelectedJenisKelamin = document.getElementById("editCmbJenisKelamin");
     			var mySelectedDate         = selectedTanggalLahir.substring(0,10);
@@ -457,6 +511,8 @@
     			$('#editTxtAlamat').val(selectedAlamat);
     			$('#editTxtTempatLahir').val(selectedTempatLahir);
     			$('#editTxtJabatan').val(selectedJabatan);
+    			$('#editTxtNIK').val(selectedNIK);
+    			$('#editTxtNIP').val(selectedNIP);
     			document.getElementById("editTxtTanggalLahir").defaultValue=mySelectedDate;
                 document.getElementById("editFoto").src = "../Sindopan/image/display/"+selectedId;
     			
@@ -492,6 +548,8 @@
     			var viewJabatan        = ListData[i].jabatan;
     			var viewAgama          = ListData[i].agama;
     			var viewJenisKelamin   = ListData[i].jenisKelamin;
+    			var viewNIP            = ListData[i].nip;
+    			var viewNIK            = ListData[i].nik;
     			var mySelectedDate     = viewTanggalLahir.substring(0,10);
     			var viewDate           = mySelectedDate.split("-")
     			var formatDate         = viewDate[2].concat("-",viewDate[1],"-",viewDate[0]);
@@ -502,6 +560,8 @@
                 document.getElementById("labelTanggalLahir").innerHTML = formatDate;
                 document.getElementById("labelTxtJenisKelamin").innerHTML = viewJenisKelamin;
                 document.getElementById("labelJabatan").innerHTML = viewJabatan;
+                document.getElementById("labelTxtNIK").innerHTML = viewNIP;
+                document.getElementById("labelTxtNIP").innerHTML = viewNIK;
                 document.getElementById("viewFoto").src = "../Sindopan/image/display/"+viewId;
     	})
      });
