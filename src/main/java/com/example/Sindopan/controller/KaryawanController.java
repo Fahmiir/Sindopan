@@ -66,7 +66,7 @@ public class KaryawanController {
 	}
 	
 	@RequestMapping(value="/editKaryawan")
-	public String editDataKaryawan(HttpServletRequest request,@RequestParam("fileFoto") MultipartFile Image) throws ParseException, IOException {
+	public String editDataKaryawan(HttpServletRequest request,@RequestParam("editfileFoto") MultipartFile Image) throws ParseException, IOException {
 		int id = Integer.valueOf(request.getParameter("editTxtId"));
         String namaPegawai  = request.getParameter("editTxtNamaPegawai");
         String alamat       = request.getParameter("editTxtAlamat");
@@ -75,7 +75,9 @@ public class KaryawanController {
         Date tanggalLahir = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("editTxtTanggalLahir"));
         String JenisKelamin = request.getParameter("editCmbJenisKelamin");
 		String uploadDirectory = request.getServletContext().getRealPath(uploadFoto);
-		String filePath = Paths.get(uploadDirectory, Image.getOriginalFilename()).toString();
+		String fileImage = request.getParameter("editTxtImage");
+		String getImage = ks.getImages(Image.getOriginalFilename(), fileImage);
+		String filePath = Paths.get(uploadDirectory, getImage).toString();
 		String jabatan = request.getParameter("editTxtJabatan");
 		String nik = request.getParameter("editTxtNIK");
 		String nip = request.getParameter("editTxtNIP");
@@ -89,7 +91,7 @@ public class KaryawanController {
 		km.setJenisKelamin(JenisKelamin);
 		km.setPicByte(Image.getBytes());
 		km.setType(Image.getContentType());
-		km.setImage(Image.getOriginalFilename());
+		km.setImage(getImage);
 	    km.setJabatan(jabatan);
 	    km.setNIK(nik);
 	    km.setNIP(nip);

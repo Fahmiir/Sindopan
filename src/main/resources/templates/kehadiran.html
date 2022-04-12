@@ -222,7 +222,7 @@
                                             </tr>
                                             <tr th:each ="kehadiranModel:${ListKehadiranModel}" class="row-select">
                                                  <td class="namaKehadiran"><center><a th:text="${kehadiranModel.namaKaryawan}"></a></center></td>
-                                                 <td class="tanggal"><center><a th:text="${kehadiranModel.tanggal}"></a></center></td>
+                                                 <td class="tanggal"><center><a th:text="${#dates.format(kehadiranModel.tanggal,'dd-MM-yyyy')}"></a></center></td>
                                                  <td class="checkIn"><center><a th:text="${kehadiranModel.checkIn}"></a></center></td>
                                                  <td class="checkOut"><center><a th:text="${kehadiranModel.checkOut}"></a></center></td>
                                                  <td class="durasiKerja"><center><a class="durasi"></a></center></td>
@@ -537,8 +537,8 @@
 <script th:inline="javascript">
      $(document).ready(function(){
     	 var listData = [[${ListKehadiranModel}]];
-  	     for(var i=0;i<document.getElementsByClassName("durasiKerja").length;i++){
- 		   document.getElementsByClassName("durasiKerja")[i].innerHTML = getDuration(listData[i].checkIn,listData[i].checkOut);   
+  	     for(var i=0;i<document.getElementsByClassName("durasi").length;i++){
+ 		   document.getElementsByClassName("durasi")[i].innerHTML = getDuration(listData[i].checkIn,listData[i].checkOut);   
  	   }
      })
      

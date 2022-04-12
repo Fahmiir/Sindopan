@@ -239,6 +239,14 @@
                                                                <input class="form-control" name="editTxtId" id="editTxtId"/>
                                                             </td>
                                                         </tr>
+                                                       <tr id="editImage" name="editImage" style="display:none">                                          
+                                                            <td>
+                                                             Image
+                                                            </td>
+                                                            <td>
+                                                               <input class="form-control" name="editTxtImage" id="editTxtImage"/>
+                                                            </td>
+                                                        </tr>                                                        
                                                         <tr>
                                                              <td>
                                                                  Nama Pegawai
@@ -305,7 +313,7 @@
                                                                </td>                                                  
                                                                <td>
                                                                    <img name="editFoto" id="editFoto"/>
-                                                                   <input class="form-control" type="file" name="fileFoto" id="fileFoto" style=";width: 200px;text-transform:uppercase" onChange="document.getElementById('editFoto').src = window.URL.createObjectURL(this.files[0]);">
+                                                                   <input class="form-control" type="file" name="editfileFoto" id="editfileFoto" style=";width: 200px;text-transform:uppercase" onChange="document.getElementById('editFoto').src = window.URL.createObjectURL(this.files[0]);">
                                                                </td>                                                                                                                                        
                                                            </tr>
                                                            <tr>
@@ -503,6 +511,7 @@
     			var selectedJenisKelamin   = ListData[i].jenisKelamin;
     			var selectedNIP            = ListData[i].nip;
     			var selectedNIK            = ListData[i].nik;
+    			var selectedImage          = ListData[i].image;
     			var mySelectedAgama        = document.getElementById("editCmbAgama");
     			var mySelectedJenisKelamin = document.getElementById("editCmbJenisKelamin");
     			var mySelectedDate         = selectedTanggalLahir.substring(0,10);
@@ -513,6 +522,7 @@
     			$('#editTxtJabatan').val(selectedJabatan);
     			$('#editTxtNIK').val(selectedNIK);
     			$('#editTxtNIP').val(selectedNIP);
+    			$('#editTxtImage').val(selectedImage);
     			document.getElementById("editTxtTanggalLahir").defaultValue=mySelectedDate;
                 document.getElementById("editFoto").src = "../Sindopan/image/display/"+selectedId;
     			
