@@ -61,8 +61,11 @@ public class SindopanController {
 	@RequestMapping(value="/kehadiran")
 	public String menuKehadiran(Model model) {
 		List<KehadiranModel> kk = new ArrayList<>();
+		List<HariKerjaModel> hk = new ArrayList<>();
 		kk = ks.readKehadiran();
+		hk = hs.readHariKerja2();
 		model.addAttribute("ListKehadiranModel", kk);
+		model.addAttribute("ListHariKerjaModel", hk);
 		return "kehadiran";
 	}
 	

@@ -226,7 +226,7 @@
                                                  <td class="checkIn"><center><a th:text="${kehadiranModel.checkIn}"></a></center></td>
                                                  <td class="checkOut"><center><a th:text="${kehadiranModel.checkOut}"></a></center></td>
                                                  <td class="durasiKerja"><center><a class="durasi"></a></center></td>
-                                                 <td class="keterangan"><center></center></td>
+                                                 <td class="keterangan"><center><a class="keterangan"></a></center></td>
                                             </tr>
                                         </thead>
                                         <tbody id="tblDataHari"></tbody>
@@ -537,10 +537,43 @@
 <script th:inline="javascript">
      $(document).ready(function(){
     	 var listData = [[${ListKehadiranModel}]];
-  	     for(var i=0;i<document.getElementsByClassName("durasi").length;i++){
- 		   document.getElementsByClassName("durasi")[i].innerHTML = getDuration(listData[i].checkIn,listData[i].checkOut);   
+  	     for(var i=0;i<document.getElementsByClassName("durasi").length;i++){	 
+ 		   document.getElementsByClassName("durasi")[i].innerHTML = getDuration(listData[i].checkIn,listData[i].checkOut);  
+ 		   document.getElementsByClassName("keterangan")[i].innerHTML = getKeterangan(listData[i].tanggal,listData[i].checkIn,listData[i].checkOut);
  	   }
+
+  	     
      })
+     
+     
+     var listData2 = [[${ListHariKerjaModel}]];
+     function getKeterangan(a,b,c){
+    	  var x = "alfa";
+             for(var i=0;i<listData2.length;i++){
+            	 if(a==listData2[i].tanggal){
+            		 if(!b && !c){
+            			 if(listData2[i].keterangan!=null){
+            				 x = listData2[i].keterangan;	 
+            			 }
+               		 }
+            		 else if(b>"08:00:00"){
+            		     x="Datang Terlambat";
+            			 
+            		 }
+            		 else if(c<"17:00:00"){
+            			 x="pulang cepat"    
+            		 }
+            		 else if(c>"19:00:00"){
+            			 x="lembur"
+            		 }
+            		 else {
+            			 x="Tepat Waktu";
+            		 }
+                     break;            		 
+            	 }
+             }
+    		 return x;
+     } 
      
      function getDuration(s,e){
 	     if(s && e) {
@@ -558,6 +591,8 @@
 			    return null;	
 			    }
      }
+     
+
 </script>
 
 </body>

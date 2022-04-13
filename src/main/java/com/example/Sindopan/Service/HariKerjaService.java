@@ -31,6 +31,9 @@ public class HariKerjaService {
 		  return hr.searchByMonthOrderByDate(month); 
 	}
 	 
+	public List<HariKerjaModel> readHariKerja2(){
+		return hr.findAll();
+	}
 	
 	public List<HariKerjaModel> readHariKerja(){
 		return hr.findAll();
