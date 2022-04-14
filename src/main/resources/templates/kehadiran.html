@@ -226,7 +226,7 @@
                                                  <td class="checkIn"><center><a th:text="${kehadiranModel.checkIn}"></a></center></td>
                                                  <td class="checkOut"><center><a th:text="${kehadiranModel.checkOut}"></a></center></td>
                                                  <td class="durasiKerja"><center><a class="durasi"></a></center></td>
-                                                 <td class="keterangan"><center><a class="keterangan"></a></center></td>
+                                                 <td class="keteranganKerja"><center><a class="keterangan"></a></center></td>
                                             </tr>
                                         </thead>
                                         <tbody id="tblDataHari"></tbody>
@@ -548,18 +548,20 @@
      
      var listData2 = [[${ListHariKerjaModel}]];
      function getKeterangan(a,b,c){
-    	  var x = "alfa";
+    	  var x ;
              for(var i=0;i<listData2.length;i++){
             	 if(a==listData2[i].tanggal){
-            		 if(!b && !c){
+            		 if(b==null && c==null){
             			 if(listData2[i].keterangan!=null){
-            				 x = listData2[i].keterangan;	 
+            				 x = listData2[i].keterangan; 
             			 }
-               		 }
+            			 else {
+            				 x="Alfa";
+            			 }
+               	     }
             		 else if(b>"08:00:00"){
             		     x="Datang Terlambat";
-            			 
-            		 }
+            	     }
             		 else if(c<"17:00:00"){
             			 x="pulang cepat"    
             		 }
