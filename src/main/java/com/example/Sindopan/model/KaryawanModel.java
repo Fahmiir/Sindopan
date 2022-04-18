@@ -53,6 +53,9 @@ public class KaryawanModel {
 	
 	@Column(name="NIP")
 	private String NIP;
+	
+	@Column(name="filePath")
+	private String filePath;
 
 
 	public Integer getId() {
@@ -158,6 +161,16 @@ public class KaryawanModel {
 	public void setNIP(String nIP) {
 		NIP = nIP;
 	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+	
+	
 
 	
 	

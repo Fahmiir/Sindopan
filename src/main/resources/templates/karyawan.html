@@ -2,6 +2,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<style>
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+</style>
 <title>Insert title here</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -116,7 +124,7 @@
                                                                  Nama Pegawai
                                                              </td>
                                                              <td>
-                                                                 <input class="form-control" name="txtNamaPegawai" id="txtNamaPegawai"/>
+                                                                 <input class="form-control" name="txtNamaPegawai" id="txtNamaPegawai" required/>
                                                              </td>
                                                         </tr>
                                                         <tr>
@@ -124,7 +132,7 @@
                                                                  NIK
                                                              </td>
                                                              <td>
-                                                                 <input class="form-control" name="txtNIK" id="txtNIK"/>
+                                                                 <input class="form-control" name="txtNIK" id="txtNIK" type="number" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
                                                              </td>
                                                         </tr>                                                        
                                                         <tr>
@@ -132,7 +140,7 @@
                                                                  Alamat
                                                               </td>
                                                               <td>
-                                                                 <input class="form-control" name="txtAlamat" id="txtAlamat"/>
+                                                                 <input class="form-control" name="txtAlamat" id="txtAlamat" required/>
                                                               </td>
                                                         </tr>
                                                         <tr>
@@ -150,7 +158,7 @@
                                                                  Tempat Lahir
                                                               </td>                                                               
                                                               <td>
-                                                                 <textarea class="form-control" name="txtTempatLahir" id="txtTempatLahir" style="text-transform:uppercase"></textarea>
+                                                                 <textarea class="form-control" name="txtTempatLahir" id="txtTempatLahir" style="text-transform:uppercase" required></textarea>
                                                               </td>                                                                                                                                        
                                                          </tr>
                                                          <tr>
@@ -177,7 +185,7 @@
                                                                </td>                                                  
                                                                <td>
                                                                    <img name="foto" id="foto"/>
-                                                                   <input class="form-control" type="file" name="fileFoto" id="fileFoto" style=";width: 200px;text-transform:uppercase" onchange="addFoto()">
+                                                                   <input class="form-control" type="file" name="fileFoto" id="fileFoto" style=";width: 200px;text-transform:uppercase" onchange="addFoto()" required>
                                                                </td>                                                                                                                                        
                                                            </tr>
                                                            <tr>
@@ -185,7 +193,7 @@
                                                                    Jabatan
                                                                </td>                                                 
                                                                <td>
-                                                                   <input class="form-control" name="txtJabatan" id="txtJabatan" style="width: 200px;text-transform:uppercase"/>
+                                                                   <input class="form-control" name="txtJabatan" id="txtJabatan" style="width: 200px;text-transform:uppercase" required/>
                                                                </td>                                                                                                                                        
                                                            </tr>
                                                            <tr>
@@ -193,7 +201,7 @@
                                                                    NIP
                                                                </td>                                                 
                                                                <td>
-                                                                   <input class="form-control" name="txtNIP" id="txtNIP" style="width: 200px;text-transform:uppercase"/>
+                                                                   <input class="form-control" name="txtNIP" id="txtNIP" style="width: 200px;text-transform:uppercase" type="number" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
                                                                </td>                                                                                                                                        
                                                            </tr>                                                           
                                                         </tbody>                                                                
@@ -252,10 +260,10 @@
                                                                  Nama Pegawai
                                                              </td>
                                                              <td>
-                                                                 <input class="form-control" name="editTxtNamaPegawai" id="editTxtNamaPegawai"/>
+                                                                 <input class="form-control" name="editTxtNamaPegawai" id="editTxtNamaPegawai" required/>
                                                              </td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr style="display:none">
                                                              <td>
                                                                  NIK
                                                              </td>
@@ -268,7 +276,7 @@
                                                                  Alamat
                                                               </td>
                                                               <td>
-                                                                 <input class="form-control" name="editTxtAlamat" id="editTxtAlamat"/>
+                                                                 <input class="form-control" name="editTxtAlamat" id="editTxtAlamat" required/>
                                                               </td>
                                                         </tr>
                                                         <tr>
@@ -286,7 +294,7 @@
                                                                  Tempat Lahir
                                                               </td>                                                               
                                                               <td>
-                                                                 <textarea class="form-control" name="editTxtTempatLahir" id="editTxtTempatLahir" style="text-transform:uppercase"></textarea>
+                                                                 <textarea class="form-control" name="editTxtTempatLahir" id="editTxtTempatLahir" style="text-transform:uppercase" required></textarea>
                                                               </td>                                                                                                                                        
                                                          </tr>
                                                          <tr>
@@ -324,7 +332,7 @@
                                                                    <input class="form-control" name="editTxtJabatan" id="editTxtJabatan" style="width: 200px;text-transform:uppercase"/>
                                                                </td>                                                                                                                                        
                                                            </tr>
-                                                           <tr>
+                                                           <tr style="display:none">
                                                                <td>
                                                                    NIP
                                                                </td>                                                 
@@ -523,6 +531,7 @@
     			$('#editTxtNIK').val(selectedNIK);
     			$('#editTxtNIP').val(selectedNIP);
     			$('#editTxtImage').val(selectedImage);
+    			$('#editFileFoto').val(selectedImage);
     			document.getElementById("editTxtTanggalLahir").defaultValue=mySelectedDate;
                 document.getElementById("editFoto").src = "../Sindopan/image/display/"+selectedId;
     			
@@ -641,6 +650,11 @@
     	document.getElementById('foto').src = window.URL.createObjectURL(this.files[0]);
   //  	document.getElementById('foto').style.display="block";
     } 
+    
+/*      function myFunction() {
+    	var tes = document.getElementById('fileFoto').val;
+    	alert(tes);
+    } */ 
     
     </script>
     

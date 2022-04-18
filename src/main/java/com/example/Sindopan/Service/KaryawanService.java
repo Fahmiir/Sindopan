@@ -75,15 +75,4 @@ public class KaryawanService {
 	public void delete(List<Integer> id) {
 		kr.deleteKaryawanWithIds(id);;
 	}
-	
-	public String getImages(String img1, String img2) {
-		String img = "";
-		if(img1==null) {
-			img=img2;
-		}
-		else {
-			img=img1;
-		}
-		return img;
-	}
 }

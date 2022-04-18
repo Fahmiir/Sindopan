@@ -76,8 +76,8 @@ public class KaryawanController {
         String JenisKelamin = request.getParameter("editCmbJenisKelamin");
 		String uploadDirectory = request.getServletContext().getRealPath(uploadFoto);
 		String fileImage = request.getParameter("editTxtImage");
-		String getImage = ks.getImages(Image.getOriginalFilename(), fileImage);
-		String filePath = Paths.get(uploadDirectory, getImage).toString();
+		System.out.println("Nama file "+Image.getOriginalFilename());
+		String filePath = Paths.get(uploadDirectory, Image.getOriginalFilename()).toString();
 		String jabatan = request.getParameter("editTxtJabatan");
 		String nik = request.getParameter("editTxtNIK");
 		String nip = request.getParameter("editTxtNIP");
@@ -91,10 +91,11 @@ public class KaryawanController {
 		km.setJenisKelamin(JenisKelamin);
 		km.setPicByte(Image.getBytes());
 		km.setType(Image.getContentType());
-		km.setImage(getImage);
+		km.setImage(Image.getOriginalFilename());
 	    km.setJabatan(jabatan);
 	    km.setNIK(nik);
 	    km.setNIP(nip);
+	    km.setFilePath(filePath);
 		ks.create(km);
 		ks.createDirectory(uploadDirectory, filePath, Image);
 		return "redirect:/goToKaryawan";
