@@ -188,8 +188,19 @@ $(document).ready(function(){
 		    return null;	
 		    }
 		    	
-	   }	    
+	   }
    })
+   
+       var ListData2 = [[${ListHariKerjaModel}]];
+	   function validateDate(a){
+		   for(var i=0;i<ListData2.length;i++){
+			   if(a==ListData2[i].tanggal){
+				   alert("Tanggal Sudah Ada");
+				   return false;
+				   break;
+			   }
+		   }
+	   }   
 </script>
 
 <script type ="text/javascript">
@@ -362,7 +373,7 @@ $(document).ready(function(){
                        <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                <div class="modal-content">
-                                  <form th:action="addHari">
+                                  <form th:action="addHari" onsubmit="return validateDate(document.getElementById('addharikerja').value)">
                                     <div class="modal-header">
                                           <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">&times;</button>
                                           <h4 class="modal-title" id="titleEdit">Tambah Hari Kerja</h4>                              
@@ -401,7 +412,7 @@ $(document).ready(function(){
                                                                        </tr>
                                                                        <tr>
                                                                            <td>
-                                                                              <input type="text" id="addBulan" name="addBulan" th:value="${valueSelected}">
+                                                                              <input type="text" id="addBulan" name="addBulan" th:value="${valueSelected}" style="display:none">
                                                                            </td>
                                                                        </tr>
                                                                   </tbody>
