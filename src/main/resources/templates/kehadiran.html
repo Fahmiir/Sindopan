@@ -164,6 +164,15 @@
                                                                 <option value="31">31</option>
                                                             </select>
                                                         </td>
+                                                        <td>Nama Karyawan</td>
+                                                        <td>
+                                                            <form th:action="@{/kehadiran}" id="selectKaryawan" name="selectKaryawan" method="get">
+                                                                <select name="cmbNamaKaryawan" id="cmbNamaKaryawan" class="form-control" style="width: 150px;">
+                                                                    <option>--</option>
+                                                                    <option th:each="karyawanModel : ${ListKaryawanModel}" th:value="${karyawanModel.namaPegawai}" th:text="${karyawanModel.namaPegawai}"></option>
+                                                                </select>                                                            
+                                                            </form>
+                                                        </td>
                                                         </tr>
                                                                                                     
                                                                                                        
@@ -594,6 +603,16 @@
 			    }
      }
      
+
+</script>
+
+<script  type ="text/javascript">
+
+   $(document).ready(function(){
+	   $("#cmbNamaKaryawan").change(function(){
+		   $('#selectKaryawan').submit();		   
+	   })
+   })
 
 </script>
 

@@ -36,6 +36,10 @@ public class KaryawanService {
 		return ar.findAll();
 	}
 	
+	public List<KaryawanModel> readAllKaryawan() {
+		return kr.findAll();
+	}
+	
 	public List<KaryawanModel> readKaryawan(String namaKaryawan) {
 		if(namaKaryawan.isEmpty()) {
 		    return kr.findAll();

@@ -49,7 +49,7 @@ public class SindopanController {
 	}
 	
 	@RequestMapping(value="/hariKerja")
-	public String menuHariKerja(Model model,HttpServletRequest request, HttpSession session,@RequestParam(value="hariKerja",required=false)String hariKerja) throws InterruptedException {
+	public String menuHariKerja(Model model,HttpServletRequest request,@RequestParam(value="hariKerja",required=false)String hariKerja) throws InterruptedException {
 		List<HariKerjaModel> hk = new ArrayList<>();
 		String month = request.getParameter("bulansrc");		 
 		hk = hs.readHariKerja(month,hariKerja);
@@ -59,13 +59,17 @@ public class SindopanController {
 	}
 	
 	@RequestMapping(value="/kehadiran")
-	public String menuKehadiran(Model model) {
+	public String menuKehadiran(Model model,HttpServletRequest request) {
 		List<KehadiranModel> kk = new ArrayList<>();
 		List<HariKerjaModel> hk = new ArrayList<>();
-		kk = ks.readKehadiran();
+		List<KaryawanModel>  km = new ArrayList<>();
+		String nama = request.getParameter("cmbNamaKaryawan");
+		kk = ks.readKehadiran(nama);
 		hk = hs.readHariKerja2();
+		km = as.readAllKaryawan();
 		model.addAttribute("ListKehadiranModel", kk);
 		model.addAttribute("ListHariKerjaModel", hk);
+		model.addAttribute("ListKaryawanModel", km);
 		return "kehadiran";
 	}
 	
@@ -89,8 +93,6 @@ public class SindopanController {
 		model.addAttribute("ListKaryawanModel", kk);
 		return "karyawan";
 	}
-	
-	
 	
 	@RequestMapping(value="/logout")
 	public String menuLogOut() {
