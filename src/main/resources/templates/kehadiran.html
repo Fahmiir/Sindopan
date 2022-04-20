@@ -523,7 +523,7 @@
             </div>
         </div>
     </div>
-        
+    <input type="text" id="nameSelected" name="nameSelected" th:value="${nameSelected}" style="display:none">   
     
     
      <style>
@@ -540,7 +540,12 @@
 	     $("#btnNew").click(function(){
 		    $("#fileAbsensi").click();
 	     })
-     })         
+     }) 
+     
+     $(window).on("load",function(){
+    	 var selectedName = $('#nameSelected').val();
+    	 $("select option[value='"+selectedName+"']").attr("selected",true);
+     })
 </script>
 
 <script th:inline="javascript">
