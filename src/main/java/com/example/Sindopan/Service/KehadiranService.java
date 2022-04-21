@@ -171,8 +171,8 @@ public class KehadiranService {
 		return t;
 	}
 	
-	public List<KehadiranModel> readKehadiran(String nama) {
-		return kr.SearchByNamaKaryawan(nama);
+	public List<KehadiranModel> readKehadiran(String nama, String bulan, String tahun) {
+		return kr.SearchByNamaKaryawan(nama,bulan,tahun);
 	}
 }
 

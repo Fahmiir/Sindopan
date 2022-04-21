@@ -64,13 +64,17 @@ public class SindopanController {
 		List<HariKerjaModel> hk = new ArrayList<>();
 		List<KaryawanModel>  km = new ArrayList<>();
 		String nama = request.getParameter("cmbNamaKaryawan");
-		kk = ks.readKehadiran(nama);
+		String bulan = request.getParameter("bulansrc");
+		String tahun = request.getParameter("tahunsrc");
+		kk = ks.readKehadiran(nama,bulan,tahun);
 		hk = hs.readHariKerja2();
 		km = as.readAllKaryawan();
 		model.addAttribute("ListKehadiranModel", kk);
 		model.addAttribute("ListHariKerjaModel", hk);
 		model.addAttribute("ListKaryawanModel", km);
 		model.addAttribute("nameSelected", nama);
+		model.addAttribute("monthSelected", bulan);
+		model.addAttribute("yearSelected", tahun);
 		return "kehadiran";
 	}
 	
