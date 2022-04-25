@@ -63,16 +63,16 @@ input::-webkit-inner-spin-button {
     <div>
          <table class="table table-border" id="tabeldata">
              <tr>
-                   <td>Nama Pegawai</td>
-                   <td>Alamat</td>
-                   <td>Tempat Lahir</td>
-                   <td>Tanggal Lahir</td>
-                   <td>Jenis Kelamin</td>
-                   <td>Agama</td>
-                   <td>Foto</td>
-                   <td>Jabatan</td>
-                   <td>NIP</td>
-                   <td>NIK</td>
+                   <td>Employee Name</td>
+                   <td>Address</td>
+                   <td>Place Birth</td>
+                   <td>Date Birth</td>
+                   <td>Gender</td>
+                   <td>Religion</td>
+                   <td>Photo</td>
+                   <td>Position</td>
+                   <td>Employee ID Number</td>
+                   <td>ID Number</td>
                    <td id="checkbox"><input type="checkbox" id="check"  onchange="checkAll(this)"></td>
              </tr>
              <tr th:each="karyawanModel:${ListKaryawanModel}" class="row-select">
@@ -98,7 +98,7 @@ input::-webkit-inner-spin-button {
               <div class="modal-content">
                     <form method="post" action="saveKaryawan" enctype="multipart/form-data">
                          <div class="modal-header">
-                              <h4 class="modal-title" id="titleAddDataKaryawan">Tambah Data Karyawan Baru</h4>
+                              <h4 class="modal-title" id="titleAddDataKaryawan">Add new Employee Data</h4>
                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                          </div>
                          <div class="modal-body">                                            
@@ -106,7 +106,7 @@ input::-webkit-inner-spin-button {
                                   <div class="col-lg-12">
                                         <div class="panel panel-default">
                                            <div class="panel-heading">
-                                              Informasi Karyawan
+                                              Employee Information
                                            </div>
                                            <div class="table-responsive">
                                                 <table class="table">
@@ -121,7 +121,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                              <td>
-                                                                 Nama Pegawai
+                                                                 Employee Name
                                                              </td>
                                                              <td>
                                                                  <input class="form-control" name="txtNamaPegawai" id="txtNamaPegawai" required/>
@@ -129,7 +129,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                              <td>
-                                                                 NIK
+                                                                 Employee ID Number
                                                              </td>
                                                              <td>
                                                                  <input class="form-control" name="txtNIK" id="txtNIK" type="number" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
@@ -137,7 +137,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>                                                        
                                                         <tr>
                                                               <td>
-                                                                 Alamat
+                                                                 Address
                                                               </td>
                                                               <td>
                                                                  <input class="form-control" name="txtAlamat" id="txtAlamat" required/>
@@ -145,7 +145,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                               <td>
-                                                                 Agama
+                                                                 Religion
                                                               </td>
                                                               <td>
                                                                  <select name="cmbAgama" id="cmbAgama" class="form-control" style="width: 150px;">
@@ -155,7 +155,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr id="rowTempatLahir">
                                                               <td>
-                                                                 Tempat Lahir
+                                                                 Birth Place
                                                               </td>                                                               
                                                               <td>
                                                                  <textarea class="form-control" name="txtTempatLahir" id="txtTempatLahir" style="text-transform:uppercase" required></textarea>
@@ -163,7 +163,7 @@ input::-webkit-inner-spin-button {
                                                          </tr>
                                                          <tr>
                                                               <td>
-                                                                  Tanggal Lahir
+                                                                  Birth Date
                                                               </td>
                                                               <td>
                                                                   <input class="form-control" type="date" name="txtTanggalLahir" id="txtTanggalLahir" style="width:200px;text-transform:uppercase">
@@ -171,7 +171,7 @@ input::-webkit-inner-spin-button {
                                                           </tr>
                                                           <tr>
                                                                <td>
-                                                                   Jenis Kelamin
+                                                                   Gender
                                                                </td>                                                      
                                                                <td>
 	                                                               <select name="cmbJenisKelamin" id="cmbJenisKelamin" class="form-control" style="width: 150px;">
@@ -181,7 +181,7 @@ input::-webkit-inner-spin-button {
                                                           </tr>
                                                           <tr>
                                                                <td>
-                                                                   Foto
+                                                                   Photo
                                                                </td>                                                  
                                                                <td>
                                                                    <img name="foto" id="foto"/>
@@ -190,7 +190,7 @@ input::-webkit-inner-spin-button {
                                                            </tr>
                                                            <tr>
                                                                <td>
-                                                                   Jabatan
+                                                                   Position
                                                                </td>                                                 
                                                                <td>
                                                                    <input class="form-control" name="txtJabatan" id="txtJabatan" style="width: 200px;text-transform:uppercase" required/>
@@ -198,7 +198,7 @@ input::-webkit-inner-spin-button {
                                                            </tr>
                                                            <tr>
                                                                <td>
-                                                                   NIP
+                                                                   ID Number
                                                                </td>                                                 
                                                                <td>
                                                                    <input class="form-control" name="txtNIP" id="txtNIP" style="width: 200px;text-transform:uppercase" type="number" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
@@ -226,7 +226,7 @@ input::-webkit-inner-spin-button {
               <div class="modal-content">
                      <form method="post" action="editKaryawan" enctype="multipart/form-data" onsubmit="return confirm('Do you really want to submit the form?');">
                          <div class="modal-header">
-                             <h4 class="modal-title" id="titleEditDataKaryawan" style="display: block">Edit Data Karyawan</h4>
+                             <h4 class="modal-title" id="titleEditDataKaryawan" style="display: block">Edit Employee Data</h4>
                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                                            
                          </div>
                          <div class="modal-body">                                            
@@ -234,7 +234,7 @@ input::-webkit-inner-spin-button {
                                  <div class="col-lg-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                             Informasi Karyawan
+                                             Employee Information
                                         </div>
                                         <div class="table-responsive">
                                              <table class="table">
@@ -257,7 +257,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>                                                        
                                                         <tr>
                                                              <td>
-                                                                 Nama Pegawai
+                                                                 Employee Name
                                                              </td>
                                                              <td>
                                                                  <input class="form-control" name="editTxtNamaPegawai" id="editTxtNamaPegawai" required/>
@@ -265,7 +265,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr style="display:none">
                                                              <td>
-                                                                 NIK
+                                                                 ID Number
                                                              </td>
                                                              <td>
                                                                  <input class="form-control" name="editTxtNIK" id="editTxtNIK" required/>
@@ -273,7 +273,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>                                                        
                                                         <tr>
                                                               <td>
-                                                                 Alamat
+                                                                 Address
                                                               </td>
                                                               <td>
                                                                  <input class="form-control" name="editTxtAlamat" id="editTxtAlamat" required/>
@@ -281,7 +281,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                               <td>
-                                                                 Agama
+                                                                 Religion
                                                               </td>
                                                               <td>
                                                                  <select name="editCmbAgama" id="editCmbAgama" class="form-control" style="width: 150px;">
@@ -291,7 +291,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr id="rowTempatLahir">
                                                               <td>
-                                                                 Tempat Lahir
+                                                                 Birth Place
                                                               </td>                                                               
                                                               <td>
                                                                  <textarea class="form-control" name="editTxtTempatLahir" id="editTxtTempatLahir" style="text-transform:uppercase" required></textarea>
@@ -299,7 +299,7 @@ input::-webkit-inner-spin-button {
                                                          </tr>
                                                          <tr>
                                                               <td>
-                                                                  Tanggal Lahir
+                                                                  Birth Date
                                                               </td>
                                                               <td>
                                                                   <input class="form-control" type="date" name="editTxtTanggalLahir" id="editTxtTanggalLahir" style="width:200px;text-transform:uppercase">
@@ -307,7 +307,7 @@ input::-webkit-inner-spin-button {
                                                           </tr>
                                                           <tr>
                                                                <td>
-                                                                   Jenis Kelamin
+                                                                   Gender
                                                                </td>                                                      
                                                                <td>
 	                                                               <select name="editCmbJenisKelamin" id="editCmbJenisKelamin" class="form-control" style="width: 150px;">
@@ -317,7 +317,7 @@ input::-webkit-inner-spin-button {
                                                           </tr>
                                                           <tr>
                                                                <td>
-                                                                   Foto
+                                                                   Photo
                                                                </td>                                                  
                                                                <td>
                                                                    <img name="editFoto" id="editFoto"/>
@@ -326,7 +326,7 @@ input::-webkit-inner-spin-button {
                                                            </tr>
                                                            <tr>
                                                                <td>
-                                                                   Jabatan
+                                                                   Position
                                                                </td>                                                 
                                                                <td>
                                                                    <input class="form-control" name="editTxtJabatan" id="editTxtJabatan" style="width: 200px;text-transform:uppercase" required/>
@@ -334,7 +334,7 @@ input::-webkit-inner-spin-button {
                                                            </tr>
                                                            <tr style="display:none">
                                                                <td>
-                                                                   NIP
+                                                                   Employee ID Number
                                                                </td>                                                 
                                                                <td>
                                                                    <input class="form-control" name="editTxtNIP" id="editTxtNIP" style="width: 200px;text-transform:uppercase" required/>
@@ -371,14 +371,14 @@ input::-webkit-inner-spin-button {
                            <div class="col-lg-12">
                                <div class="panel panel-default">
                                    <div class="panel-heading">
-                                       Informasi Karyawan
+                                       Employee Information
                                    </div>
                                    <div class="table-responsive">
                                              <table class="table">
                                                    <tbody>
                                                         <tr>
                                                              <td>
-                                                                 Nama Pegawai
+                                                                 Employee Name
                                                              </td>
                                                              <td>
                                                                  <label name="labelTxtNamaPegawai" id="labelTxtNamaPegawai"></label>
@@ -386,7 +386,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                              <td>
-                                                                 NIK
+                                                                 ID Number
                                                              </td>
                                                              <td>
                                                                  <label name="labelTxtNIK" id="labelTxtNIK"></label>
@@ -394,7 +394,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>                                                            
                                                         <tr>
                                                               <td>
-                                                                 Alamat
+                                                                 Address
                                                               </td>
                                                               <td>
                                                                  <label name="labelTxtAlamat" id="labelTxtAlamat"/>
@@ -402,7 +402,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                               <td>
-                                                                 Agama
+                                                                 Religion
                                                               </td>
                                                               <td>
                                                                  <label name="labelTxtAgama" id="labelTxtAgama"/>
@@ -410,7 +410,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                               <td>
-                                                                 Tempat Lahir
+                                                                 Birth Place
                                                               </td>
                                                               <td>
                                                                  <label name="labelTxtAlamat" id="labelTxtTempatLahir"/>
@@ -418,7 +418,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                               <td>
-                                                                 Tanggal Lahir
+                                                                 Birth Date
                                                               </td>
                                                               <td>
                                                                  <label name="labelTanggalLahir" id="labelTanggalLahir"/>
@@ -426,7 +426,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                               <td>
-                                                                 Jenis Kelamin
+                                                                 Gender
                                                               </td>
                                                               <td>
                                                                  <label name="labelTxtJenisKelamin" id="labelTxtJenisKelamin"/>
@@ -434,7 +434,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                               <td>
-                                                                 Foto
+                                                                 Photo
                                                               </td>
                                                               <td>
                                                                  <img name="viewFoto" id="viewFoto"/>
@@ -442,7 +442,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                               <td>
-                                                                 Jabatan
+                                                                 Position
                                                               </td>
                                                               <td>
                                                                  <label name="labelJabatan" id="labelJabatan"/>
@@ -450,7 +450,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                              <td>
-                                                                 NIP
+                                                                 Employee ID Number
                                                              </td>
                                                              <td>
                                                                  <label name="labelTxtNIP" id="labelTxtNIP"></label>

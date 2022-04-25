@@ -139,13 +139,13 @@ $(document).ready(function(){
 		        dataType    : "text",
 		        contentType : "application/json",
 		        success     : function (result) {
-					             alert("sukses hapus data");
+					             alert("Delete is sucess");
 				 	             $(document).ajaxStop(function(){
 	    				         window.location.reload();
 	    				     });  
 				}, 
 				 error      : function (XMLHttpRequest, textStatus, errorThrown) {
-	                             alert("tidak sukses hapus data");     
+	                             alert("Delete is not sucess");     
 	             }        		
      	})
      })	   
@@ -181,7 +181,7 @@ $(document).ready(function(){
 		    var hours = Math.floor(diff / 1000 / 60 / 60);
 		    diff -= hours * 1000 * 60 * 60;
 		    var minutes = Math.floor(diff / 1000 / 60);
-		    return (hours < 9 ? "0" : "") + hours + " Jam ";
+		    return (hours < 9 ? "0" : "") + hours + " Hours ";
 	   //	return (hours < 9 ? "0" : "") + hours + ":" + (minutes < 9 ? "0" : "") + minutes;
 	   }
 		    else {
@@ -195,7 +195,7 @@ $(document).ready(function(){
 	   function validateDate(a){
 		   for(var i=0;i<ListData2.length;i++){
 			   if(a==ListData2[i].tanggal){
-				   alert("Tanggal Sudah Ada");
+				   alert("The Date has been exist");
 				   return false;
 				   break;
 			   }
@@ -267,14 +267,14 @@ $(document).ready(function(){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Master Hari Kerja</h1>
+                    <h1 class="page-header">Work Day Master</h1>
                 </div>
             </div>                        
             <div class="row">
                 <div class="col-lg-12">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs">                                
-                        <li><a href="#master" data-toggle="tab">Master Hari Kerja</a></li>
+                        <li><a href="#master" data-toggle="tab">Work Day Master</a></li>
                     </ul>
                     
                     <!-- Tab panes -->
@@ -289,20 +289,20 @@ $(document).ready(function(){
                                             <table class="table table-sm">
                                                 <tbody>
                                                     <tr>
-                                                        <td>Bulan</td>
+                                                        <td>Month</td>
                                                         <td>
                                                              <form th:action="@{/hariKerja}" id="selectMonth" name="selectMonth" method="get">
                                                                 <select id="bulansrc" name="bulansrc" class="form-control form-control-sm">
-                                                                      <option value="01">Januari</option>
-                                                                      <option value="02">Februari</option>
-                                                                      <option value="03">Maret</option>
+                                                                      <option value="01">January</option>
+                                                                      <option value="02">February</option>
+                                                                      <option value="03">March</option>
                                                                 </select>
                                                              </form>   
                                                         </td>
-                                                         <td>Tahun</td>
+                                                         <td>Year</td>
                                                          <td>
                                                              <select id="tahunsrc" name="tahunsrc" class="form-control form-control-sm">
-                                                                <option value="">tahun</option>
+                                                                <option value="">Year</option>
                                                              </select>
                                                         </td>
                                                      </tr>
@@ -317,7 +317,7 @@ $(document).ready(function(){
                                                               <tr>  
                                                                   <td align = "left">
                                                                        <button id="btnSearch" type="button" class="btn btn-info"><i class="fa fa-search fa-fw"></i>Search</button>
-                                                                       <button id="btnNew" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><i class="fa fa-file-o fa-fw"></i>Hari Kerja Baru</button>
+                                                                       <button id="btnNew" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalAdd"><i class="fa fa-file-o fa-fw"></i>Add Working Days</button>
                                                                   </td>
                                                               </tr>    
                                                          </tbody>  
@@ -346,11 +346,11 @@ $(document).ready(function(){
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-profile" data-sort="false" data-page-length="-1" style="font-size: 13px;">
                                         <thead>                                                
                                             <tr>                                                   
-                                                <th><center>Tanggal</center></th>
-                                                <th><center>Jam Masuk</center></th>
-                                                <th><center>Jam Pulang</center></th>
-                                                <th><center>Durasi Kerja</center></th>
-                                                <th><center>Keterangan</center></th>
+                                                <th><center>Date</center></th>
+                                                <th><center>Check In</center></th>
+                                                <th><center>Check Out</center></th>
+                                                <th><center>Duration</center></th>
+                                                <th><center>Description</center></th>
                                                 <th><center>Action</center></th>
                                             </tr>
                                             <tr th:each="hariKerjaModel:${ListHariKerjaModel}" class="row-select">
@@ -376,7 +376,7 @@ $(document).ready(function(){
                                   <form th:action="addHari" onsubmit="return validateDate(document.getElementById('addharikerja').value)">
                                     <div class="modal-header">
                                           <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">&times;</button>
-                                          <h4 class="modal-title" id="titleEdit">Tambah Hari Kerja</h4>                              
+                                          <h4 class="modal-title" id="titleEdit">Add Working Days</h4>                              
                                     </div>
                                     <div class="modal-body">
                                           <div class="row">
@@ -387,7 +387,7 @@ $(document).ready(function(){
                                                                   <tbody>
                                                                        <tr>
                                                                           <td>
-                                                                              Hari Kerja
+                                                                              Working Days
                                                                           </td>
                                                                           <td>
                                                                               <input type="date" id="addharikerja" name="addharikerja" class="form-control">
@@ -395,16 +395,16 @@ $(document).ready(function(){
                                                                        </tr>
                                                                        <tr>
                                                                            <td>
-                                                                              Merah ?
+                                                                              Holiday ?
                                                                            </td>
                                                                            <td>
                                                                              <input type="checkbox" id="addchkmerah" name="addchkmerah" value="Ya">
-                                                                             <input name="addkolomket" id="addkolomket" style="display: none;text-transform:uppercase" class="form-control" placeholder="Keterangan Tanggal Merah">
+                                                                             <input name="addkolomket" id="addkolomket" style="display: none;text-transform:uppercase" class="form-control" placeholder="Holiday Description">
                                                                            </td>
                                                                        </tr>
                                                                        <tr id="kolomAddJamKerja">
                                                                            <td>
-                                                                              Jam Kerja
+                                                                              Work Hour
                                                                            </td>
                                                                            <td>
                                                                               <input type="time" id="addjammasuk" name="addjammasuk">&nbsp;-&nbsp;<input type="time" id="addjampulang" name="addjampulang">
@@ -438,7 +438,7 @@ $(document).ready(function(){
                                   <form th:action="editHari">
                                     <div class="modal-header">
                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                         <h4 class="modal-title" id="titleEdit">Edit Hari Kerja</h4>
+                                         <h4 class="modal-title" id="titleEdit">Edit Working Days</h4>
                                     </div>
                                     <div class="modal-body">                                            
                                         <div class="row">
@@ -457,7 +457,7 @@ $(document).ready(function(){
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                        Hari
+                                                                        Day
                                                                     </td>
                                                                     <td>
                                                                         <label id="editTanggal" name="editTanggal" class="form-control">
@@ -468,7 +468,7 @@ $(document).ready(function(){
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                    Merah ?
+                                                                    Holiday ?
                                                                     </td>
                                                                      <td>
                                                                          <input type="checkbox" id="chkmerah" name="chkmerah" value="Ya">
@@ -477,7 +477,7 @@ $(document).ready(function(){
                                                                 </tr>
                                                                 <tr id="kolomJamKerja">
                                                                     <td>
-                                                                    Jam Kerja
+                                                                    Work Hour
                                                                     </td>
                                                                      <td>
                                                                          <input type="time" id="jamMasuk" name="jamMasuk">&nbsp;-&nbsp;<input type="time" id="jamPulang" name="jamPulang">
