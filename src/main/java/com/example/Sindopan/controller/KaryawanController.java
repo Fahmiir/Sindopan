@@ -75,8 +75,6 @@ public class KaryawanController {
         Date tanggalLahir = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("editTxtTanggalLahir"));
         String JenisKelamin = request.getParameter("editCmbJenisKelamin");
 		String uploadDirectory = request.getServletContext().getRealPath(uploadFoto);
-		String fileImage = request.getParameter("editTxtImage");
-		System.out.println("Nama file "+Image.getOriginalFilename());
 		String filePath = Paths.get(uploadDirectory, Image.getOriginalFilename()).toString();
 		String jabatan = request.getParameter("editTxtJabatan");
 		String nik = request.getParameter("editTxtNIK");

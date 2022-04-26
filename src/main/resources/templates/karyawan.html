@@ -93,10 +93,10 @@ input::-webkit-inner-spin-button {
      </div>
      
      <!-- Modal Master Add Data Karyawan -->
-     <div class="modal fade" id="myAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" onsubmit="return confirm('Do you really want to submit the form?');">
+     <div class="modal fade" id="myAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
               <div class="modal-content">
-                    <form method="post" action="saveKaryawan" enctype="multipart/form-data">
+                    <form method="post" action="saveKaryawan" enctype="multipart/form-data" onsubmit="return submitForm(this);">
                          <div class="modal-header">
                               <h4 class="modal-title" id="titleAddDataKaryawan">Add new Employee Data</h4>
                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -185,7 +185,7 @@ input::-webkit-inner-spin-button {
                                                                </td>                                                  
                                                                <td>
                                                                    <img name="foto" id="foto"/>
-                                                                   <input class="form-control" type="file" name="fileFoto" id="fileFoto" style=";width: 200px;text-transform:uppercase" onchange="addFoto()" required>
+                                                                   <input class="form-control" type="file" name="fileFoto" id="fileFoto" style=";width: 200px;text-transform:uppercase" onChange="document.getElementById('foto').src = window.URL.createObjectURL(this.files[0]);" required>
                                                                </td>                                                                                                                                        
                                                            </tr>
                                                            <tr>
@@ -480,8 +480,14 @@ input::-webkit-inner-spin-button {
     <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
     
+    <!-- sweet alert library -->
+    <script src="bower_components/sweetalert/sweetalert.min.js"></script>
+    
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
+    
+    
+    
     
     <script th:inline="javascript">
     var row = document.getElementById("tabeldata").rows.length-1;
@@ -649,16 +655,26 @@ input::-webkit-inner-spin-button {
         }
     }
     
-    function addFoto() {
-    	document.getElementById('foto').src = window.URL.createObjectURL(this.files[0]);
-  //  	document.getElementById('foto').style.display="block";
-    } 
     
-/*      function myFunction() {
-    	var tes = document.getElementById('fileFoto').val;
-    	alert(tes);
-    } */ 
+    </script>
     
+    <script>
+    function submitForm(form) {
+        swal({
+            title: "Are you sure?",
+            text: "This form will be submitted",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            position: 'top',
+        })
+        .then(function (isOkay) {
+            if (isOkay) {
+                form.submit();
+            }
+        });
+        return false;
+    }
     </script>
     
 </body>
