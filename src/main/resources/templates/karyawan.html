@@ -96,7 +96,7 @@ input::-webkit-inner-spin-button {
      <div class="modal fade" id="myAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
               <div class="modal-content">
-                    <form method="post" action="saveKaryawan" enctype="multipart/form-data" onsubmit="return submitForm(this);">
+                    <form method="post" action="saveKaryawan" enctype="multipart/form-data" onsubmit="return addDataForm(this);">
                          <div class="modal-header">
                               <h4 class="modal-title" id="titleAddDataKaryawan">Add new Employee Data</h4>
                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -224,7 +224,7 @@ input::-webkit-inner-spin-button {
     <div class="modal fade" id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
            <div class="modal-dialog">
               <div class="modal-content">
-                     <form method="post" action="editKaryawan" enctype="multipart/form-data" onsubmit="return confirm('Do you really want to submit the form?');">
+                     <form method="post" action="editKaryawan" enctype="multipart/form-data" onsubmit="return editDataForm(this);">
                          <div class="modal-header">
                              <h4 class="modal-title" id="titleEditDataKaryawan" style="display: block">Edit Employee Data</h4>
                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                                            
@@ -603,8 +603,15 @@ input::-webkit-inner-spin-button {
 			var selectedId = ListData[i].id;
 			ids.push(selectedId);
     	});
-	      var result = confirm("Are you sure you want to delete this user?");
-	      if(result){
+		swal({
+	            title: "Are you sure?",
+	            text: "To Delete Data",
+	            icon: "warning",
+	            buttons: true,
+	            dangerMode: true,
+	            position: 'top-start',
+	    }).then((result) => {
+	        if(result){
 	    	  $.ajax({
 	  			url        :'/Sindopan/deleteKaryawan',
 	  			type       : 'post',
@@ -618,10 +625,12 @@ input::-webkit-inner-spin-button {
 	     				});  
 	  			}, 
 	  			 error: function (XMLHttpRequest, textStatus, errorThrown) {
-	                  alert("tidak sukses hapus data");     
+	                  alert("Delete Data Is not suceed");     
 	              }            
-	      	})  
-	      }
+	      	  })  
+	         }
+	        }
+	      )
        })
     }
     
@@ -659,14 +668,48 @@ input::-webkit-inner-spin-button {
     </script>
     
     <script>
-    function submitForm(form) {
+    function addDataForm(form) {
         swal({
             title: "Are you sure?",
-            text: "This form will be submitted",
+            text: "To Submit These Data",
             icon: "warning",
             buttons: true,
             dangerMode: true,
             position: 'top',
+        })
+        .then(function (isOkay) {
+            if (isOkay) {
+                form.submit();
+            }
+        });
+        return false;
+    }
+    
+    function editDataForm(form) {
+        swal({
+            title: "Are you sure?",
+            text: "To Submit These Data",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            position: 'top-start',
+        })
+        .then(function (isOkay) {
+            if (isOkay) {
+                form.submit();
+            }
+        });
+        return false;
+    }    
+    
+    function deleteData()  {
+    	swal({
+            title: "Are you sure?",
+            text: "To Delete Data",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            position: 'top-start',
         })
         .then(function (isOkay) {
             if (isOkay) {

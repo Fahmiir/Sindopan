@@ -34,6 +34,7 @@ public class HariKerjaController {
 		Time jamMasuk = hs.getTime(request.getParameter("addjammasuk"));
 		Time jamKeluar = hs.getTime(request.getParameter("addjampulang"));
 		String month = request.getParameter("addBulan");
+		String years = request.getParameter("addTahun");
 		HariKerjaModel hm = new HariKerjaModel();
 		hm.setKeterangan(keterangan);
 		hm.setTanggal(workDay);
@@ -41,7 +42,7 @@ public class HariKerjaController {
 		hm.setJamMasuk(jamMasuk);
 		hm.setJamKeluar(jamKeluar);
 		hs.saveDate(hm);
-   		return "redirect:/hariKerja?hariKerja="+month;
+   		return "redirect:/hariKerja?hariKerja="+month+"&hariKerja2="+years;
 	}
 	
 	@RequestMapping(value="/editHari")
@@ -53,6 +54,7 @@ public class HariKerjaController {
 		Time jamMasuk = hs.getTime(request.getParameter("jamMasuk"));
 		Time jamKeluar = hs.getTime(request.getParameter("jamPulang"));
 		String month2 = request.getParameter("editBulan");
+		String years2 = request.getParameter("editTahun");
 		HariKerjaModel hm = new HariKerjaModel();
 		hm.setIdHari(id);
 		hm.setKeterangan(keterangan);
@@ -61,7 +63,7 @@ public class HariKerjaController {
 		hm.setJamMasuk(jamMasuk);
 		hm.setJamKeluar(jamKeluar);
 		hs.updateDate(hm);
-		return "redirect:/hariKerja?hariKerja="+month2;
+		return "redirect:/hariKerja?hariKerja="+month2+"&hariKerja2="+years2;
 	}
 	
 	@RequestMapping(value="/deleteHari", produces = "text/plain")

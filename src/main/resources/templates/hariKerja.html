@@ -191,7 +191,7 @@ $(document).ready(function(){
 	   }
    })
    
-       var ListData2 = [[${ListHariKerjaModel}]];
+       var ListData2 = [[${ListHariKerjaModel2}]];
 	   function validateDate(a){
 		   for(var i=0;i<ListData2.length;i++){
 			   if(a==ListData2[i].tanggal){
@@ -241,13 +241,21 @@ $(document).ready(function(){
    
    $(document).ready(function(){
 	   $("#bulansrc").change(function(){
-		   $('#selectMonth').submit();		   
+		   $('#selectMonthAndYears').submit();		   
+	   })
+   })
+   
+      $(document).ready(function(){
+	   $("#tahunsrc").change(function(){
+		   $('#selectMonthAndYears').submit();		   
 	   })
    })
    
    $(window).on("load",function(){
 	   var selectedMonth = $('#valueSelected').val();
+	   var selectedYears = $('#valueSelected2').val();
 	   $("select option[value='"+selectedMonth+"']").attr("selected",true);
+	   $("select option[value='"+selectedYears+"']").attr("selected",true);
    });
    
    $(document).ready(function(){
@@ -289,22 +297,23 @@ $(document).ready(function(){
                                             <table class="table table-sm">
                                                 <tbody>
                                                     <tr>
+                                                      <form th:action="@{/hariKerja}" id="selectMonthAndYears" name="selectMonthAndYears" method="get">
                                                         <td>Month</td>
-                                                        <td>
-                                                             <form th:action="@{/hariKerja}" id="selectMonth" name="selectMonth" method="get">
+                                                           <td>
                                                                 <select id="bulansrc" name="bulansrc" class="form-control form-control-sm">
                                                                       <option value="01">January</option>
                                                                       <option value="02">February</option>
                                                                       <option value="03">March</option>
-                                                                </select>
-                                                             </form>   
-                                                        </td>
+                                                                </select>   
+                                                           </td>
                                                          <td>Year</td>
                                                          <td>
-                                                             <select id="tahunsrc" name="tahunsrc" class="form-control form-control-sm">
-                                                                <option value="">Year</option>
-                                                             </select>
-                                                        </td>
+                                                                <select id="tahunsrc" name="tahunsrc" class="form-control form-control-sm">
+                                                                       <option value="2022">2022</option>
+                                                                       <option value="2023">2023</option>
+                                                                </select>
+                                                        <td>
+                                                       </form>                                                        
                                                      </tr>
                                                  </tbody>
                                             </table>                                                    
@@ -414,6 +423,9 @@ $(document).ready(function(){
                                                                            <td>
                                                                               <input type="text" id="addBulan" name="addBulan" th:value="${valueSelected}" style="display:none">
                                                                            </td>
+                                                                           <td>
+                                                                              <input type="text" id="addTahun" name="addTahun" th:value="${valueSelected2}" style="display:none">
+                                                                           </td>
                                                                        </tr>
                                                                   </tbody>
                                                              </table>
@@ -485,7 +497,10 @@ $(document).ready(function(){
                                                                 </tr>
                                                                 <tr>
                                                                      <td>
-                                                                          <input type="text" id="editBulan" name="editBulan" th:value="${valueSelected}">
+                                                                          <input type="text" id="editBulan" name="editBulan" th:value="${valueSelected}" style="display:none">
+                                                                     </td>
+                                                                     <td>
+                                                                          <input type="text" id="editTahun" name="editTahun" th:value="${valueSelected2}" style="display:none">
                                                                      </td>
                                                                 </tr>                                                                
                                                             </tbody>                                                                
@@ -510,7 +525,7 @@ $(document).ready(function(){
         </div>
     </div>
     <input type="text" id="valueSelected" name="valueSelected" th:value="${valueSelected}" style="display:none">    
-    
+    <input type="text" id="valueSelected2" name="valueSelected2" th:value="${valueSelected2}" style="display:none">
     
      <style>
         .high {

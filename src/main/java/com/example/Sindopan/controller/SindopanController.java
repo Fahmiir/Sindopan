@@ -49,12 +49,17 @@ public class SindopanController {
 	}
 	
 	@RequestMapping(value="/hariKerja")
-	public String menuHariKerja(Model model,HttpServletRequest request,@RequestParam(value="hariKerja",required=false)String hariKerja) throws InterruptedException {
+	public String menuHariKerja(Model model,HttpServletRequest request,@RequestParam(value="hariKerja",required=false)String hariKerja,@RequestParam(value="hariKerja2",required=false)String hariKerja2) throws InterruptedException {
 		List<HariKerjaModel> hk = new ArrayList<>();
-		String month = request.getParameter("bulansrc");		
-		hk = hs.readHariKerja(month,hariKerja);
+		List<HariKerjaModel> hk2 = new ArrayList<>();
+		String month = request.getParameter("bulansrc");	
+		String years = request.getParameter("tahunsrc");
+		hk = hs.readHariKerja(month,years,hariKerja,hariKerja2);
+		hk2 = hs.readHariKerja();
 		model.addAttribute("ListHariKerjaModel", hk);
+		model.addAttribute("ListHariKerjaModel2", hk2);
 		model.addAttribute("valueSelected",hs.getMonth(month, hariKerja));
+		model.addAttribute("valueSelected2",hs.getYears(years, hariKerja2));
 		return "hariKerja";
 	}
 	
@@ -67,7 +72,7 @@ public class SindopanController {
 		String bulan = request.getParameter("bulansrc");
 		String tahun = request.getParameter("tahunsrc");
 		kk = ks.readKehadiran(nama,bulan,tahun);
-		hk = hs.readHariKerja2();
+		hk = hs.readHariKerja();
 		km = as.readAllKaryawan();
 		model.addAttribute("ListKehadiranModel", kk);
 		model.addAttribute("ListHariKerjaModel", hk);

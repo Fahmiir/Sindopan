@@ -20,21 +20,18 @@ public class HariKerjaService {
 	@Autowired
 	HariKerjaRepository hr;
 	
-	
-	public List<HariKerjaModel> readHariKerja(String month,String hariKerja) {
-		  if(month==null && hariKerja.equals("test")) {
+	public List<HariKerjaModel> readHariKerja(String month, String year, String hariKerja, String hariKerja2) {
+		  if(month==null && year==null && hariKerja.equals("test") && hariKerja2.equals("test2")) {
 			  month="01";
+			  year = "2022";
 		  }
-		  else if(month==null && !hariKerja.equals("test")) {
+		  else if(month==null && year==null && !hariKerja.equals("test") && !hariKerja2.equals("test2")) {
 			  month=hariKerja;
+			  year=hariKerja2;
 		  }
-		  return hr.searchByMonthOrderByDate(month); 
+		  return hr.searchByMonthAndYearsOrderByDate(month,year); 
 	}
 	 
-	public List<HariKerjaModel> readHariKerja2(){
-		return hr.findAll();
-	}
-	
 	public List<HariKerjaModel> readHariKerja(){
 		return hr.findAll();
 	}
@@ -74,6 +71,13 @@ public class HariKerjaService {
 			  month=hariKerja;
 		  }
 		return month;
+	}
+	
+	public String getYears(String years,String hariKerja2) {
+		  if(years==null && !hariKerja2.equals("test2")) {
+			  years=hariKerja2;
+		  }
+		return years;
 	}
 	
 	public void deleteHariKerja(int id) {
