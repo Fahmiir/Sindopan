@@ -71,8 +71,8 @@ input::-webkit-inner-spin-button {
                    <td>Religion</td>
                    <td>Photo</td>
                    <td>Position</td>
-                   <td>Employee ID Number</td>
                    <td>ID Number</td>
+                   <td>NIP</td>
                    <td id="checkbox"><input type="checkbox" id="check"  onchange="checkAll(this)"></td>
              </tr>
              <tr th:each="karyawanModel:${ListKaryawanModel}" class="row-select">
@@ -84,8 +84,8 @@ input::-webkit-inner-spin-button {
                    <td class="agama"><a th:text="${karyawanModel.agama}"></a></td>
                    <td class="picByte"><img th:src="@{${'/image/display/'+karyawanModel.id}}"  class="card img-fluid" style="width:100px" alt=""/></td>
                    <td class="jabatan"><a th:text="${karyawanModel.jabatan}"></a></td>
-                   <td class="NIP"><a th:text="${karyawanModel.NIP}"></a></td>
                    <td class="NIK"><a th:text="${karyawanModel.NIK}"></a></td>
+                   <td class="id"><a th:text="${karyawanModel.id}"></a></td>
                    <td><input type="checkbox" id="check"></td>
               </tr>
           </table>
@@ -129,7 +129,7 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                              <td>
-                                                                 Employee ID Number
+                                                                 ID Number
                                                              </td>
                                                              <td>
                                                                  <input class="form-control" name="txtNIK" id="txtNIK" type="number" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
@@ -195,14 +195,6 @@ input::-webkit-inner-spin-button {
                                                                <td>
                                                                    <input class="form-control" name="txtJabatan" id="txtJabatan" style="width: 200px;text-transform:uppercase" required/>
                                                                </td>                                                                                                                                        
-                                                           </tr>
-                                                           <tr>
-                                                               <td>
-                                                                   ID Number
-                                                               </td>                                                 
-                                                               <td>
-                                                                   <input class="form-control" name="txtNIP" id="txtNIP" style="width: 200px;text-transform:uppercase" type="number" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
-                                                               </td>                                                                                                                                        
                                                            </tr>                                                           
                                                         </tbody>                                                                
                                                 </table> 
@@ -261,14 +253,6 @@ input::-webkit-inner-spin-button {
                                                              </td>
                                                              <td>
                                                                  <input class="form-control" name="editTxtNamaPegawai" id="editTxtNamaPegawai" required/>
-                                                             </td>
-                                                        </tr>
-                                                        <tr style="display:none">
-                                                             <td>
-                                                                 ID Number
-                                                             </td>
-                                                             <td>
-                                                                 <input class="form-control" name="editTxtNIK" id="editTxtNIK" required/>
                                                              </td>
                                                         </tr>                                                        
                                                         <tr>
@@ -332,14 +316,14 @@ input::-webkit-inner-spin-button {
                                                                    <input class="form-control" name="editTxtJabatan" id="editTxtJabatan" style="width: 200px;text-transform:uppercase" required/>
                                                                </td>                                                                                                                                        
                                                            </tr>
-                                                           <tr style="display:none">
-                                                               <td>
-                                                                   Employee ID Number
-                                                               </td>                                                 
-                                                               <td>
-                                                                   <input class="form-control" name="editTxtNIP" id="editTxtNIP" style="width: 200px;text-transform:uppercase" required/>
-                                                               </td>                                                                                                                                        
-                                                           </tr>                                                           
+                                                           <tr>
+                                                             <td>
+                                                                 ID Card Number
+                                                             </td>
+                                                             <td>
+                                                                  <input class="form-control" name="editTxtNIK" id="editTxtNIK" type="number" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/> 
+                                                             </td>
+                                                        </tr>                                                           
                                                         </tbody>                                                                
                                                   </table>
                                                </div>
@@ -382,14 +366,6 @@ input::-webkit-inner-spin-button {
                                                              </td>
                                                              <td>
                                                                  <label name="labelTxtNamaPegawai" id="labelTxtNamaPegawai"></label>
-                                                             </td>
-                                                        </tr>
-                                                        <tr>
-                                                             <td>
-                                                                 ID Number
-                                                             </td>
-                                                             <td>
-                                                                 <label name="labelTxtNIK" id="labelTxtNIK"></label>
                                                              </td>
                                                         </tr>                                                            
                                                         <tr>
@@ -450,10 +426,10 @@ input::-webkit-inner-spin-button {
                                                         </tr>
                                                         <tr>
                                                              <td>
-                                                                 Employee ID Number
+                                                                 ID Card Number
                                                              </td>
                                                              <td>
-                                                                 <label name="labelTxtNIP" id="labelTxtNIP"></label>
+                                                                 <label name="labelTxtKTP" id="labelTxtKTP"></label>
                                                              </td>
                                                         </tr>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                                                    </tbody>
@@ -523,7 +499,6 @@ input::-webkit-inner-spin-button {
     			var selectedJabatan        = ListData[i].jabatan;
     			var selectedAgama          = ListData[i].agama;
     			var selectedJenisKelamin   = ListData[i].jenisKelamin;
-    			var selectedNIP            = ListData[i].nip;
     			var selectedNIK            = ListData[i].nik;
     			var selectedImage          = ListData[i].image;
     			var mySelectedAgama        = document.getElementById("editCmbAgama");
@@ -535,7 +510,6 @@ input::-webkit-inner-spin-button {
     			$('#editTxtTempatLahir').val(selectedTempatLahir);
     			$('#editTxtJabatan').val(selectedJabatan);
     			$('#editTxtNIK').val(selectedNIK);
-    			$('#editTxtNIP').val(selectedNIP);
     			$('#editTxtImage').val(selectedImage);
     			$('#editFileFoto').val(selectedImage);
     			document.getElementById("editTxtTanggalLahir").defaultValue=mySelectedDate;
@@ -585,8 +559,7 @@ input::-webkit-inner-spin-button {
                 document.getElementById("labelTanggalLahir").innerHTML = formatDate;
                 document.getElementById("labelTxtJenisKelamin").innerHTML = viewJenisKelamin;
                 document.getElementById("labelJabatan").innerHTML = viewJabatan;
-                document.getElementById("labelTxtNIK").innerHTML = viewNIP;
-                document.getElementById("labelTxtNIP").innerHTML = viewNIK;
+                document.getElementById("labelTxtKTP").innerHTML = viewNIK;
                 document.getElementById("viewFoto").src = "../Sindopan/image/display/"+viewId;
     	})
      });

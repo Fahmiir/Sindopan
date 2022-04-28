@@ -31,6 +31,9 @@ public class KehadiranModel {
 	
 	@Column(name="checkOut")
 	private Time checkOut;
+	
+	@Column(name="idKaryawan")
+	private Integer idKaryawan;
 
 	public Integer getId() {
 		return id;
@@ -71,5 +74,15 @@ public class KehadiranModel {
 	public void setCheckOut(Time checkOut) {
 		this.checkOut = checkOut;
 	}
+
+	public Integer getIdKaryawan() {
+		return idKaryawan;
+	}
+
+	public void setIdKaryawan(Integer idKaryawan) {
+		this.idKaryawan = idKaryawan;
+	}
+	
+	
 
 }

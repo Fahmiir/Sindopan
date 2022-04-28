@@ -89,12 +89,13 @@ public class KehadiranService {
 	    int i = noOfColumns;
 		do {
 			KehadiranModel km = new KehadiranModel();
-			km.setNamaKaryawan(list.get(i));
-			Date d = new SimpleDateFormat("dd/MM/yyyy").parse(parseDate(list.get(i+1)));
+			km.setIdKaryawan(Integer.valueOf(list.get(i)));
+			km.setNamaKaryawan(list.get(i+1));
+			Date d = new SimpleDateFormat("dd/MM/yyyy").parse(parseDate(list.get(i+2)));
 			java.sql.Date j = new java.sql.Date(d.getTime());
 			km.setTanggal(j);
-			km.setCheckIn(getCheck(list.get(i+2)));
-            km.setCheckOut(getCheck(list.get(i+3)));
+			km.setCheckIn(getCheck(list.get(i+3)));
+            km.setCheckOut(getCheck(list.get(i+4)));
             list2.add(km);
             kr.save(km);
 			i=i+noOfColumns;
@@ -171,8 +172,8 @@ public class KehadiranService {
 		return t;
 	}
 	
-	public List<KehadiranModel> readKehadiran(String nama, String bulan, String tahun) {
-		return kr.SearchByNamaKaryawan(nama,bulan,tahun);
+	public List<KehadiranModel> readKehadiran(String id, String bulan, String tahun) {
+		return kr.SearchByNamaKaryawan(id,bulan,tahun);
 	}
 }
 

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "employee_table")
 public class KaryawanModel {
@@ -50,10 +51,7 @@ public class KaryawanModel {
 	
 	@Column(name="NIK")
 	private String NIK;
-	
-	@Column(name="NIP")
-	private String NIP;
-	
+		
 	@Column(name="filePath")
 	private String filePath;
 
@@ -154,14 +152,6 @@ public class KaryawanModel {
 		NIK = nIK;
 	}
 
-	public String getNIP() {
-		return NIP;
-	}
-
-	public void setNIP(String nIP) {
-		NIP = nIP;
-	}
-
 	public String getFilePath() {
 		return filePath;
 	}
@@ -169,15 +159,5 @@ public class KaryawanModel {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
 }

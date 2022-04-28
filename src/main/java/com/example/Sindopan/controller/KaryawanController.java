@@ -46,7 +46,6 @@ public class KaryawanController {
 		String filePath = Paths.get(uploadDirectory, Image.getOriginalFilename()).toString();
 		String jabatan = request.getParameter("txtJabatan");
 		String NIK = request.getParameter("txtNIK");
-		String NIP = request.getParameter("txtNIP");
 		KaryawanModel km = new KaryawanModel();
 		km.setNamaPegawai(namaPegawai);
 		km.setAlamat(alamat);
@@ -59,7 +58,6 @@ public class KaryawanController {
 		km.setImage(Image.getOriginalFilename());
 	    km.setJabatan(jabatan);
 	    km.setNIK(NIK);
-	    km.setNIP(NIP);
 		ks.create(km);
 		ks.createDirectory(uploadDirectory, filePath, Image);
 		return "redirect:/goToKaryawan";
@@ -78,7 +76,6 @@ public class KaryawanController {
 		String filePath = Paths.get(uploadDirectory, Image.getOriginalFilename()).toString();
 		String jabatan = request.getParameter("editTxtJabatan");
 		String nik = request.getParameter("editTxtNIK");
-		String nip = request.getParameter("editTxtNIP");
 		KaryawanModel km = new KaryawanModel();
 		km.setId(id);
 		km.setNamaPegawai(namaPegawai);
@@ -92,7 +89,6 @@ public class KaryawanController {
 		km.setImage(Image.getOriginalFilename());
 	    km.setJabatan(jabatan);
 	    km.setNIK(nik);
-	    km.setNIP(nip);
 	    km.setFilePath(filePath);
 		ks.create(km);
 		ks.createDirectory(uploadDirectory, filePath, Image);

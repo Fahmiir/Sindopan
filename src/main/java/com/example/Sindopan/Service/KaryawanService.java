@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.Sindopan.Repository.AgamaRepository;
 import com.example.Sindopan.Repository.JenisKelaminRepository;
 import com.example.Sindopan.Repository.KaryawanRepository;
+import com.example.Sindopan.Repository.KehadiranRepository;
 import com.example.Sindopan.model.AgamaModel;
 import com.example.Sindopan.model.JenisKelaminModel;
 import com.example.Sindopan.model.KaryawanModel;
@@ -31,6 +32,9 @@ public class KaryawanService {
 	
 	@Autowired
 	KaryawanRepository kr;
+	
+	@Autowired
+	KehadiranRepository kk;
 	
 	public List<AgamaModel> readAgama() {
 		return ar.findAll();
@@ -77,6 +81,7 @@ public class KaryawanService {
 	}
 	
 	public void delete(List<Integer> id) {
-		kr.deleteKaryawanWithIds(id);;
+		kr.deleteKaryawanWithIds(id);
+	    kk.deleteKaryawanByIds(id);
 	}
 }

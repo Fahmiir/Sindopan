@@ -140,7 +140,7 @@
                                                         <td>Employee Name</td>
                                                         <td>
                                                              <select name="cmbNamaKaryawan" id="cmbNamaKaryawan" class="form-control" style="width: 150px;">
-                                                                <option th:each="karyawanModel : ${ListKaryawanModel}" th:value="${karyawanModel.namaPegawai}" th:text="${karyawanModel.namaPegawai}"></option>
+                                                                <option th:each="karyawanModel : ${ListKaryawanModel}" th:value="${karyawanModel.id}" th:text="${karyawanModel.namaPegawai}"></option>
                                                               </select>                                                            
                                                         </td>
                                                         <td>
@@ -493,7 +493,7 @@
             </div>
         </div>
     </div>
-    <input type="text" id="nameSelected" name="nameSelected" th:value="${nameSelected}" style="display:none">
+    <input type="text" id="idSelected" name="idSelected" th:value="${idSelected}" style="display:none">
     <input type="text" id="monthSelected" name="monthSelected" th:value="${monthSelected}" style="display:none">
     <input type="text" id="yearSelected" name="yearSelected" th:value="${yearSelected}" style="display:none">   
     
@@ -515,10 +515,10 @@
      }) 
      
      $(window).on("load",function(){
-    	 var selectedName = $('#nameSelected').val();
+    	 var selectedId = $('#idSelected').val();
     	 var selectedMonth = $('#monthSelected').val();
     	 var selectedYear = $('#yearSelected').val();
-    	 $("select option[value='"+selectedName+"']").attr("selected",true);
+    	 $("select option[value='"+selectedId+"']").attr("selected",true);
     	 $("select option[value='"+selectedMonth+"']").attr("selected",true);
     	 $("select option[value='"+selectedYear+"']").attr("selected",true);
      })
