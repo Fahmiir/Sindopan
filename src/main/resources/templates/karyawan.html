@@ -124,24 +124,34 @@ input::-webkit-inner-spin-button {
                                                                  Employee Name
                                                              </td>
                                                              <td>
-                                                                 <input class="form-control" name="txtNamaPegawai" id="txtNamaPegawai" required/>
+                                                                 <input class="form-control" name="txtNamaPegawai" id="txtNamaPegawai"/>
                                                              </td>
+                                                        </tr>
+                                                        <tr>
+                                                             <td id="addEmployeeValidation" style="color:red;display:none">* Employee Name must be filled</td>
                                                         </tr>
                                                         <tr>
                                                              <td>
                                                                  ID Number
                                                              </td>
                                                              <td>
-                                                                 <input class="form-control" name="txtNIK" id="txtNIK" type="number" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required/>
+                                                                 <input class="form-control" name="txtNIK" id="txtNIK" type="number" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                                                              </td>
+                                                        </tr>
+                                                        <tr>
+                                                              <td id="addIdNumberValidation" style="color:red;display:none">* ID number must be filled</td>
+                                                              <td id="addIdNumberValidationDigits" style="color:red;display:none">* ID number must be 16 digits</td>
                                                         </tr>                                                        
                                                         <tr>
                                                               <td>
                                                                  Address
                                                               </td>
                                                               <td>
-                                                                 <input class="form-control" name="txtAlamat" id="txtAlamat" required/>
+                                                                 <input class="form-control" name="txtAlamat" id="txtAlamat"/>
                                                               </td>
+                                                        </tr>
+                                                        <tr>
+                                                              <td id="addAddressValidation" style="color:red;display:none">Address must be filled</td>
                                                         </tr>
                                                         <tr>
                                                               <td>
@@ -158,16 +168,22 @@ input::-webkit-inner-spin-button {
                                                                  Birth Place
                                                               </td>                                                               
                                                               <td>
-                                                                 <textarea class="form-control" name="txtTempatLahir" id="txtTempatLahir" style="text-transform:uppercase" required></textarea>
+                                                                 <textarea class="form-control" name="txtTempatLahir" id="txtTempatLahir" style="text-transform:uppercase"></textarea>
                                                               </td>                                                                                                                                        
+                                                         </tr>
+                                                         <tr>
+                                                              <td id="addBirthPlaceValidation" style="color:red;display:none">* Birth Place must be filled</td>
                                                          </tr>
                                                          <tr>
                                                               <td>
                                                                   Birth Date
                                                               </td>
                                                               <td>
-                                                                  <input class="form-control" type="date" name="txtTanggalLahir" id="txtTanggalLahir" style="width:200px;text-transform:uppercase">
+                                                                  <input class="form-control" type="date" name="txtTanggalLahir" id="txtTanggalLahir" style="width:200px;text-transform:uppercase" title=empty>
                                                               </td>                                                                    
+                                                          </tr>
+                                                          <tr>
+                                                              <td id="addBirthDateValidation" style="color:red;display:none">* Birth Date must be filled or valid</td>
                                                           </tr>
                                                           <tr>
                                                                <td>
@@ -185,16 +201,22 @@ input::-webkit-inner-spin-button {
                                                                </td>                                                  
                                                                <td>
                                                                    <img name="foto" id="foto"/>
-                                                                   <input class="form-control" type="file" name="fileFoto" id="fileFoto" style=";width: 200px;text-transform:uppercase" onChange="document.getElementById('foto').src = window.URL.createObjectURL(this.files[0]);" required>
+                                                                   <input class="form-control" type="file" name="fileFoto" id="fileFoto" style=";width: 200px;text-transform:uppercase" onChange="document.getElementById('foto').src = window.URL.createObjectURL(this.files[0]);">
                                                                </td>                                                                                                                                        
+                                                           </tr>
+                                                           <tr>
+                                                               <td id="addPhotoValidation" style="color:red;display:none">* Photo must be added</td>
                                                            </tr>
                                                            <tr>
                                                                <td>
                                                                    Position
                                                                </td>                                                 
                                                                <td>
-                                                                   <input class="form-control" name="txtJabatan" id="txtJabatan" style="width: 200px;text-transform:uppercase" required/>
+                                                                   <input class="form-control" name="txtJabatan" id="txtJabatan" style="width: 200px;text-transform:uppercase"/>
                                                                </td>                                                                                                                                        
+                                                           </tr>
+                                                           <tr>
+                                                               <td id="addPositionValidation" style="color:red;display:none">* Position must be filled</td>
                                                            </tr>                                                           
                                                         </tbody>                                                                
                                                 </table> 
@@ -642,6 +664,115 @@ input::-webkit-inner-spin-button {
     
     <script>
     function addDataForm(form) {
+    	var count1 = 0;
+    	var count2 = 0;
+    	var count3 = 0;
+    	var count4 = 0;
+    	var count5 = 0;
+    	var count6 = 0;
+    	var count7 = 0;
+    	var count8 = 0;
+    	
+    	if(document.getElementById("txtNamaPegawai").value == ""){
+    		count1++;
+    		document.getElementById("addEmployeeValidation").style.display="block";
+    	}
+    	else if(document.getElementById("txtNamaPegawai").value != "") {
+    		if(count1>0){
+    			count1--;
+    		}
+    		document.getElementById("addEmployeeValidation").style.display="none";
+    		
+    	}
+    	
+    	if(document.getElementById("txtNIK").value == ""){
+    		count2++;
+    		document.getElementById("addIdNumberValidation").style.display="block";
+    		document.getElementById("addIdNumberValidationDigits").style.display="none";
+    	}
+    	else if(document.getElementById("txtNIK").value != "") {
+    		if(count2>0){
+    			count2--;
+    		}
+    		document.getElementById("addIdNumberValidation").style.display="none";
+    		document.getElementById("addIdNumberValidationDigits").style.display="none";
+    	}
+    	
+    	if(document.getElementById("txtNIK").value.length != 16 && document.getElementById("txtNIK").value != ""){
+    		count3++;
+    		document.getElementById("addIdNumberValidationDigits").style.display="block";
+    	}
+    	else if(document.getElementById("txtNIK").value == 16) {
+    		if(count3>0){
+    			count3--;
+    		}
+    		document.getElementById("addIdNumberValidationDigits").style.display="none";
+    	}   
+
+    	if(document.getElementById("txtAlamat").value == ""){
+    		count4++;
+    		document.getElementById("addAddressValidation").style.display="block";
+    	}
+    	else if(document.getElementById("txtAlamat").value != "") {
+    		if(count4>0){
+    			count4--;
+    		}
+    		document.getElementById("addAddressValidation").style.display="none";
+    		
+    	}
+    	
+    	if(document.getElementById("txtTempatLahir").value == ""){
+    		count5++;
+    		document.getElementById("addBirthPlaceValidation").style.display="block";
+    	}
+    	else if(document.getElementById("txtTempatLahir").value != "") {
+    		if(count5>0){
+    			count5--;
+    		}
+    		document.getElementById("addBirthPlaceValidation").style.display="none";
+    		
+    	}
+    	
+    	if(document.getElementById("txtJabatan").value == ""){
+    		count6++;
+    		document.getElementById("addPositionValidation").style.display="block";
+    	}
+    	else if(document.getElementById("txtJabatan").value != "") {
+    		if(count6>0){
+    			count6--;
+    		}
+    		document.getElementById("addPositionValidation").style.display="none";
+    		
+    	}
+    	
+    	if(document.getElementById("txtTanggalLahir").value == "" || !isNaN(document.getElementById("txtTanggalLahir").value)){
+    		count7++;
+    		document.getElementById("addBirthDateValidation").style.display="block";
+    	}
+    	else if(document.getElementById("txtTanggalLahir").value != "" && isNaN(document.getElementById("txtTanggalLahir").value)){
+    		if(count7>0){
+    			count7--;
+    		}
+    		document.getElementById("addBirthDateValidation").style.display="none";
+    	}
+    	
+    	if(document.getElementById("fileFoto").value == ""){
+    		count8++;
+    		document.getElementById("addPhotoValidation").style.display="block";
+    	}
+    	else if(document.getElementById("fileFoto").value != ""){
+    		if(count8>0){
+    			count8--;
+    		}
+    		document.getElementById("addPhotoValidation").style.display="none";
+    	}    	
+    	
+    	
+    	
+    	if (count1>0 || count2>0 || count3>0 || count4>0 || count5>0 || count6>0){
+    		return false;
+    	}
+ 
         swal({
             title: "Are you sure?",
             text: "To Submit These Data",
