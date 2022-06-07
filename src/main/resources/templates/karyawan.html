@@ -141,6 +141,7 @@ input::-webkit-inner-spin-button {
                                                         <tr>
                                                               <td id="addIdNumberValidation" style="color:red;display:none">* ID number must be filled</td>
                                                               <td id="addIdNumberValidationDigits" style="color:red;display:none">* ID number must be 16 digits</td>
+                                                              <td id="addIdNumberValidationExist" style="color:red;display:none">* ID number has been exist</td>
                                                         </tr>                                                        
                                                         <tr>
                                                               <td>
@@ -151,7 +152,7 @@ input::-webkit-inner-spin-button {
                                                               </td>
                                                         </tr>
                                                         <tr>
-                                                              <td id="addAddressValidation" style="color:red;display:none">Address must be filled</td>
+                                                              <td id="addAddressValidation" style="color:red;display:none">* Address must be filled</td>
                                                         </tr>
                                                         <tr>
                                                               <td>
@@ -662,7 +663,7 @@ input::-webkit-inner-spin-button {
     
     </script>
     
-    <script>
+    <script th:inline="javascript">
     function addDataForm(form) {
     	var count1 = 0;
     	var count2 = 0;
@@ -672,6 +673,8 @@ input::-webkit-inner-spin-button {
     	var count6 = 0;
     	var count7 = 0;
     	var count8 = 0;
+    	var count9 = 0;
+    	var listData = [[${ListKaryawanModel}]];
     	
     	if(document.getElementById("txtNamaPegawai").value == ""){
     		count1++;
@@ -689,6 +692,7 @@ input::-webkit-inner-spin-button {
     		count2++;
     		document.getElementById("addIdNumberValidation").style.display="block";
     		document.getElementById("addIdNumberValidationDigits").style.display="none";
+    		document.getElementById("addIdNumberValidationExist").style.display="none";
     	}
     	else if(document.getElementById("txtNIK").value != "") {
     		if(count2>0){
@@ -696,6 +700,7 @@ input::-webkit-inner-spin-button {
     		}
     		document.getElementById("addIdNumberValidation").style.display="none";
     		document.getElementById("addIdNumberValidationDigits").style.display="none";
+    		document.getElementById("addIdNumberValidationExist").style.display="none";
     	}
     	
     	if(document.getElementById("txtNIK").value.length != 16 && document.getElementById("txtNIK").value != ""){
@@ -708,6 +713,7 @@ input::-webkit-inner-spin-button {
     		}
     		document.getElementById("addIdNumberValidationDigits").style.display="none";
     	}   
+    	
 
     	if(document.getElementById("txtAlamat").value == ""){
     		count4++;
@@ -767,9 +773,21 @@ input::-webkit-inner-spin-button {
     		document.getElementById("addPhotoValidation").style.display="none";
     	}    	
     	
+     	for(var i=0;i<listData.length;i++){
+    		if(document.getElementById("txtNIK").value==listData[i].nik){
+    			document.getElementById("addIdNumberValidationExist").style.display="block";
+    			count9++;
+    			break;
+    		}
+    		else {
+    			if(count9>0){
+    				count9--;
+    			}
+    			document.getElementById("addIdNumberValidationExist").style.display="none";
+    		}
+    	} 
     	
-    	
-    	if (count1>0 || count2>0 || count3>0 || count4>0 || count5>0 || count6>0){
+    	if (count1>0 || count2>0 || count3>0 || count4>0 || count5>0 || count6>0 || count7>0 || count8>0 || count9>0){
     		return false;
     	}
  
@@ -788,6 +806,8 @@ input::-webkit-inner-spin-button {
         });
         return false;
     }
+    
+    
     
     function editDataForm(form) {
         swal({

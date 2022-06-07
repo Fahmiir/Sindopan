@@ -195,7 +195,7 @@ $(document).ready(function(){
 	   function validateDate(a){
 		   for(var i=0;i<ListData2.length;i++){
 			   if(a==ListData2[i].tanggal){
-				   alert("The Date has been exist");
+				   document.getElementById("addDateValidation").style.display="block";
 				   return false;
 				   break;
 			   }
@@ -401,6 +401,9 @@ $(document).ready(function(){
                                                                           <td>
                                                                               <input type="date" id="addharikerja" name="addharikerja" class="form-control">
                                                                           </td>
+                                                                       </tr>
+                                                                       <tr>
+                                                                          <td  id="addDateValidation" style="color:red;display:none">* The Date Has Been Exist</td>
                                                                        </tr>
                                                                        <tr>
                                                                            <td>
