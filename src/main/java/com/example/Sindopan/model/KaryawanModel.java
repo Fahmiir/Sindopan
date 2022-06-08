@@ -56,8 +56,37 @@ public class KaryawanModel {
 		
 	@Column(name="filePath")
 	private String filePath;
+	
+	@Column(name="maritalStatus")
+	private String maritalStatus;
+	
+	@Column(name="pendidikanTerakhir")
+	private String pendidikanTerakhir;
+	
+	@Column(name="tanggalJoin")
+	private Date tanggalJoin;
+	
+	@Column(name="tanggalResign")
+	private Date tanggalResign;
+	
+	@Column(name="addedBy")
+    private String addedBy;
 
-
+	@Column(name="addedOn")
+	private Date addedOn;
+	
+	@Column(name="updateBy")
+	private String updateBy;
+	
+	@Column(name="updateOn")
+	private String updateOn;
+	
+	@Column(name="statusData")
+	private String statusData;
+	
+	@Column(name="defunct")
+	private Integer defunct;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -161,5 +190,87 @@ public class KaryawanModel {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
+	
+	public String getMaritalStatus() {
+		return maritalStatus;
+	}
+
+	public void setMaritalStatus(String maritalStatus) {
+		this.maritalStatus = maritalStatus;
+	}
+
+	public String getPendidikanTerakhir() {
+		return pendidikanTerakhir;
+	}
+
+	public void setPendidikanTerakhir(String pendidikanTerakhir) {
+		this.pendidikanTerakhir = pendidikanTerakhir;
+	}
+
+	public Date getTanggalJoin() {
+		return tanggalJoin;
+	}
+
+	public void setTanggalJoin(Date tanggalJoin) {
+		this.tanggalJoin = tanggalJoin;
+	}
+
+	public Date getTanggalResign() {
+		return tanggalResign;
+	}
+
+	public void setTanggalResign(Date tanggalResign) {
+		this.tanggalResign = tanggalResign;
+	}
+
+	public String getAddedBy() {
+		return addedBy;
+	}
+
+	public void setAddedBy(String addedBy) {
+		this.addedBy = addedBy;
+	}
+
+	public Date getAddedOn() {
+		return addedOn;
+	}
+
+	public void setAddedOn(Date addedOn) {
+		this.addedOn = addedOn;
+	}
+
+	public String getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	public String getUpdateOn() {
+		return updateOn;
+	}
+
+	public void setUpdateOn(String updateOn) {
+		this.updateOn = updateOn;
+	}
+
+	public String getStatusData() {
+		return statusData;
+	}
+
+	public void setStatusData(String statusData) {
+		this.statusData = statusData;
+	}
+
+	public Integer getDefunct() {
+		return defunct;
+	}
+
+	public void setDefunct(Integer defunct) {
+		this.defunct = defunct;
+	}
+	
+	
 
 }
