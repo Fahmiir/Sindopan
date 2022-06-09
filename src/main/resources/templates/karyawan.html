@@ -164,6 +164,16 @@ input::-webkit-inner-spin-button {
                                                                  </select>
                                                               </td>
                                                         </tr>
+                                                        <tr>
+                                                              <td>
+                                                                 Marital Status
+                                                              </td>
+                                                              <td>
+                                                                 <select name="cmbMaritalStatus" id="cmbcmbMaritalStatus" class="form-control" style="width: 150px;">
+                                                                 
+                                                                 </select>
+                                                              </td>
+                                                        </tr>
                                                         <tr id="rowTempatLahir">
                                                               <td>
                                                                  Birth Place
@@ -219,7 +229,54 @@ input::-webkit-inner-spin-button {
                                                            </tr>
                                                            <tr>
                                                                <td id="addPositionValidation" style="color:red;display:none">* Position must be filled</td>
-                                                           </tr>                                                           
+                                                           </tr>
+                                                           <tr>
+                                                               <td>
+                                                                   Phone Number
+                                                               </td>
+                                                               <td>
+                                                                   <input class="form-control" name="txtPhoneNumber" id="txtPhoneNumber" style="width: 200px;text-transform:uppercase" type="number"/>
+                                                               </td>
+                                                           </tr>    
+                                                           <tr>
+                                                               <td id="addPhoneNumberValidation" style="color:red;display:none">* Phone Number must be added</td>
+                                                           </tr>     
+                                                           <tr>
+                                                               <td>
+                                                                  Phone Number 2
+                                                               </td>
+                                                               <td>
+                                                                   <input class="form-control" name="txtPhoneNumber" id="txtPhoneNumber" style="width: 200px;text-transform:uppercase" type="number"/>
+                                                               </td>
+                                                           </tr>
+                                                           <tr>
+                                                               <td>
+                                                                  Contact Emergency
+                                                               </td>
+                                                               <td>
+                                                                   <input class="form-control" name="txtContactEmergency" id="txtContactEmergency" style="width: 200px;text-transform:uppercase" type="number"/>
+                                                               </td>
+                                                           </tr>
+                                                           <tr>
+                                                                <td>
+                                                                   Marital Status
+                                                                </td>
+                                                                <td>
+                                                                   <select name="cmbMaritalStatus" id="cmbMaritalStatus" class="form-control" style="width: 150px;">
+                                                                           <option th:each="maritalStatus : ${ListMaritalStatus}" th:value="${maritalStatus.status}" th:text="${maritalStatus.status}"></option>
+                                                                   </select>
+                                                                </td>
+                                                           </tr>                                                  
+                                                           <tr>
+                                                                <td>
+                                                                   Last Education
+                                                                </td>
+                                                                <td>
+                                                                   <select name="cmbLastEducation" id="cmbLastEducation" class="form-control" style="width: 150px;">
+                                                                           <option th:each="lastEducation : ${ListPendidikan}" th:value="${lastEducation.pendidikan}" th:text="${lastEducation.pendidikan}"></option>
+                                                                   </select>
+                                                                </td>
+                                                           </tr>                                                  
                                                         </tbody>                                                                
                                                 </table> 
                                            </div>

@@ -16,9 +16,13 @@ import com.example.Sindopan.Repository.AgamaRepository;
 import com.example.Sindopan.Repository.JenisKelaminRepository;
 import com.example.Sindopan.Repository.KaryawanRepository;
 import com.example.Sindopan.Repository.KehadiranRepository;
+import com.example.Sindopan.Repository.MaritalStatusRepository;
+import com.example.Sindopan.Repository.PendidikanRepository;
 import com.example.Sindopan.model.AgamaModel;
 import com.example.Sindopan.model.JenisKelaminModel;
 import com.example.Sindopan.model.KaryawanModel;
+import com.example.Sindopan.model.MaritalStatusModel;
+import com.example.Sindopan.model.PendidikanModel;
 
 @Service
 @Transactional
@@ -36,12 +40,26 @@ public class KaryawanService {
 	@Autowired
 	KehadiranRepository kk;
 	
+	@Autowired
+	PendidikanRepository pr;
+	
+	@Autowired
+	MaritalStatusRepository mr;
+	
 	public List<AgamaModel> readAgama() {
 		return ar.findAll();
 	}
 	
 	public List<KaryawanModel> readAllKaryawan() {
 		return kr.findAll();
+	}
+	
+	public List<MaritalStatusModel> readMaritalStatus() {
+		return mr.findAll();
+	}
+	
+	public List<PendidikanModel> readPendidikanTerakhir() {
+		return pr.findAll();
 	}
 	
 	public List<KaryawanModel> readKaryawan(String namaKaryawan) {

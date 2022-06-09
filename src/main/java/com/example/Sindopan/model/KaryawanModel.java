@@ -9,9 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
-
 @Entity
 @Table(name = "employee_table")
 public class KaryawanModel {
@@ -86,6 +83,36 @@ public class KaryawanModel {
 	
 	@Column(name="defunct")
 	private Integer defunct;
+	
+	@Column(name="phoneNumber")
+	private String phoneNumber;
+	
+	@Column(name="phoneNumber2")
+	private String phoneNumber2;
+	
+	@Column(name="contactEmergency")
+	private String contactEmergency;
+	
+	@Column(name="provinsi")
+	private String provinsi;
+	
+	@Column(name="kota")
+	private String kota;
+	
+	@Column(name="kecamatan")
+	private String kecamatan;
+	
+	@Column(name="kelurahan")
+	private String kelurahan;
+	
+	@Column(name="RT")
+	private String RT;
+	
+	@Column(name="RW")
+	private String RW;
+	
+	@Column(name="golonganDarah")
+	private String golonganDarah;
 	
 	public Integer getId() {
 		return id;
@@ -270,6 +297,81 @@ public class KaryawanModel {
 	public void setDefunct(Integer defunct) {
 		this.defunct = defunct;
 	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getPhoneNumber2() {
+		return phoneNumber2;
+	}
+
+	public void setPhoneNumber2(String phoneNumber2) {
+		this.phoneNumber2 = phoneNumber2;
+	}
+
+	public String getContactEmergency() {
+		return contactEmergency;
+	}
+
+	public void setContactEmergency(String contactEmergency) {
+		this.contactEmergency = contactEmergency;
+	}
+
+	public String getProvinsi() {
+		return provinsi;
+	}
+
+	public void setProvinsi(String provinsi) {
+		this.provinsi = provinsi;
+	}
+
+	public String getKota() {
+		return kota;
+	}
+
+	public void setKota(String kota) {
+		this.kota = kota;
+	}
+
+	public String getKecamatan() {
+		return kecamatan;
+	}
+
+	public void setKecamatan(String kecamatan) {
+		this.kecamatan = kecamatan;
+	}
+
+	public String getKelurahan() {
+		return kelurahan;
+	}
+
+	public void setKelurahan(String kelurahan) {
+		this.kelurahan = kelurahan;
+	}
+
+	public String getRT() {
+		return RT;
+	}
+
+	public void setRT(String rT) {
+		RT = rT;
+	}
+
+	public String getRW() {
+		return RW;
+	}
+
+	public void setRW(String rW) {
+		RW = rW;
+	}
+	
+	
+	
 	
 	
 

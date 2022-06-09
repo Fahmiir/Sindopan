@@ -21,6 +21,8 @@ import com.example.Sindopan.model.HariKerjaModel;
 import com.example.Sindopan.model.JenisKelaminModel;
 import com.example.Sindopan.model.KaryawanModel;
 import com.example.Sindopan.model.KehadiranModel;
+import com.example.Sindopan.model.MaritalStatusModel;
+import com.example.Sindopan.model.PendidikanModel;
 
 
 @Controller
@@ -95,12 +97,18 @@ public class SindopanController {
 		List<AgamaModel> ak = new ArrayList<>();
 		List<JenisKelaminModel> jk = new ArrayList<>();
 		List<KaryawanModel> kk = new ArrayList<>();
+		List<MaritalStatusModel> mk = new ArrayList<>();
+		List<PendidikanModel> lk = new ArrayList<>();
 		ak = as.readAgama();
 		jk = as.readJenisKelamin();
 		kk = as.readKaryawan(namaKaryawan);
+		mk = as.readMaritalStatus();
+		lk = as.readPendidikanTerakhir();
 		model.addAttribute("ListAgama", ak);
 		model.addAttribute("ListJenisKelamin", jk);
 		model.addAttribute("ListKaryawanModel", kk);
+		model.addAttribute("ListMaritalStatus", mk);
+		model.addAttribute("ListPendidikan",lk);
 		return "karyawan";
 	}
 	
