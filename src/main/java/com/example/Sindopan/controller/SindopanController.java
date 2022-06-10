@@ -17,6 +17,7 @@ import com.example.Sindopan.Service.KaryawanService;
 import com.example.Sindopan.Service.KehadiranService;
 import com.example.Sindopan.Service.SindopanService;
 import com.example.Sindopan.model.AgamaModel;
+import com.example.Sindopan.model.GolonganDarahModel;
 import com.example.Sindopan.model.HariKerjaModel;
 import com.example.Sindopan.model.JenisKelaminModel;
 import com.example.Sindopan.model.KaryawanModel;
@@ -99,16 +100,19 @@ public class SindopanController {
 		List<KaryawanModel> kk = new ArrayList<>();
 		List<MaritalStatusModel> mk = new ArrayList<>();
 		List<PendidikanModel> lk = new ArrayList<>();
+		List<GolonganDarahModel> gm = new ArrayList<>();
 		ak = as.readAgama();
 		jk = as.readJenisKelamin();
 		kk = as.readKaryawan(namaKaryawan);
 		mk = as.readMaritalStatus();
 		lk = as.readPendidikanTerakhir();
+		gm = as.readGolonganDarah();
 		model.addAttribute("ListAgama", ak);
 		model.addAttribute("ListJenisKelamin", jk);
 		model.addAttribute("ListKaryawanModel", kk);
 		model.addAttribute("ListMaritalStatus", mk);
 		model.addAttribute("ListPendidikan",lk);
+		model.addAttribute("ListGolonganDarah", gm);
 		return "karyawan";
 	}
 	

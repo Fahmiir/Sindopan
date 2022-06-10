@@ -164,16 +164,6 @@ input::-webkit-inner-spin-button {
                                                                  </select>
                                                               </td>
                                                         </tr>
-                                                        <tr>
-                                                              <td>
-                                                                 Marital Status
-                                                              </td>
-                                                              <td>
-                                                                 <select name="cmbMaritalStatus" id="cmbcmbMaritalStatus" class="form-control" style="width: 150px;">
-                                                                 
-                                                                 </select>
-                                                              </td>
-                                                        </tr>
                                                         <tr id="rowTempatLahir">
                                                               <td>
                                                                  Birth Place
@@ -276,7 +266,17 @@ input::-webkit-inner-spin-button {
                                                                            <option th:each="lastEducation : ${ListPendidikan}" th:value="${lastEducation.pendidikan}" th:text="${lastEducation.pendidikan}"></option>
                                                                    </select>
                                                                 </td>
-                                                           </tr>                                                  
+                                                           </tr>
+                                                           <tr>
+                                                                <td>
+                                                                   Blood Type
+                                                                </td>
+                                                                <td>
+                                                                   <select name="cmbBloodType" id="cmbBloodType" class="form-control" style="width: 150px;">
+                                                                           <option th:each="bloodType : ${ListGolonganDarah}" th:value="${bloodType.golonganDarah}" th:text="${bloodType.golonganDarah}"></option>
+                                                                   </select>
+                                                                </td>
+                                                           </tr>                                                                                                             
                                                         </tbody>                                                                
                                                 </table> 
                                            </div>

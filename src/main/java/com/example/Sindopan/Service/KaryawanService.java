@@ -13,12 +13,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.Sindopan.Repository.AgamaRepository;
+import com.example.Sindopan.Repository.GolonganDarahRepository;
 import com.example.Sindopan.Repository.JenisKelaminRepository;
 import com.example.Sindopan.Repository.KaryawanRepository;
 import com.example.Sindopan.Repository.KehadiranRepository;
 import com.example.Sindopan.Repository.MaritalStatusRepository;
 import com.example.Sindopan.Repository.PendidikanRepository;
 import com.example.Sindopan.model.AgamaModel;
+import com.example.Sindopan.model.GolonganDarahModel;
 import com.example.Sindopan.model.JenisKelaminModel;
 import com.example.Sindopan.model.KaryawanModel;
 import com.example.Sindopan.model.MaritalStatusModel;
@@ -46,6 +48,9 @@ public class KaryawanService {
 	@Autowired
 	MaritalStatusRepository mr;
 	
+	@Autowired
+	GolonganDarahRepository gr;
+	
 	public List<AgamaModel> readAgama() {
 		return ar.findAll();
 	}
@@ -60,6 +65,10 @@ public class KaryawanService {
 	
 	public List<PendidikanModel> readPendidikanTerakhir() {
 		return pr.findAll();
+	}
+	
+	public List<GolonganDarahModel> readGolonganDarah() {
+		return gr.findAll();
 	}
 	
 	public List<KaryawanModel> readKaryawan(String namaKaryawan) {
