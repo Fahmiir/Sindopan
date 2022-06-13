@@ -236,7 +236,7 @@ input::-webkit-inner-spin-button {
                                                                   Phone Number 2
                                                                </td>
                                                                <td>
-                                                                   <input class="form-control" name="txtPhoneNumber" id="txtPhoneNumber" style="width: 200px;text-transform:uppercase" type="number"/>
+                                                                   <input class="form-control" name="txtPhoneNumber2" id="txtPhoneNumber2" style="width: 200px;text-transform:uppercase" type="number"/>
                                                                </td>
                                                            </tr>
                                                            <tr>
@@ -312,7 +312,7 @@ input::-webkit-inner-spin-button {
                                                                   <td><input class="form-control" type="date" style="width:200px"></td>
                                                              </tr>                          
                                                      </tbody>
-                                                <table class="table tableCloningWorkExperiece">
+                                                <table class="table tableCloningWorkExperience">
                                                 </table>     
                                                 <table>
                                                      <tbody>
@@ -323,7 +323,7 @@ input::-webkit-inner-spin-button {
                                                            </tr>
                                                       </tbody>                                                     
                                                 </table>     
-                                                <table class="table" id="tableTraining" style="display:none">
+                                                <table class="table" id="tableTraining">
                                                      <tbody>
                                                               <tr>
                                                                      <td> Name Of Training</td>
@@ -338,6 +338,8 @@ input::-webkit-inner-spin-button {
                                                                      <td><input class="form-control" type="date" style="width:200px"></td>
                                                               </tr>                                                              
                                                      </tbody>
+                                                </table>
+                                                <table class="table tableCloningTraining">
                                                 </table>
                                            </div>
                                         </div>
@@ -628,9 +630,18 @@ input::-webkit-inner-spin-button {
     $(document).ready(function(){
     	$("#buttonWorkExperience").click(function(){
     		$('#tableWorkExperience').show();
-            $('#tableWorkExperience').clone().appendTo(".tableCloningWorkExperiece");
+            $('#tableWorkExperience').clone().appendTo(".tableCloningWorkExperience");
     	})
     })
+    
+    $(document).ready(function(){
+    	$("#buttonTraining").click(function(){
+    		$('#tableTraining').show();
+            $('#tableTraining').clone().appendTo(".tableCloningTraining");
+    	})
+    })    
+    
+    
     
     $(document).ready(function(){
     	var i;

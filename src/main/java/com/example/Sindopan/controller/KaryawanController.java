@@ -46,6 +46,13 @@ public class KaryawanController {
 		String filePath = Paths.get(uploadDirectory, Image.getOriginalFilename()).toString();
 		String jabatan = request.getParameter("txtJabatan");
 		String NIK = request.getParameter("txtNIK");
+		String phone = request.getParameter("txtPhoneNumber");
+		String phone2 = request.getParameter("txtPhoneNumber2");
+		String contactEmergency = request.getParameter("txtContactEmergency");
+		String relation = request.getParameter("txtContactRelation");
+		String maritalStatus = request.getParameter("cmbMaritalStatus");
+		String lastEducation = request.getParameter("cmbLastEducation");
+		String bloodType = request.getParameter("cmbBloodType");
 		KaryawanModel km = new KaryawanModel();
 		km.setNamaPegawai(namaPegawai);
 		km.setAlamat(alamat);
@@ -58,6 +65,13 @@ public class KaryawanController {
 		km.setImage(Image.getOriginalFilename());
 	    km.setJabatan(jabatan);
 	    km.setNIK(NIK);
+	    km.setPhoneNumber(phone);
+	    km.setPhoneNumber2(phone2);
+	    km.setContactEmergency(contactEmergency);
+	    km.setContactEmergency(relation);
+	    km.setMaritalStatus(maritalStatus);
+	    km.setPendidikanTerakhir(lastEducation);
+	    km.setGolonganDarah(bloodType);
 		ks.create(km);
 		ks.createDirectory(uploadDirectory, filePath, Image);
 		return "redirect:/goToKaryawan";
