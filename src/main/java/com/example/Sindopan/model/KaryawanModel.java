@@ -114,6 +114,9 @@ public class KaryawanModel {
 	@Column(name="golonganDarah")
 	private String golonganDarah;
 	
+	@Column(name="hubungan")
+	private String hubungan;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -369,6 +372,24 @@ public class KaryawanModel {
 	public void setRW(String rW) {
 		RW = rW;
 	}
+
+	public String getGolonganDarah() {
+		return golonganDarah;
+	}
+
+	public void setGolonganDarah(String golonganDarah) {
+		this.golonganDarah = golonganDarah;
+	}
+
+	public String getHubungan() {
+		return hubungan;
+	}
+
+	public void setHubungan(String hubungan) {
+		this.hubungan = hubungan;
+	}
+	
+	
 	
 	
 	

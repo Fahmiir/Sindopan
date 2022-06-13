@@ -89,7 +89,7 @@ input::-webkit-inner-spin-button {
                    <td><input type="checkbox" id="check"></td>
               </tr>
           </table>
-          <p align="center" style="display: none" id="display"> Tidak ada data untuk ditampilkan</p>          
+          <p align="center" style="display: none" id="display"> There are no data to be displayed</p>          
      </div>
      
      <!-- Modal Master Add Data Karyawan -->
@@ -248,6 +248,14 @@ input::-webkit-inner-spin-button {
                                                                </td>
                                                            </tr>
                                                            <tr>
+                                                               <td>
+                                                                  Relation
+                                                               </td>
+                                                               <td>
+                                                                   <input class="form-control" name="txtContactRelation" id="txtContactRelation" style="width: 200px;text-transform:uppercase" type="number"/>
+                                                               </td>
+                                                           </tr>
+                                                           <tr>
                                                                 <td>
                                                                    Marital Status
                                                                 </td>
@@ -276,9 +284,61 @@ input::-webkit-inner-spin-button {
                                                                            <option th:each="bloodType : ${ListGolonganDarah}" th:value="${bloodType.golonganDarah}" th:text="${bloodType.golonganDarah}"></option>
                                                                    </select>
                                                                 </td>
-                                                           </tr>                                                                                                             
-                                                        </tbody>                                                                
+                                                           </tr>      
+                                                     </tbody>                                                                
                                                 </table> 
+                                                <table>
+                                                     <tbody>
+                                                     
+                                                           <tr>
+                                                                 <td>
+                                                                     <Button type="button" id="buttonWorkExperience">Add Work Experience</Button>
+                                                                 </td>
+                                                           </tr>
+                                                      </tbody>                                                     
+                                                </table>
+                                                <table class="tableWorkExperience" id="tableWorkExperience" style="display:none">
+                                                     <tbody>                              
+                                                            <tr>
+                                                                  <td> Name Of Company </td>
+                                                                  <td><input class="form-control" style="width: 200px";/></td>
+                                                            </tr> 
+                                                             <tr>
+                                                                  <td>Start</td>
+                                                                  <td><input class="form-control" type="date" style="width:200px"></td>
+                                                             </tr>
+                                                             <tr>
+                                                                  <td>End</td>
+                                                                  <td><input class="form-control" type="date" style="width:200px"></td>
+                                                             </tr>                          
+                                                     </tbody>
+                                                <table class="tableCloningWorkExperiece">
+                                                </table>     
+                                                <table>
+                                                     <tbody>
+                                                           <tr>
+                                                                 <td>
+                                                                     <Button type="button" id="buttonTraining">Add Training</Button>
+                                                                 </td>
+                                                           </tr>
+                                                      </tbody>                                                     
+                                                </table>     
+                                                <table class="table" id="tableTraining" style="display:none">
+                                                     <tbody>
+                                                              <tr>
+                                                                     <td> Name Of Training</td>
+                                                                     <td><input class="form-control" style="width: 200px";/></td>
+                                                              </tr>       
+                                                              <tr>
+                                                                     <td>Start</td>
+                                                                     <td><input class="form-control" type="date" style="width:200px"></td>
+                                                              </tr>
+                                                              <tr>
+                                                                     <td>End</td>
+                                                                     <td><input class="form-control" type="date" style="width:200px"></td>
+                                                              </tr>                                                              
+                                                     </tbody>
+                                                </table>
                                            </div>
                                         </div>
                                   </div>      
@@ -566,6 +626,14 @@ input::-webkit-inner-spin-button {
     }
     
     $(document).ready(function(){
+    	$("#buttonWorkExperience").click(function(){
+    		$('#tableWorkExperience').show();
+            $('#tableWorkExperience').clone().appendTo(".tableCloningWorkExperiece");
+            $('#tableWorkExperience').hide();
+    	})
+    })
+    
+    $(document).ready(function(){
     	var i;
     	var ListData;
     	$('#myEditModal').on('show.bs.modal',function(e){
@@ -679,7 +747,7 @@ input::-webkit-inner-spin-button {
 	     				});  
 	  			}, 
 	  			 error: function (XMLHttpRequest, textStatus, errorThrown) {
-	                  alert("Delete Data Is not suceed");     
+	                  alert("Delete Data Is not sucees");     
 	              }            
 	      	  })  
 	         }
