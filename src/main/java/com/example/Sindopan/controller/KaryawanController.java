@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.Sindopan.Service.KaryawanService;
 import com.example.Sindopan.model.KaryawanModel;
 
+
 @Controller
 public class KaryawanController {
 	
@@ -74,6 +75,15 @@ public class KaryawanController {
 	    km.setGolonganDarah(bloodType);
 		ks.create(km);
 		ks.createDirectory(uploadDirectory, filePath, Image);
+		String [] nameCompany = request.getParameterValues("txtNameCompany");
+		String [] startWork = request.getParameterValues("txtStartWork");
+		String [] endWork = request.getParameterValues("txtEndWork");
+		String [] reason = request.getParameterValues("txtReasonForResign");
+		ks.createWorkExperience(km.getId(), namaPegawai, nameCompany, reason, startWork, endWork);
+		String [] nameTraining = request.getParameterValues("txtNameTraining");
+		String [] startTraining = request.getParameterValues("txtStartTraining");
+		String [] endTraining = request.getParameterValues("txtEndTraining");
+		ks.createTraining(km.getId(), namaPegawai, nameTraining, startTraining, endTraining);
 		return "redirect:/goToKaryawan";
 	}
 	

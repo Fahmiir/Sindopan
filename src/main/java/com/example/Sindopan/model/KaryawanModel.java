@@ -93,29 +93,14 @@ public class KaryawanModel {
 	@Column(name="contactEmergency")
 	private String contactEmergency;
 	
-	@Column(name="provinsi")
-	private String provinsi;
-	
-	@Column(name="kota")
-	private String kota;
-	
-	@Column(name="kecamatan")
-	private String kecamatan;
-	
-	@Column(name="kelurahan")
-	private String kelurahan;
-	
-	@Column(name="RT")
-	private String RT;
-	
-	@Column(name="RW")
-	private String RW;
-	
 	@Column(name="golonganDarah")
 	private String golonganDarah;
 	
 	@Column(name="hubungan")
 	private String hubungan;
+	
+	@Column(name="gaji")
+    private Integer gaji;
 	
 	public Integer getId() {
 		return id;
@@ -325,54 +310,6 @@ public class KaryawanModel {
 		this.contactEmergency = contactEmergency;
 	}
 
-	public String getProvinsi() {
-		return provinsi;
-	}
-
-	public void setProvinsi(String provinsi) {
-		this.provinsi = provinsi;
-	}
-
-	public String getKota() {
-		return kota;
-	}
-
-	public void setKota(String kota) {
-		this.kota = kota;
-	}
-
-	public String getKecamatan() {
-		return kecamatan;
-	}
-
-	public void setKecamatan(String kecamatan) {
-		this.kecamatan = kecamatan;
-	}
-
-	public String getKelurahan() {
-		return kelurahan;
-	}
-
-	public void setKelurahan(String kelurahan) {
-		this.kelurahan = kelurahan;
-	}
-
-	public String getRT() {
-		return RT;
-	}
-
-	public void setRT(String rT) {
-		RT = rT;
-	}
-
-	public String getRW() {
-		return RW;
-	}
-
-	public void setRW(String rW) {
-		RW = rW;
-	}
-
 	public String getGolonganDarah() {
 		return golonganDarah;
 	}
@@ -388,6 +325,18 @@ public class KaryawanModel {
 	public void setHubungan(String hubungan) {
 		this.hubungan = hubungan;
 	}
+
+	public Integer getGaji() {
+		return gaji;
+	}
+
+	public void setGaji(Integer gaji) {
+		this.gaji = gaji;
+	}
+
+
+	
+	
 	
 	
 	

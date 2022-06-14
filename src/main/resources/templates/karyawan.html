@@ -252,7 +252,7 @@ input::-webkit-inner-spin-button {
                                                                   Relation
                                                                </td>
                                                                <td>
-                                                                   <input class="form-control" name="txtContactRelation" id="txtContactRelation" style="width: 200px;text-transform:uppercase" type="number"/>
+                                                                   <input class="form-control" name="txtContactRelation" id="txtContactRelation" style="width: 200px;text-transform:uppercase"/>
                                                                </td>
                                                            </tr>
                                                            <tr>
@@ -284,7 +284,16 @@ input::-webkit-inner-spin-button {
                                                                            <option th:each="bloodType : ${ListGolonganDarah}" th:value="${bloodType.golonganDarah}" th:text="${bloodType.golonganDarah}"></option>
                                                                    </select>
                                                                 </td>
-                                                           </tr>      
+                                                           </tr>
+                                                           <tr>
+                                                                <td>
+                                                                   Join Date
+                                                                </td>
+                                                                <td>
+                                                                  <input class="form-control" type="date" name="txtJoinDate" id="txtJoinDate" style="width:200px;text-transform:uppercase" title=empty>
+                                                                </td>                                                                    
+                                                          </tr>
+                                                          <tr>
                                                      </tbody>                                                                
                                                 </table> 
                                                 <table>
@@ -301,15 +310,19 @@ input::-webkit-inner-spin-button {
                                                      <tbody>                              
                                                             <tr>
                                                                   <td> Name Of Company </td>
-                                                                  <td><input class="form-control" style="width: 200px";/></td>
+                                                                  <td><input class="form-control" name="txtNameCompany" style="width: 200px";/></td>
                                                             </tr> 
                                                              <tr>
                                                                   <td>Start</td>
-                                                                  <td><input class="form-control" type="date" style="width:200px"></td>
+                                                                  <td><input class="form-control" name="txtStartWork" type="date" style="width:200px"></td>
                                                              </tr>
                                                              <tr>
                                                                   <td>End</td>
-                                                                  <td><input class="form-control" type="date" style="width:200px"></td>
+                                                                  <td><input class="form-control" name="txtEndWork" type="date" style="width:200px"></td>
+                                                             </tr>
+                                                             <tr>
+                                                                   <td>Reason for resign</td>
+                                                                   <td><input class="form-control" name="txtReasonForResign" style="width: 200px";></td>
                                                              </tr>                          
                                                      </tbody>
                                                 <table class="table tableCloningWorkExperience">
@@ -327,15 +340,15 @@ input::-webkit-inner-spin-button {
                                                      <tbody>
                                                               <tr>
                                                                      <td> Name Of Training</td>
-                                                                     <td><input class="form-control" style="width: 200px";/></td>
+                                                                     <td><input class="form-control" name="txtNameTraining" style="width: 200px";/></td>
                                                               </tr>       
                                                               <tr>
                                                                      <td>Start</td>
-                                                                     <td><input class="form-control" type="date" style="width:200px"></td>
+                                                                     <td><input class="form-control" name="txtStartTraining" type="date" style="width:200px"></td>
                                                               </tr>
                                                               <tr>
                                                                      <td>End</td>
-                                                                     <td><input class="form-control" type="date" style="width:200px"></td>
+                                                                     <td><input class="form-control" name="txtEndTraining" type="date" style="width:200px"></td>
                                                               </tr>                                                              
                                                      </tbody>
                                                 </table>

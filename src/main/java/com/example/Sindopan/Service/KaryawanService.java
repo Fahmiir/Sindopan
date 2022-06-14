@@ -3,6 +3,10 @@ package com.example.Sindopan.Service;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,13 +22,17 @@ import com.example.Sindopan.Repository.JenisKelaminRepository;
 import com.example.Sindopan.Repository.KaryawanRepository;
 import com.example.Sindopan.Repository.KehadiranRepository;
 import com.example.Sindopan.Repository.MaritalStatusRepository;
+import com.example.Sindopan.Repository.PelatihanRepository;
 import com.example.Sindopan.Repository.PendidikanRepository;
+import com.example.Sindopan.Repository.PengalamanKerjaRepository;
 import com.example.Sindopan.model.AgamaModel;
 import com.example.Sindopan.model.GolonganDarahModel;
 import com.example.Sindopan.model.JenisKelaminModel;
 import com.example.Sindopan.model.KaryawanModel;
 import com.example.Sindopan.model.MaritalStatusModel;
+import com.example.Sindopan.model.PelatihanModel;
 import com.example.Sindopan.model.PendidikanModel;
+import com.example.Sindopan.model.PengalamanKerjaModel;
 
 @Service
 @Transactional
@@ -50,6 +58,12 @@ public class KaryawanService {
 	
 	@Autowired
 	GolonganDarahRepository gr;
+	
+	@Autowired
+	PengalamanKerjaRepository pk;	
+	
+	@Autowired
+	PelatihanRepository pp;
 	
 	public List<AgamaModel> readAgama() {
 		return ar.findAll();
@@ -85,6 +99,31 @@ public class KaryawanService {
 	
 	public void create (KaryawanModel km) {
 	    kr.save(km);
+	}
+	
+	public void createWorkExperience(int idKaryawan, String namaPegawai, String [] namaPerusahaan, String [] alasanResign, String [] tanggalMasuk, String [] tanggalKeluar) throws ParseException {
+		for(int i=0;i<namaPerusahaan.length;i++) {
+		   PengalamanKerjaModel pn = new PengalamanKerjaModel();
+		   pn.setIdKaryawan(idKaryawan);
+		   pn.setNamaPegawai(namaPegawai);
+		   pn.setNamaPerusahaan(namaPerusahaan[i]);
+		   pn.setAlasanResign(alasanResign[i]);
+		   pn.setTanggalMasuk(new SimpleDateFormat("yyyy-mm-dd").parse(tanggalMasuk[i]));
+		   pn.setTanggalKeluar(new SimpleDateFormat("yyyy-mm-dd").parse(tanggalKeluar[i]));
+		   pk.save(pn);
+		}
+	}
+	
+	public void createTraining(int idKaryawan, String namaPegawai, String [] namaPelatihan, String [] tanggalMulai, String [] tanggalBerakhir ) throws ParseException {
+		for(int i=0;i<namaPelatihan.length;i++) {
+			PelatihanModel pm = new PelatihanModel ();
+			pm.setIdKaryawan(idKaryawan);
+			pm.setNamaKaryawan(namaPegawai);
+			pm.setNamaPelatihan(namaPelatihan[i]);
+			pm.setTanggalMulai(new SimpleDateFormat("yyyy-mm-dd").parse(tanggalMulai[i]));
+			pm.setTanggalBerakhir(new SimpleDateFormat("yyyy-mm-dd").parse(tanggalBerakhir[i]));
+			pp.save(pm);
+		}
 	}
 	
 	public void createDirectory(String uploadDirectory, String filePath, MultipartFile Image) {
